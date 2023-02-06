@@ -2,9 +2,9 @@ const db = require('./db')
 const genValRef = require('../utils/generateValuesReferences');
 
 const parameters = [
-    "stationId",
+    "stationID",
     "status",
-    "maintenance"
+    "condition"
 ];
 
 const table = "bicycles";
@@ -18,9 +18,7 @@ async function readAll(){
     const result = await db.query(text);
     const data = result.rows;
  
-    return {
-      data
-    }
+    return data;
 }
 
 //WIP
