@@ -2,9 +2,7 @@ const db = require('./db')
 const genValRef = require('../utils/generateValuesReferences');
 const genKeyVal = require('../utils/generateInKeysValues');
 
-const table = "bicycles";
-
-// const table = "students";// for testing with my old table
+const table = "bicycle";
 
 
 async function readAll(){
