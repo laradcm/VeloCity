@@ -2,7 +2,11 @@ const express = require('express');
 const router = express.Router();
 const bicycles = require('../controllers/bicycles');
 
-/* GET programming languages. */
+/* GET bicycles. */
 router.get('/', bicycles.read);
+
+router.post('/', bicycles.create);
+
+router.delete('/:id', bicycles.deleteRow);
 
 module.exports = router;

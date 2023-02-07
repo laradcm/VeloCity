@@ -5,11 +5,35 @@ async function read(req, res, next) {
         res.json(await bicycles.readAll());
 
     } catch (err) {
-        console.error(`Error while getting programming languages`, err.message);
+        err.message = `Error while getting bicycles: `+ err.message;
+        next(err);
+
+    }
+}
+
+async function create(req, res, next) {
+    try {
+        res.json(await bicycles.create(req.body));
+
+    } catch (err) {
+        err.message = `Error while creating bicycles: ` + err.message ;
+        next(err);
+    }
+}
+
+
+async function deleteRow(req, res, next) {
+    try {
+        res.json(await bicycles.deleteRow(req.params.id));
+
+    } catch (err) {
+        err.message = `Error while deleting bicycles: ` + err.message ;
         next(err);
     }
 }
 
 module.exports = {
-    read
+    read, 
+    create, 
+    deleteRow
 }
