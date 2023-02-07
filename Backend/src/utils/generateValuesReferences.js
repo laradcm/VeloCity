@@ -9,4 +9,4 @@ function generateValuesReferences(length){
     return arr.join(",");
 }
 
-module.exports = generateValuesReferences
+module.exports = generateValuesReferences;

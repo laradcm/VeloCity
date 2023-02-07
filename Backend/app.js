@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
-const reqTracking = require('./src/middlewares/reqTracking')
+const reqTracking = require('./src/middlewares/reqTracking');
+const errorHandler = require('./src/middlewares/errorHandler');
 const bicyclesRouter = require('./src/routes/bicycles');
 
 const PORT = process.env.PORT || 3000;
@@ -13,10 +14,13 @@ const corsOptions =  {
 
 //middlewares
 app.use(cors(corsOptions));//allows different ip/PORTS comms 
+app.use(express.json());//body json parser
 app.use(reqTracking);//logs requests received
 
 //routing
 app.use('/bicycles', bicyclesRouter);
+
+app.use(errorHandler);
 
 //listen
 app.listen(PORT, () => {
