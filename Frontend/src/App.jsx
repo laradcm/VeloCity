@@ -3,7 +3,6 @@ import reactLogo from './assets/react.svg'
 import './App.css'
 
 const url = "http://127.0.0.1:3000/bicycles";
-// const url = 'https://course-api.com/react-tours-project'
 
 function App() {
   const [loadData, setLoadData] = useState(true);
