@@ -1,7 +1,7 @@
 
 const db = {
     host: '127.0.0.1',
-    database: 'VeloCity',
+    database: 'velocity',
     port: 5432,
     user: 'postgres',
     password:'admin'
