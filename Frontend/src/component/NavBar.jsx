@@ -11,7 +11,7 @@ export function NavBar() {
         {/* prettier-ignore */}
         <Nav>
           <Nav.Link to="/" as={NavLink}>Home</Nav.Link>
-          <Nav.Link to="/login" as={NavLink}>Sign in</Nav.Link>
+          <Nav.Link to="/signin" as={NavLink}>Sign in</Nav.Link>
           <Nav.Link to="/signup" as={NavLink}>Sign up</Nav.Link>
           <Nav.Link to="/main" as={NavLink}>Main</Nav.Link>
           <Nav.Link to="/profile" as={NavLink}>Profile</Nav.Link>
