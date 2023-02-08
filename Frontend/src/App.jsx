@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import { Home } from "./pages/Home";
-import { LogIn } from "./pages/login";
+import { SignIn } from "./pages/SignIn";
 import { SignUp } from "./pages/SignUp";
 import { Main } from "./pages/Main";
 import { Profile } from "./pages/Profile";
@@ -17,7 +17,7 @@ function App() {
       <Container className="mb-4">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<LogIn />} />
+          <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/main" element={<Main />} />
           <Route path="/profile" element={<Profile />} />

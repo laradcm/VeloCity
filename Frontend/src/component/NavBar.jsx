@@ -1,4 +1,4 @@
-import { Button, Container, Nav, Navbar as NavbarBs } from "react-bootstrap";
+import { Container, Nav, Navbar as NavbarBs } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
 export function NavBar() {
@@ -6,12 +6,12 @@ export function NavBar() {
     //white bar
     // <NavbarBs className="bg-white shadow-sm mb-3">
     // dark bar
-    <NavbarBs className="navbar navbar-dark bg-dark">
+    <NavbarBs sticky="top" className="navbar navbar-dark bg-dark">
       <Container>
         {/* prettier-ignore */}
         <Nav>
           <Nav.Link to="/" as={NavLink}>Home</Nav.Link>
-          <Nav.Link to="/login" as={NavLink}>Log in</Nav.Link>
+          <Nav.Link to="/login" as={NavLink}>Sign in</Nav.Link>
           <Nav.Link to="/signup" as={NavLink}>Sign up</Nav.Link>
           <Nav.Link to="/main" as={NavLink}>Main</Nav.Link>
           <Nav.Link to="/profile" as={NavLink}>Profile</Nav.Link>
