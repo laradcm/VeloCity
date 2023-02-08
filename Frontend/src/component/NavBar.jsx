@@ -3,7 +3,10 @@ import { NavLink } from "react-router-dom";
 
 export function NavBar() {
   return (
-    <NavbarBs className="bg-white shadow-sm mb-3">
+    //white bar
+    // <NavbarBs className="bg-white shadow-sm mb-3">
+    // dark bar
+    <NavbarBs className="navbar navbar-dark bg-dark">
       <Container>
         {/* prettier-ignore */}
         <Nav>
