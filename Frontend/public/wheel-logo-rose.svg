@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #f15060;
+      }
+
+      .cls-2 {
+        font-size: 37.5px;
+        fill: #fff;
+        font-family: Raleway;
+        font-weight: 700;
+      }
+    </style>
+  </defs>
+  <circle class="cls-1" cx="100" cy="100" r="100"/>
+  <text id="vélocity" class="cls-2" transform="translate(-13.474 147.862) scale(3.985)">vélocity</text>
+</svg>

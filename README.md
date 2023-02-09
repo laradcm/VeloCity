@@ -1,22 +1,46 @@
-# VeloCity
+<img src="Frontend/public/wheel-logo-rose.png" alt="Velocity wheel logo rose" align="right" width="120" />
 
-## MILESTONES 1 - PLANNING
+## Vélocity
 
-### 1) Opportunity Statements:
+**Vélocity helps customers & bicycle providers streamline their experience & access to city wide bike-sharing networks.**
 
-1. Streamline inventory tracking process for bicycle provider administrators.
-2. Dynamically monitor and manage Bixi locations and availability with real-time analytics.
-3. Report losses and damages for both administrator and customers quickly and easily without hassle.
-4. Develop a website that provides access to the city bike network system for commuters as well as inventory monitoring for the bicycle supplier.
+Vélocity aims to:
 
-# Front end
+-   **Dynamically monitor** and **readily manage** bike-sharing locations and availability with up-to-date analytics.
+-   **Streamline inventory tracking processes** for bicycle provider administrators.
+-   **Report losses and damages** for both administrator and customers quickly and easily without hassle.
 
-Things you need to run it:
+## Brand Guidelines
 
-1. Material UI
-   npm i @mui/material @mui/icons-material @emotion/styled @emotion/react
+![BrandGuidelines](Frontend/public/brandguidelines.png)
 
-2. npm i react-router-dom bootstrap react-bootstrap
+## Installation
 
-3. im also hungry
-   I-m hungry
+### React: Bootstrap
+
+```sh
+npm i react-router-dom bootstrap react-bootstrap
+```
+
+### MUI: Material UI
+
+```sh
+npm i @mui/material @mui/icons-material @emotion/styled @emotion/react
+```
+
+## Logo
+
+### Wide Text
+
+<img src="Frontend/public/velocity-logo-white.png" alt="Velocity logo white" height="175" />  
+<img src="Frontend/public/velocity-logo-black.png" alt="Velocity logo black" height="175" />
+
+### Standard Round
+
+<img src="Frontend/public/wheel-logo-blue.png" alt="Velocity wheel logo blue" height="200" />&nbsp;&nbsp;<img src="Frontend/public/wheel-logo-orange.png" alt="Velocity wheel logo orange" height="200" />&nbsp;&nbsp;<img src="Frontend/public/wheel-logo-white.png" alt="Velocity wheel logo white" height="200" />
+
+<img src="Frontend/public/wheel-logo-bw.png" alt="Velocity wheel logo black" height="200" />&nbsp;&nbsp;<img src="Frontend/public/wheel-logo-rose.png" alt="Velocity wheel logo rose" height="200" />&nbsp;&nbsp;<img src="Frontend/public/wheel-logo-green.png" alt="Velocity wheel logo green" height="200" />
+
+## Acknowledgements
+
+Developed by Lara de Castro Mauricio, Ruben Arturo Perez Juarez, Charles Bourassa, & Julien Lafontaine for McGill YCIT 099 Full Stack Javascript Capstone Project.
