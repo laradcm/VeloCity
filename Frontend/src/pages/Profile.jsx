@@ -24,7 +24,9 @@ export function Profile() {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="caption table">
-        <caption>Edit</caption>
+        <caption>
+          <em>Modify</em>
+        </caption>
         <TableHead>
           <TableRow>
             <TableCell>
