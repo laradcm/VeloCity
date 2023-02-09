@@ -12,7 +12,7 @@ Vélocity aims to:
 
 ## Brand Guidelines
 
-![BrandGuidelines](.public/brandguidelines.png)
+![BrandGuidelines](Frontend/public/brandguidelines.png)
 
 ## Installation
 
@@ -25,31 +25,24 @@ npm i react-router-dom bootstrap react-bootstrap
 ### MUI: Material UI
 
 ```sh
-   npm i @mui/material @mui/icons-material @emotion/styled @emotion/react
+npm i @mui/material @mui/icons-material @emotion/styled @emotion/react
 ```
 
 ## Logo
 
 ### Wide Text
 
-<img src=".public/velocity-logo-white.svg" alt="Velocity logo" align="right" height="120" />
-
-<img src=".public/velocity-logo-black.svg" alt="Velocity logo" align="right" height="120" />
+<img src="Frontend/public/velocity-logo-white.svg" alt="Velocity logo white" align="left" height="175" />
+<img src="Frontend/public/velocity-logo-black.svg" alt="Velocity logo black" align="left" height="175" />
 
 ### Standard Round
 
-<img src=".public/velocity-logo-white.svg" alt="Velocity logo" align="right" height="120" />
-
-<img src=".public/velocity-logo-black.svg" alt="Velocity logo" align="right" height="120" />
-
-<img src=".public/velocity-logo-white.svg" alt="Velocity logo" align="right" height="120" />
-
-<img src=".public/velocity-logo-black.svg" alt="Velocity logo" align="right" height="120" />
-
-<img src=".public/velocity-logo-white.svg" alt="Velocity logo" align="right" height="120" />
-
-<img src=".public/velocity-logo-black.svg" alt="Velocity logo" align="right" height="120" />
-
+<img src="Frontend/public/wheel-logo-blue.svg" alt="Velocity wheel logo blue" align="left" height="200" />
+<img src="Frontend/public/wheel-logo-orange.svg" alt="Velocity wheel logo orange" align="right" height="200" />
+<img src="Frontend/public/wheel-logo-white.svg" alt="Velocity wheel logo white" align="left" height="200" />
+<img src="Frontend/public/wheel-logo-black.svg" alt="Velocity wheel logo black" align="right" height="200" />
+<img src="Frontend/public/wheel-logo-rose.svg" alt="Velocity wheel logo rose" align="left" height="200" />
+<img src="Frontend/public/wheel-logo-green.svg" alt="Velocity wheel logo green" align="right" height="200" />
 
 ## Acknowledgements
 
