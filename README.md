@@ -40,7 +40,7 @@ npm i @mui/material @mui/icons-material @emotion/styled @emotion/react
 <img src="Frontend/public/wheel-logo-blue.png" alt="Velocity wheel logo blue" align="left" height="200" />
 <img src="Frontend/public/wheel-logo-orange.png" alt="Velocity wheel logo orange" align="left" height="200" />
 <img src="Frontend/public/wheel-logo-white.png" alt="Velocity wheel logo white" align="left" height="200" />
-<img src="Frontend/public/wheel-logo-black.png" alt="Velocity wheel logo black" align="left" height="200" />
+<img src="Frontend/public/wheel-logo-bw.png" alt="Velocity wheel logo black" align="left" height="200" />
 <img src="Frontend/public/wheel-logo-rose.png" alt="Velocity wheel logo rose" align="left" height="200" />
 <img src="Frontend/public/wheel-logo-green.png" alt="Velocity wheel logo green" align="left" height="200" />
 
