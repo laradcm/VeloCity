@@ -37,9 +37,8 @@ npm i @mui/material @mui/icons-material @emotion/styled @emotion/react
 
 ### Standard Round
 
-<img src="Frontend/public/wheel-logo-blue.png" alt="Velocity wheel logo blue" height="200" /><img src="Frontend/public/wheel-logo-orange.png" alt="Velocity wheel logo orange" height="200" />  
-<img src="Frontend/public/wheel-logo-white.png" alt="Velocity wheel logo white" height="200" /><img src="Frontend/public/wheel-logo-bw.png" alt="Velocity wheel logo black" height="200" />  
-<img src="Frontend/public/wheel-logo-rose.png" alt="Velocity wheel logo rose" height="200" /><img src="Frontend/public/wheel-logo-green.png" alt="Velocity wheel logo green" height="200" />
+<img src="Frontend/public/wheel-logo-blue.png" alt="Velocity wheel logo blue" height="200" />&nbsp;&nbsp;<img src="Frontend/public/wheel-logo-orange.png" alt="Velocity wheel logo orange" height="200" />&nbsp;&nbsp;<img src="Frontend/public/wheel-logo-white.png" alt="Velocity wheel logo white" height="200" />
+<img src="Frontend/public/wheel-logo-bw.png" alt="Velocity wheel logo black" height="200" />&nbsp;&nbsp;<img src="Frontend/public/wheel-logo-rose.png" alt="Velocity wheel logo rose" height="200" />&nbsp;&nbsp;<img src="Frontend/public/wheel-logo-green.png" alt="Velocity wheel logo green" height="200" />
 
 ## Acknowledgements
 
