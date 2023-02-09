@@ -21,6 +21,16 @@ async function create(req, res, next) {
     }
 }
 
+async function update(req, res, next) {
+    try {
+        res.json(await bicycles.update(req.body));
+
+    } catch (err) {
+        err.message = `Error while updating bicycles: ` + err.message ;
+        next(err);
+    }
+}
+
 
 async function deleteRow(req, res, next) {
     try {
@@ -35,5 +45,6 @@ async function deleteRow(req, res, next) {
 module.exports = {
     read, 
     create, 
+    update,
     deleteRow
 }

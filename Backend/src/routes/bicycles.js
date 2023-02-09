@@ -7,6 +7,8 @@ router.get('/', bicycles.read);
 
 router.post('/', bicycles.create);
 
+router.put('/', bicycles.update);
+
 router.delete('/:id', bicycles.deleteRow);
 
 module.exports = router;
