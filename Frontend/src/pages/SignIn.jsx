@@ -23,7 +23,7 @@ function Copyright(props) {
     >
       {"Copyright © "}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        Vélocity
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -137,7 +137,3 @@ export function SignIn() {
     </ThemeProvider>
   );
 }
-
-// export function SignIn() {
-//   return <h1>Sign in page. Please enter your username and password</h1>;
-// }
