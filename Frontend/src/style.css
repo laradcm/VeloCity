@@ -1,16 +1,58 @@
 :root {
-  font-family: "Open Sans", sans-serif;
-  font-family: "Raleway", sans-serif;
-  font-family: "Source Sans Pro", sans-serif;
+    font-family: "Open Sans", sans-serif;
+    font-family: "Raleway", sans-serif;
 }
 
 h1 {
-  font-family: "Raleway", sans-serif;
-  color: #000000;
-  font-size: 3.2em;
-  /* line-height: 1.5; */
+    font-family: "Raleway", sans-serif;
+    color: #000000;
+    font-size: 2em;
 }
 
-#Rale {
-  font-family: "Raleway", sans-serif;
+h2 {
+    font-family: "Raleway", sans-serif;
+    color: #000000;
+    font-size: 1.5em;
 }
+
+h3 {
+    font-family: "Raleway", sans-serif;
+    color: #000000;
+    font-size: 1.17em;
+}
+
+h4 {
+    font-family: "Raleway", sans-serif;
+    color: #000000;
+    font-size: 1em;
+}
+
+h5 {
+    font-family: "Raleway", sans-serif;
+    color: #000000;
+    font-size: 0.83em;
+}
+
+p {
+    font-family: "Open Sans", sans-serif;
+    color: #000000;
+    font-size: 1em;
+}
+
+#RaleNav {
+    font-family: "Raleway", sans-serif;
+    font-size: 2em;
+}
+
+.navbar-nav {
+    font-family: "Open Sans", sans-serif;
+}
+
+/* COLOR REFERENCE
+BLUE - #0078bf
+ORANGE - #ffae3b
+WHITE - #FFFFFF
+BLACK - #000000
+ROSE - #f15060
+GREEN - #67b346
+END COLOR REFERENCE */
