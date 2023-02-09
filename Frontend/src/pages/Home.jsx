@@ -30,8 +30,7 @@ export function Home() {
           </Container>
         </Card.Body>
       </Card>
-      
-
+  
     </>
   );
 }

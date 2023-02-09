@@ -9,12 +9,12 @@ import { Rides } from "./pages/Rides";
 import { EndRide } from "./pages/EndRide";
 import { ReportBike } from "./pages/ReportBike";
 import { NavBar } from "./component/NavBar";
-// import { Footer } from "./component/Footer";
 
 function App() {
   return (
     <>
       <NavBar />
+      {/* <Footer /> */}
       <Container className="mb-4">
         <Routes>
           <Route path="/" element={<Home />} />
@@ -27,7 +27,6 @@ function App() {
           <Route path="/reportbike" element={<ReportBike />} />
         </Routes>
       </Container>
-      {/* <Footer /> */}
     </>
   );
 }
