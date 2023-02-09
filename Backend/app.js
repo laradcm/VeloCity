@@ -23,7 +23,7 @@ app.use('/bicycles', bicyclesRouter);
 app.use(errorHandler);
 
 //listen
-app.listen(PORT, () => {
+app.listen(PORT, "127.0.0.1",() => {
     console.log("listening on port:" + PORT);
 })
 

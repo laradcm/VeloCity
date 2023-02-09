@@ -1,8 +1,9 @@
 const db = require('./db')
 const genValRef = require('../utils/generateValuesReferences');
 const genKeyVal = require('../utils/generateInKeysValues');
+const genSetPairs = require('../utils/generateSetPairs');
 
-const table = "bicycle";
+const table = "bicycles";
 
 
 async function readAll(){
@@ -36,30 +37,25 @@ async function create(valuesInput){
 
 }
 
-//WIP
+async function update(valuesInput){
 
-// async function update(valuesInput){
+    const input = genSetPairs(valuesInput);
+    
+    const text = `UPDATE ${table}
+                  SET ${input.setPairs.join(",")}
+                  WHERE ${input.wherePair};`
 
-//     const input = genKeyVal(valuesInput);
-//     const valueReferences = genValRef(input.size);
+    const values = input.values;
+    const result = await db.query(text, values);
 
+    let message = `Error in updating ${table}`;//will never reach here if error occurs
 
-//     const text = `UPDATE ${table}
-//                   SET ${input.keys.join(",")}
-//                   WHERE ${valueReferences};`;
-
-//     const values = input.values;
-//     const result = await db.query(text, values);
- 
-//     let message = `Error in updating ${table}`;//will never reach here if error occurs
-
-//     if (result.rowCount) {
-//       message = `${table} updated successfully`;
-//     }
+    if (result.rowCount) {
+      message = `${table} updated successfully`;
+    }
   
-//     return {message};
-
-// }
+    return {message};
+}
 
 async function deleteRow(id){
 
@@ -82,5 +78,6 @@ async function deleteRow(id){
 module.exports = {
     readAll,
     create,
+    update,
     deleteRow
 }
