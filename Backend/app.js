@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const reqTracking = require('./src/middlewares/reqTracking');
 const errorHandler = require('./src/middlewares/errorHandler');
-const bicyclesRouter = require('./src/routes/bicycles');
+const router = require('./src/routes/router');
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -18,7 +18,7 @@ app.use(express.json());//body json parser
 app.use(reqTracking);//logs requests received
 
 //routing
-app.use('/bicycles', bicyclesRouter);
+app.use('/', router);
 
 app.use(errorHandler);
 
