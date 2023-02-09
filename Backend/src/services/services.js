@@ -14,7 +14,10 @@ async function readAll(table){
 
 
 async function create(table, valuesInput){
-    //TODO check that 'id' isn't provided manually
+  
+  let message = "";
+
+  if (!valuesInput.id) {
     const input = genKeyVal(valuesInput);
     const valueReferences = genValRef(input.size);
 
@@ -23,35 +26,44 @@ async function create(table, valuesInput){
 
     const values = input.values;
     const result = await db.query(text, values);
- 
-    let message = `Error in updating ${table}`;//will never reach here if error occurs
+    
 
     if (result.rowCount) {
       message = `${table} updated successfully`;
+    }else{
+      message = `Error in updating ${table}`;
     }
-  
-    return {message};
 
+  }else{
+    message = `Error in updating ${table}, id should not be provided`;
+  }
+
+
+  return { message };
 }
 
-async function update(table, valuesInput){
-    //TODO 'id' must be provided manually and must already exist
-    const input = genSetPairs(valuesInput);
-    
-    const text = `UPDATE ${table}
+async function update(table, id, valuesInput) {
+
+  let message = "";
+
+  const input = genSetPairs(valuesInput);
+
+  const text = `UPDATE ${table}
                   SET ${input.setPairs.join(",")}
-                  WHERE ${input.wherePair};`
+                  WHERE id=$1;`;
 
-    const values = input.values;
-    const result = await db.query(text, values);
+  const values = [id, ...input.values];
 
-    let message = `Error in updating ${table}`;//will never reach here if error occurs
+  console.log(text, values);
+  const result = await db.query(text, values);
 
-    if (result.rowCount) {
-      message = `${table} updated successfully`;
-    }
-  
-    return {message};
+  if (result.rowCount) {
+    message = `${table} updated successfully`;
+  } else {
+    message = `Error in updating ${table}`;
+  }
+
+  return { message };
 }
 
 async function deleteRow(table, id){
@@ -62,7 +74,7 @@ async function deleteRow(table, id){
     console.log("i was here");
     const result = await db.query(text, values);
 
-    let message = `Error in updating ${table}`;//will never reach here if error occurs
+    let message = `Error in updating ${table}`;
 
     if (result.rowCount) {
       message = `${table} updated successfully`;

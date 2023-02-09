@@ -7,7 +7,7 @@ router.get('/:table', controller.read);
 
 router.post('/:table', controller.create);
 
-router.put('/:table', controller.update);
+router.put('/:table/:id', controller.update);
 
 router.delete('/:table/:id', controller.deleteRow);
 

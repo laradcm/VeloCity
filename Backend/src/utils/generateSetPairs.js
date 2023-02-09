@@ -8,22 +8,20 @@ function generateSetPairs( inObj ){
     const values =  Object.values( inObj );
 
     const setPairs = [];
-    let wherePair;
+ 
 
     let ref = 2;
 
     for ( const key of keys ) {
-      if (key !== "id") {
+ 
         setPairs.push(key + ` = $${ref}`);
         ref++;
-      } else {
-        wherePair = key + ` = $1`;
-      }
     }
+
+    
 
     return {
         setPairs,
-        wherePair,
         size,
         values
     }
