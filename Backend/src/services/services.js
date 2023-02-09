@@ -3,10 +3,7 @@ const genValRef = require('../utils/generateValuesReferences');
 const genKeyVal = require('../utils/generateInKeysValues');
 const genSetPairs = require('../utils/generateSetPairs');
 
-const table = "bicycles";
-
-
-async function readAll(){
+async function readAll(table){
 
     const text = `SELECT * FROM ${table}`;
     const result = await db.query(text);
@@ -16,8 +13,8 @@ async function readAll(){
 }
 
 
-async function create(valuesInput){
-
+async function create(table, valuesInput){
+    //TODO check that 'id' isn't provided manually
     const input = genKeyVal(valuesInput);
     const valueReferences = genValRef(input.size);
 
@@ -37,8 +34,8 @@ async function create(valuesInput){
 
 }
 
-async function update(valuesInput){
-
+async function update(table, valuesInput){
+    //TODO 'id' must be provided manually and must already exist
     const input = genSetPairs(valuesInput);
     
     const text = `UPDATE ${table}
@@ -57,7 +54,7 @@ async function update(valuesInput){
     return {message};
 }
 
-async function deleteRow(id){
+async function deleteRow(table, id){
 
     const text = `DELETE FROM ${table} WHERE id=$1;`;
     const values = [id];
