@@ -3,7 +3,7 @@ const genValRef = require('../utils/generateValuesReferences');
 const genKeyVal = require('../utils/generateInKeysValues');
 const genSetPairs = require('../utils/generateSetPairs');
 
-const table = "bicycles";
+const table = "bicycle";
 
 
 async function readAll(){
