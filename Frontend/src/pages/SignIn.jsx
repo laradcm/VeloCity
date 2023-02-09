@@ -53,7 +53,7 @@ export function SignIn() {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: "url(/public/bicycleeee.png)",
+            backgroundImage: "url(/bicycleeee.png)",
             backgroundRepeat: "no-repeat",
             backgroundColor: (t) =>
               t.palette.mode === "light"
