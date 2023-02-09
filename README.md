@@ -1,4 +1,4 @@
-<!-- <img src=".public/logo.png" alt="Velocity logo" align="right" width="120" /> -->
+<img src="Frontend/public/wheel-logo-rose.png" alt="Velocity wheel logo rose" align="right" width="120" />
 
 ## Vélocity
 
