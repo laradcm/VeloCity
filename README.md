@@ -11,11 +11,8 @@
 
 # Front end
 
-Things you need to run it:
-
 1. Material UI
    npm i @mui/material @mui/icons-material @emotion/styled @emotion/react
 
 2. npm i react-router-dom bootstrap react-bootstrap
 
-I-m hungry
