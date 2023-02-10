@@ -28,7 +28,7 @@ function Copyright() {
 
 const rideInfo = [
   {
-    userID: "150",
+    user_id: "150",
     neighbourhood: "Hochelaga",
     station: "Stadium",
     date: "2023/02/31",
@@ -63,7 +63,7 @@ export function EndRide() {
           <List disablePadding>
             {rideInfo.map((ride) => (
               <>
-                <ListItem key={ride.userID} sx={{ py: 0, px: 19 }}>
+                <ListItem key={ride.user_id} sx={{ py: 0, px: 19 }}>
                   <ListItemText
                     disableTypography
                     primary={
@@ -78,7 +78,7 @@ export function EndRide() {
                   />
                   {ride.neighbourhood}
                 </ListItem>
-                <ListItem key={ride.userID} sx={{ py: 0, px: 19 }}>
+                <ListItem key={ride.user_id} sx={{ py: 0, px: 19 }}>
                   <ListItemText
                     disableTypography
                     primary={
@@ -93,7 +93,7 @@ export function EndRide() {
                   />
                   {ride.station}
                 </ListItem>
-                <ListItem key={ride.userID} sx={{ py: 0, px: 19 }}>
+                <ListItem key={ride.user_id} sx={{ py: 0, px: 19 }}>
                   <ListItemText
                     disableTypography
                     primary={
@@ -108,7 +108,7 @@ export function EndRide() {
                   />
                   {ride.date}
                 </ListItem>
-                <ListItem key={ride.userID} sx={{ py: 0, px: 19 }}>
+                <ListItem key={ride.user_id} sx={{ py: 0, px: 19 }}>
                   <ListItemText
                     disableTypography
                     primary={
@@ -123,7 +123,7 @@ export function EndRide() {
                   />
                   {ride.time}
                 </ListItem>
-                <ListItem key={ride.userID} sx={{ py: 0, px: 19 }}>
+                <ListItem key={ride.user_id} sx={{ py: 0, px: 19 }}>
                   <ListItemText
                     disableTypography
                     primary={
@@ -138,7 +138,7 @@ export function EndRide() {
                   />
                   #2001539
                 </ListItem>
-                <ListItem key={ride.userID} sx={{ py: 0, px: 19 }}>
+                <ListItem key={ride.user_id} sx={{ py: 0, px: 19 }}>
                   <ListItemText
                     disableTypography
                     primary={
