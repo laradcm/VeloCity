@@ -24,7 +24,7 @@ export function Main() {
     <>
       <Paper className="ccontainer">
         <Container>
-          <Box textAlign="center">
+          <Box textAlign="center" paddingTop={"2rem"}>
             <Typography component="h1" variant="h4" align="center">
               Hi, username!
             </Typography>
@@ -64,7 +64,7 @@ export function Main() {
               Go to profile
             </Button>
           </Box>
-          <Box textAlign="center">
+          <Box textAlign="center" paddingBottom={"1rem"}>
             <Typography variant="h6" align="center">
               Something not working?
             </Typography>

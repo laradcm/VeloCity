@@ -67,6 +67,10 @@ p {
     padding-bottom: 0rem;
 }
 
+.hidden{
+    display: none;
+}
+
 /* COLOR REFERENCE
 BLUE - #0078bf
 ORANGE - #ffae3b
