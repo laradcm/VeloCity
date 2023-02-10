@@ -57,6 +57,16 @@ p {
     padding-bottom: 2rem;
 }
 
+.form-textarea{
+    width:auto;
+    max-width: 60vh;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0rem;
+}
+
 /* COLOR REFERENCE
 BLUE - #0078bf
 ORANGE - #ffae3b

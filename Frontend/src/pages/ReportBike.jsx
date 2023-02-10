@@ -29,16 +29,44 @@ export function ReportBike() {
   return (
     <>
       <Paper className="ccontainer">
-        <Typography component="h1" variant="h4" align="center">
-          Contact support
-        </Typography>
         <Container>
-          Something not working well? <br></br>
-          Do you want to share feedback to improve our service?<br></br>
-          Send us a message and we’ll get in touch with you very soon!
+          <Typography component="h1" variant="h4" align="center">
+            Contact support
+          </Typography>
+          <Typography
+            component="h1"
+            variant="body1"
+            align="center"
+            paddingTop={"1rem"}
+          >
+            Something not working well? <br></br>
+            Do you want to share feedback to improve our service?<br></br>
+            Send us a message and we'll get in touch with you very soon!
+          </Typography>
+          <Box textAlign="center">
+            <div class="form-textarea">
+              <label for="exampleFormControlTextarea1"></label>
+              <textarea
+                class="form-control"
+                id="exampleFormControlTextarea1"
+                rows="8"
+                placeholder="Write your message here"
+              ></textarea>
+            </div>
+            <Button
+              variant="contained"
+              href="/reportbike"
+              // onClick={}
+              sx={{ mt: 0.1, ml: 1, mb: 3 }}
+            >
+              Send
+            </Button>
+          </Box>
         </Container>
       </Paper>
-      <Copyright />
+      <Box paddingTop={3}>
+        <Copyright />
+      </Box>
     </>
   );
 }

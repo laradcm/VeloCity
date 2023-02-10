@@ -9,6 +9,7 @@ import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 
 function Copyright() {
   return (
@@ -76,9 +77,11 @@ export function Profile() {
       <TableContainer component={Paper} className="ccontainer">
         <Table sx={{ minWidth: 300 }} aria-label="caption table">
           <caption>
-            <Button variant="contained" href="#" sx={{ mt: 0.1, ml: 1 }}>
-              Modify
-            </Button>
+            <Box textAlign="right">
+              <Button variant="contained" href="#" sx={{ mt: 0.1, ml: 1 }}>
+                Modify
+              </Button>
+            </Box>
           </caption>
           <TableHead>
             <TableRow>
@@ -146,7 +149,9 @@ export function Profile() {
           </TableBody>
         </Table>
       </TableContainer>
-      <Copyright />
+      <Box paddingTop={3}>
+        <Copyright />
+      </Box>
     </>
   );
 }
