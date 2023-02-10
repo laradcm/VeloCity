@@ -1,4 +1,4 @@
-<img src="Frontend/public/wheel-logo-rose.png" alt="Velocity wheel logo rose" align="right" width="120" />
+<img src="Frontend/public/wheel-logo-animation-v2.gif" alt="Velocity wheel logo rose" align="right" width="119" />
 
 ## Vélocity
 
@@ -26,6 +26,12 @@ npm i react-router-dom bootstrap react-bootstrap
 
 ```sh
 npm i @mui/material @mui/icons-material @emotion/styled @emotion/react
+```
+
+### LottieFiles
+
+```sh
+npm i --save @lottiefiles/react-lottie-player
 ```
 
 ## Logo
