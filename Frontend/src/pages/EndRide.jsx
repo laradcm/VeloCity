@@ -39,8 +39,10 @@ const rideInfo = [
 export function EndRide() {
   // start of End ride button ********
   const [rideEnded, setRideEnded] = useState(false);
-  const endRide = () => {
+  const [shouldShowButton, setShouldShowButton] = useState(true);
+  const endRideButton = () => {
     setRideEnded(true);
+    setShouldShowButton(false);
   };
   // End of End ride button **************
   return (
@@ -158,19 +160,25 @@ export function EndRide() {
           </List>
         </React.Fragment>
         <React.Fragment>
-          <Box textAlign="center" paddingTop={"1.3rem"}>
+          <Box
+            textAlign="center"
+            paddingTop={"1.3rem"}
+            className={shouldShowButton ? "" : "hidden"}
+          >
             <Typography variant="body1" color={"grey"} gutterBottom>
               Have you arrived to your destination?
             </Typography>
             <Button
               variant="contained"
-              onClick={endRide}
+              onClick={endRideButton}
               // href="/endride"
               sx={{ mt: 0.1, ml: 1 }}
             >
               End ride
             </Button>
-            {/* SHOW RETURN/ARRIVAL INFORMATION****************************** */}
+          </Box>
+          {/* SHOW RETURN/ARRIVAL INFORMATION****************************** */}
+          <Box textAlign="center" paddingTop={"0.1rem"}>
             {rideEnded ? (
               <>
                 <Typography
@@ -215,7 +223,12 @@ export function EndRide() {
                     0 h 30 min
                   </ListItem>
                 </List>
-                <Typography variant="body1" color={"grey"} gutterBottom>
+                <Typography
+                  variant="body1"
+                  color={"grey"}
+                  gutterBottom
+                  marginTop={"1rem"}
+                >
                   Your confirmation number was succesfully updated.
                   <br></br>Keep it for future references.
                 </Typography>
@@ -255,7 +268,3 @@ export function EndRide() {
     </>
   );
 }
-
-// export function EndRide() {
-//   return <h1>This is the page where we finish the ride</h1>;
-// }
