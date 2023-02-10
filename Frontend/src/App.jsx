@@ -12,33 +12,33 @@ import { NavBar } from "./component/NavBar";
 // import { Footer } from "./component/Footer";
 
 function App() {
-    return (
-        <>
-            <NavBar />
+  return (
+    <>
+      <NavBar />
 
-            <Container className="mb-4">
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/signin" element={<SignIn />} />
-                    <Route path="/signup" element={<SignUp />} />
-                    <Route path="/main" element={<Main />} />
-                    <Route path="/profile" element={<Profile />} />
-                    <Route path="/rides" element={<Rides />} />
-                    <Route path="/endride" element={<EndRide />} />
-                    <Route path="/reportbike" element={<ReportBike />} />
-                </Routes>
-            </Container>
+      <Container className="mb-4">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/main" element={<Main />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/rides" element={<Rides />} />
+          <Route path="/endride" element={<EndRide />} />
+          <Route path="/reportbike" element={<ReportBike />} />
+        </Routes>
+      </Container>
 
-            {/* <Footer /> */}
-        </>
-    );
+      {/* <Footer /> */}
+    </>
+  );
 }
 
 // import './App.css'
 
 // import { useState, useEffect } from "react";
 
-// const url = "http://127.0.0.1:3000/bicycles";
+// const url = "http://127.0.0.1:3000/bicycle";
 
 // function App() {
 //   const [loadData, setLoadData] = useState(true);
