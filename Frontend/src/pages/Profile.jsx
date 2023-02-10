@@ -7,6 +7,21 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
+import Link from "@mui/material/Link";
+import Typography from "@mui/material/Typography";
+
+function Copyright() {
+  return (
+    <Typography variant="body2" color="text.secondary" align="center">
+      {"Copyright © "}
+      <Link color="inherit" href="/main">
+        Vélocity
+      </Link>{" "}
+      {new Date().getFullYear()}
+      {"."}
+    </Typography>
+  );
+}
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
@@ -57,24 +72,25 @@ const dummyProfile = {
 
 export function Profile() {
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 300 }} aria-label="caption table">
-        <caption>
-          <Button variant="contained" href="#" sx={{ mt: 0.1, ml: 1 }}>
-            Modify
-          </Button>
-        </caption>
-        <TableHead>
-          <TableRow>
-            <TableCell>
-              <strong style={{ textTransform: "uppercase" }}>
-                Personal information
-              </strong>
-            </TableCell>
-            <TableCell align="right"></TableCell>
-          </TableRow>
-        </TableHead>
-        {/* <TableBody>
+    <>
+      <TableContainer component={Paper} className="ccontainer">
+        <Table sx={{ minWidth: 300 }} aria-label="caption table">
+          <caption>
+            <Button variant="contained" href="#" sx={{ mt: 0.1, ml: 1 }}>
+              Modify
+            </Button>
+          </caption>
+          <TableHead>
+            <TableRow>
+              <TableCell>
+                <strong style={{ textTransform: "uppercase" }}>
+                  Personal information
+                </strong>
+              </TableCell>
+              <TableCell align="right"></TableCell>
+            </TableRow>
+          </TableHead>
+          {/* <TableBody>
           {rows.map((row) => (
             <TableRow key={row.name}>
               <TableCell component="th" scope="row">
@@ -84,51 +100,53 @@ export function Profile() {
             </TableRow>
           ))}
         </TableBody> */}
-        <TableBody>
-          <TableRow key={dummyProfile.userID}>
-            <TableCell component="th" scope="row">
-              User ID
-            </TableCell>
-            <TableCell align="right">{dummyProfile.userID}</TableCell>
-          </TableRow>
-          <TableRow key={dummyProfile.firstName}>
-            <TableCell component="th" scope="row">
-              First name
-            </TableCell>
-            <TableCell align="right">{dummyProfile.firstName}</TableCell>
-          </TableRow>
-          <TableRow key={dummyProfile.lastName}>
-            <TableCell component="th" scope="row">
-              Last name
-            </TableCell>
-            <TableCell align="right">{dummyProfile.lastName}</TableCell>
-          </TableRow>
-          <TableRow key={dummyProfile.phone}>
-            <TableCell component="th" scope="row">
-              Phone number
-            </TableCell>
-            <TableCell align="right">{dummyProfile.phone}</TableCell>
-          </TableRow>
-          <TableRow key={dummyProfile.email}>
-            <TableCell component="th" scope="row">
-              Email
-            </TableCell>
-            <TableCell align="right">{dummyProfile.email}</TableCell>
-          </TableRow>
-          <TableRow key={dummyProfile.address}>
-            <TableCell component="th" scope="row">
-              Billing address
-            </TableCell>
-            <TableCell align="right">{dummyProfile.address}</TableCell>
-          </TableRow>
-          <TableRow key={dummyProfile.password}>
-            <TableCell component="th" scope="row">
-              Password
-            </TableCell>
-            <TableCell align="right">{dummyProfile.password}</TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-    </TableContainer>
+          <TableBody>
+            <TableRow key={dummyProfile.userID}>
+              <TableCell component="th" scope="row">
+                User ID
+              </TableCell>
+              <TableCell align="right">{dummyProfile.userID}</TableCell>
+            </TableRow>
+            <TableRow key={dummyProfile.firstName}>
+              <TableCell component="th" scope="row">
+                First name
+              </TableCell>
+              <TableCell align="right">{dummyProfile.firstName}</TableCell>
+            </TableRow>
+            <TableRow key={dummyProfile.lastName}>
+              <TableCell component="th" scope="row">
+                Last name
+              </TableCell>
+              <TableCell align="right">{dummyProfile.lastName}</TableCell>
+            </TableRow>
+            <TableRow key={dummyProfile.phone}>
+              <TableCell component="th" scope="row">
+                Phone number
+              </TableCell>
+              <TableCell align="right">{dummyProfile.phone}</TableCell>
+            </TableRow>
+            <TableRow key={dummyProfile.email}>
+              <TableCell component="th" scope="row">
+                Email
+              </TableCell>
+              <TableCell align="right">{dummyProfile.email}</TableCell>
+            </TableRow>
+            <TableRow key={dummyProfile.address}>
+              <TableCell component="th" scope="row">
+                Billing address
+              </TableCell>
+              <TableCell align="right">{dummyProfile.address}</TableCell>
+            </TableRow>
+            <TableRow key={dummyProfile.password}>
+              <TableCell component="th" scope="row">
+                Password
+              </TableCell>
+              <TableCell align="right">{dummyProfile.password}</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <Copyright />
+    </>
   );
 }

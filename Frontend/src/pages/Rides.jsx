@@ -99,13 +99,9 @@ export function Rides() {
                   It's all set. Enjoy your ride🚲💨!
                 </Typography>
                 <Typography variant="subtitle1">
-                  {`Your confirmation number is #2001539.`}
-                </Typography>
-                <Typography variant="subtitle1">
-                  {`The code to unlock a bike is: 3850.`}
-                </Typography>
-                <Typography variant="subtitle1">
-                  {`Departing at 14:30 from Hochelaga, Stadium station.`}
+                  Your confirmation number is #2001539.<br></br>
+                  The code to unlock a bike is: 3850.<br></br>
+                  Departing at 14:30 from Hochelaga, Stadium station.
                 </Typography>
                 <Typography variant="subtitle2" color={"red"}>
                   {`Remember to check in the bike through the app when you return it at your destination.`}
@@ -131,7 +127,7 @@ export function Rides() {
                   href="/reportbike"
                   sx={{ mt: 0.1, ml: 1 }}
                 >
-                  End ride
+                  Contact support
                 </Button>
               </React.Fragment>
             </>
@@ -155,7 +151,7 @@ export function Rides() {
                   onClick={handleNext}
                   sx={{ mt: 3, ml: 1 }}
                 >
-                  {activeStep === steps.length - 1 ? "Confirm ride" : "Next"}
+                  {activeStep === steps.length - 1 ? "Start ride" : "Next"}
                 </Button>
               </Box>
             </React.Fragment>

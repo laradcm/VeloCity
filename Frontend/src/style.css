@@ -48,6 +48,15 @@ p {
     font-family: "Open Sans", sans-serif;
 }
 
+.ccontainer {
+    margin-top: 2rem;
+}
+
+.cccontainer{
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+}
+
 /* COLOR REFERENCE
 BLUE - #0078bf
 ORANGE - #ffae3b
