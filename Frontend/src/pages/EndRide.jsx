@@ -249,7 +249,9 @@ export function EndRide() {
           </Box>
         </React.Fragment>
       </Paper>
-      <Copyright />
+      <Box paddingTop={3}>
+        <Copyright />
+      </Box>
     </>
   );
 }

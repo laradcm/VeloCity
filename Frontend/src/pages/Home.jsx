@@ -51,7 +51,7 @@ export function Home() {
         {/* </Card.Body>
         </Card> */}
       </Paper>
-      <Box paddingTop={"1rem"}>
+      <Box paddingTop={3}>
         <Copyright />
       </Box>
     </>
