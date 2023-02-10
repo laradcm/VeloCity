@@ -1,4 +1,4 @@
-<img src="Frontend/public/wheel-logo-animation.gif" alt="Velocity wheel logo rose" align="right" width="120" />
+<img src="Frontend/public/wheel-logo-animation-v2.gif" alt="Velocity wheel logo rose" align="right" width="120" />
 
 ## Vélocity
 
