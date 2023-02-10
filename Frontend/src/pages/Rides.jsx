@@ -29,7 +29,7 @@ function Copyright() {
   );
 }
 
-const steps = ["Departure", "Review your order"];
+const steps = ["Departure", "Review your ride"];
 // const steps = ["Departure", "Payment details", "Review your order"];
 
 function getStepContent(step) {
