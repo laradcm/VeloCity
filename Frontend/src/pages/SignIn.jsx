@@ -12,6 +12,9 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useState, useEffect } from "react";
+import Alert from "@mui/material/Alert";
+import Stack from "@mui/material/Stack";
 
 function Copyright(props) {
   return (
@@ -31,9 +34,30 @@ function Copyright(props) {
   );
 }
 
+function AlertMessage() {
+  return (
+    <>
+      <Stack sx={{ width: "100%" }} marginTop="1rem">
+        <Alert severity="success">
+          An email was sent to you, plese check your inbox
+        </Alert>
+      </Stack>
+    </>
+  );
+}
+
 const theme = createTheme();
 
 export function SignIn() {
+  // start of   Forgot password   message *************
+  const [forgotPassword, setForgotPassword] = useState(false);
+  const recuperatePassword = () => {
+    setForgotPassword(true);
+    setTimeout(() => {
+      setForgotPassword(false);
+    }, 3000);
+  };
+  // end of     Forgot password   message *************
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -119,7 +143,7 @@ export function SignIn() {
               </Button>
               <Grid container>
                 <Grid item xs>
-                  <Link href="#" variant="body2">
+                  <Link href="#" variant="body2" onClick={recuperatePassword}>
                     Forgot password?
                   </Link>
                 </Grid>
@@ -129,6 +153,11 @@ export function SignIn() {
                   </Link>
                 </Grid>
               </Grid>
+              {forgotPassword ? (
+                <>
+                  <AlertMessage />
+                </>
+              ) : null}
               <Copyright sx={{ mt: 5 }} />
             </Box>
           </Box>
