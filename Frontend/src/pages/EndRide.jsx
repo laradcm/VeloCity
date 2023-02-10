@@ -49,7 +49,12 @@ export function EndRide() {
     <>
       <Paper className="ccontainer">
         <React.Fragment>
-          <Typography variant="h6" gutterBottom align="center">
+          <Typography
+            variant="h6"
+            gutterBottom
+            align="center"
+            paddingTop={"2rem"}
+          >
             Current ride
           </Typography>
           <Typography variant="body1" gutterBottom align="center">
@@ -243,7 +248,7 @@ export function EndRide() {
             )}
             {/* END OF SHOW RETURN/ARRIVAL INFORMATION ***************** */}
           </Box>
-          <Box textAlign="center" paddingTop={"0.5rem"} paddingBottom={"1rem"}>
+          <Box textAlign="center" paddingTop={"0.5rem"} paddingBottom={"2rem"}>
             <Typography
               variant="body1"
               color={"grey"}
