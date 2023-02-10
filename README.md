@@ -28,6 +28,12 @@ npm i react-router-dom bootstrap react-bootstrap
 npm i @mui/material @mui/icons-material @emotion/styled @emotion/react
 ```
 
+### LottieFiles
+
+```sh
+npm i --save @lottiefiles/react-lottie-player
+```
+
 ## Logo
 
 ### Wide Text
