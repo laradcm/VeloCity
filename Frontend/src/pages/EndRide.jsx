@@ -179,7 +179,7 @@ export function EndRide() {
               // href="/endride"
               sx={{ mt: 0.1, ml: 1 }}
             >
-              End ride
+              Confirm end of ride
             </Button>
           </Box>
           {/* SHOW RETURN/ARRIVAL INFORMATION****************************** */}
@@ -248,7 +248,7 @@ export function EndRide() {
             )}
             {/* END OF SHOW RETURN/ARRIVAL INFORMATION ***************** */}
           </Box>
-          <Box textAlign="center" paddingTop={"0.5rem"} paddingBottom={"2rem"}>
+          <Box textAlign="center" paddingTop={"1rem"} paddingBottom={"2rem"}>
             <Typography
               variant="body1"
               color={"grey"}

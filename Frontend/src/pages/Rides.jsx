@@ -13,7 +13,6 @@ import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import AddressForm from "../Utilities/AddressForm";
-import PaymentForm from "/src/Utilities/PaymentForm";
 import Review from "/src/Utilities/Review";
 
 function Copyright() {
