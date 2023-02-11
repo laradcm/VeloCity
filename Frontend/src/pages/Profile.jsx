@@ -10,6 +10,8 @@ import Button from "@mui/material/Button";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import { useState, useEffect } from "react";
+import { fetchRead } from "../scripts/fetch";
 
 function Copyright() {
   return (
@@ -24,56 +26,40 @@ function Copyright() {
   );
 }
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
+// to try to fetch *******************
+const url = "http://127.0.0.1:3000/users";
+function FetchProfileFromDB() {
+  const [loadData, setLoadData] = useState(false);
+  const [coco, setCoco] = useState(null);
 
-const rows = [
-  createData("UserID", "12345"),
-  createData("First Name", "Harry"),
-  createData("Last Name", "Potter"),
-  createData("Email", "kittycat@example.ca"),
-  createData("Phone Number", "1234567890"),
-  createData("Billing Address", "P. Sherman, 42 Wallaby Way, Sydney"),
-  createData("Password", "********"),
-];
+  const fetchProfile = async () => {
+    try {
+      const response = await fetchRead("/users");
+      console.log(response);
+      const oneProfile = response[0];
+      setCoco(oneProfile);
+      setLoadData(true);
+    } catch (error) {
+      setLoadData(false);
+    }
+  };
+  useEffect(() => {
+    fetchProfile();
+  }, []);
 
-// const dummyProfile = [
-//   { userID: "12345" },
-//   { firstName: "Harry" },
-//   { lastName: "Potter" },
-//   { phone: "1234567890" },
-//   { email: "kittycat@example.ca" },
-//   { address: "P. Sherman, 42 Wallaby Way, Sydney" },
-//   { password: "*******" },
-// ];
+  // if there's an error while fetching the data
+  if (!loadData) {
+    return (
+      <>
+        <h1>Error occurred while fetching data</h1>
+      </>
+    );
+  }
 
-const dummyProfile = {
-  userID: "12345",
-  firstName: "Harry",
-  lastName: "Potter",
-  phone: "1234567890",
-  email: "kittycat@example.ca",
-  address: "P. Sherman, 42 Wallaby Way, Sydney",
-  password: "*******",
-};
-
-// let keys = Object.keys(dummyProfile);
-// let values = Object.values(dummyProfile);
-
-// const dummyArray = [
-//   "12345",
-//   "Harry",
-//   "Potter",
-//   "1234567890",
-//   "kittycat@example.ca",
-//   "P. Sherman, 42 Wallaby Way, Sydney",
-//   "*******",
-// ];
-
-export function Profile() {
+  // data was fetched correctly
   return (
     <>
+      {/* <h1>data -bikes- fetched correctly</h1> */}
       <TableContainer component={Paper} className="ccontainer">
         <Table sx={{ minWidth: 300 }} aria-label="caption table">
           <caption>
@@ -93,62 +79,61 @@ export function Profile() {
               <TableCell align="right"></TableCell>
             </TableRow>
           </TableHead>
-          {/* <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.name}>
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody> */}
           <TableBody>
-            <TableRow key={dummyProfile.userID}>
+            <TableRow key={coco.id}>
               <TableCell component="th" scope="row">
                 User ID
               </TableCell>
-              <TableCell align="right">{dummyProfile.userID}</TableCell>
+              <TableCell align="right">{coco.id}</TableCell>
             </TableRow>
-            <TableRow key={dummyProfile.firstName}>
+            <TableRow key={coco.first_name}>
               <TableCell component="th" scope="row">
                 First name
               </TableCell>
-              <TableCell align="right">{dummyProfile.firstName}</TableCell>
+              <TableCell align="right">{coco.first_name}</TableCell>
             </TableRow>
-            <TableRow key={dummyProfile.lastName}>
+            <TableRow key={coco.last_name}>
               <TableCell component="th" scope="row">
                 Last name
               </TableCell>
-              <TableCell align="right">{dummyProfile.lastName}</TableCell>
+              <TableCell align="right">{coco.last_name}</TableCell>
             </TableRow>
-            <TableRow key={dummyProfile.phone}>
+            <TableRow key={coco.phone}>
               <TableCell component="th" scope="row">
                 Phone number
               </TableCell>
-              <TableCell align="right">{dummyProfile.phone}</TableCell>
+              <TableCell align="right">{coco.phone}</TableCell>
             </TableRow>
-            <TableRow key={dummyProfile.email}>
+            <TableRow key={coco.email}>
               <TableCell component="th" scope="row">
                 Email
               </TableCell>
-              <TableCell align="right">{dummyProfile.email}</TableCell>
+              <TableCell align="right">{coco.email}</TableCell>
             </TableRow>
-            <TableRow key={dummyProfile.address}>
+            <TableRow key={coco.address}>
               <TableCell component="th" scope="row">
                 Billing address
               </TableCell>
-              <TableCell align="right">{dummyProfile.address}</TableCell>
+              <TableCell align="right">{coco.address}</TableCell>
             </TableRow>
-            <TableRow key={dummyProfile.password}>
+            <TableRow key={coco.password}>
               <TableCell component="th" scope="row">
                 Password
               </TableCell>
-              <TableCell align="right">{dummyProfile.password}</TableCell>
+              <TableCell align="right">{coco.password}</TableCell>
             </TableRow>
           </TableBody>
         </Table>
       </TableContainer>
+    </>
+  );
+}
+// end of Trying to fetch *********************************
+
+export function Profile() {
+  return (
+    <>
+      <FetchProfileFromDB />
       <Box paddingTop={3}>
         <Copyright />
       </Box>
