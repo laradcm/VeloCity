@@ -11,6 +11,7 @@ import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { useState, useEffect } from "react";
+import { fetchRead } from "../scripts/fetch";
 
 function Copyright() {
   return (
@@ -31,14 +32,12 @@ function FetchProfileFromDB() {
   const [loadData, setLoadData] = useState(false);
   const [coco, setCoco] = useState(null);
 
-  let copy;
   const fetchProfile = async () => {
     try {
-      const response = await fetch(url);
-      const profileJSON = await response.json();
-      const oneProfile = profileJSON[0];
-      copy = JSON.parse(JSON.stringify(oneProfile));
-      setCoco(copy);
+      const response = await fetchRead("/users");
+      console.log(response);
+      const oneProfile = response[0];
+      setCoco(oneProfile);
       setLoadData(true);
     } catch (error) {
       setLoadData(false);
@@ -87,17 +86,17 @@ function FetchProfileFromDB() {
               </TableCell>
               <TableCell align="right">{coco.id}</TableCell>
             </TableRow>
-            <TableRow key={coco.firstname}>
+            <TableRow key={coco.first_name}>
               <TableCell component="th" scope="row">
                 First name
               </TableCell>
-              <TableCell align="right">{coco.firstname}</TableCell>
+              <TableCell align="right">{coco.first_name}</TableCell>
             </TableRow>
-            <TableRow key={coco.lastname}>
+            <TableRow key={coco.last_name}>
               <TableCell component="th" scope="row">
                 Last name
               </TableCell>
-              <TableCell align="right">{coco.lastname}</TableCell>
+              <TableCell align="right">{coco.last_name}</TableCell>
             </TableRow>
             <TableRow key={coco.phone}>
               <TableCell component="th" scope="row">
