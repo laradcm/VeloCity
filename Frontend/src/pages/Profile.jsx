@@ -27,7 +27,7 @@ function Copyright() {
 }
 
 // to try to fetch *******************
-const url = "http://127.0.0.1:3000/users";
+// const url = "http://127.0.0.1:3000/users";
 function FetchProfileFromDB() {
   const [loadData, setLoadData] = useState(false);
   const [coco, setCoco] = useState(null);
@@ -35,7 +35,6 @@ function FetchProfileFromDB() {
   const fetchProfile = async () => {
     try {
       const response = await fetchRead("/users");
-      console.log(response);
       const oneProfile = response[0];
       setCoco(oneProfile);
       setLoadData(true);
