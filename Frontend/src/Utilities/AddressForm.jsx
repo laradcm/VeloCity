@@ -89,18 +89,12 @@ export default function AddressForm() {
                 <MenuItem value="">
                   <em>None</em>
                 </MenuItem>
-                <MenuItem value={10}>
-                  UdeM&nbsp;&nbsp;
-                  <strong>0 bikes available</strong>
+                {stationsData && stationsData.map((val, index)=>{
+                  return <MenuItem value={index}>
+                     {val.name}&nbsp;&nbsp;
+                  <strong>{val.available_bicycles} bikes available</strong>
                 </MenuItem>
-                <MenuItem value={20}>
-                  Oratory&nbsp;&nbsp;
-                  <strong>3 bikes available</strong>
-                </MenuItem>
-                <MenuItem value={22}>
-                  Old Port&nbsp;&nbsp;
-                  <strong>4 bikes available</strong>
-                </MenuItem>
+                })}
               </Select>
             </FormControl>
           </div>
