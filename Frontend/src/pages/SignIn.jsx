@@ -12,9 +12,10 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useState, useEffect } from "react";
+import { useState, useEffect, createContext } from "react";
 import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
+import { useNavigate } from "react-router-dom"; // this is used to redirect to dashboard
 
 function Copyright(props) {
   return (
@@ -58,135 +59,151 @@ export function SignIn() {
     }, 3000);
   };
   // end of     Forgot password   message *************
+
+  // CREATE SESSION **********************************
+  // this is grabbing data from input that came with MUI
+  const [session, setSession] = useState({});
+  const navigateTo = useNavigate(); // this is to redirect to dashboard
   const handleSubmit = (event) => {
     event.preventDefault();
+    // this grabs a whole HTML thing
     const data = new FormData(event.currentTarget);
-    console.log({
+    // console.log({
+    //   email: data.get("email"),
+    //   password: data.get("password"),
+    // });
+    // passing the values into an object
+    const credentialsObject = {
+      fakeName: "NAME_PLACEHOLDER",
       email: data.get("email"),
       password: data.get("password"),
-    });
-  };
-
-  // Start of session management ******************************
-  const [session, setSession] = useState({});
-  const handleLogin = (username, password) => {
-    // validate the username and password
-    // ...
-    const user = {
-      username,
-      password,
     };
-
-    // set the user data to the session
-    setSession(user);
+    console.log(credentialsObject);
+    // aorund this area: after event.preventDefault() and before changing the state VALIDATION MUST OCURR
+    //maybe a try catch. TRY = succesfull log ing. Catch = please try again
+    setSession(credentialsObject);
+    navigateTo("/main"); // this redirects to dashboard
   };
-  // End  of session management ******************************
+  // END of create session ************************
 
   return (
     <div>
       <ThemeProvider theme={theme}>
-        <Grid container component="main" sx={{ height: "100vh" }}>
-          <CssBaseline />
-          <Grid
-            item
-            xs={false}
-            sm={4}
-            md={7}
-            sx={{
-              backgroundImage: "url(/bicycle.png)",
-              backgroundRepeat: "no-repeat",
-              backgroundColor: (t) =>
-                t.palette.mode === "light"
-                  ? t.palette.grey[50]
-                  : t.palette.grey[900],
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          />
-          <Grid
-            item
-            xs={12}
-            sm={8}
-            md={5}
-            component={Paper}
-            elevation={6}
-            square
-          >
-            <Box
+        {/* {session ? ( */}
+        {/* {session !== {} ? ( */}
+        {Object.keys(session).length === 0 ? (
+          <Grid container component="main" sx={{ height: "100vh" }}>
+            <CssBaseline />
+            <Grid
+              item
+              xs={false}
+              sm={4}
+              md={7}
               sx={{
-                my: 8,
-                mx: 4,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
+                backgroundImage: "url(/bicycle.png)",
+                backgroundRepeat: "no-repeat",
+                backgroundColor: (t) =>
+                  t.palette.mode === "light"
+                    ? t.palette.grey[50]
+                    : t.palette.grey[900],
+                backgroundSize: "cover",
+                backgroundPosition: "center",
               }}
+            />
+            <Grid
+              item
+              xs={12}
+              sm={8}
+              md={5}
+              component={Paper}
+              elevation={6}
+              square
             >
-              <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-                <LockOutlinedIcon />
-              </Avatar>
-              <Typography component="h1" variant="h5">
-                Sign in
-              </Typography>
               <Box
-                component="form"
-                Validate
-                onSubmit={handleSubmit}
-                sx={{ mt: 1 }}
+                sx={{
+                  my: 8,
+                  mx: 4,
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
               >
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                  autoFocus
-                />
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="current-password"
-                />
-                <FormControlLabel
-                  control={<Checkbox value="remember" color="primary" />}
-                  label="Remember me"
-                />
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  sx={{ mt: 3, mb: 2 }}
+                <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+                  <LockOutlinedIcon />
+                </Avatar>
+                <Typography component="h1" variant="h5">
+                  Sign in
+                </Typography>
+                <Box
+                  component="form"
+                  // noValidate
+                  validate="true"
+                  onSubmit={handleSubmit}
+                  sx={{ mt: 1 }}
                 >
-                  Sign In
-                </Button>
-                <Grid container>
-                  <Grid item xs>
-                    <Link href="#" variant="body2" onClick={recuperatePassword}>
-                      Forgot password?
-                    </Link>
+                  <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="email"
+                    label="Email Address"
+                    name="email"
+                    autoComplete="email"
+                    autoFocus
+                  />
+                  <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    name="password"
+                    label="Password"
+                    type="password"
+                    id="password"
+                    autoComplete="current-password"
+                  />
+                  <FormControlLabel
+                    control={<Checkbox value="remember" color="primary" />}
+                    label="Remember me"
+                  />
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    sx={{ mt: 3, mb: 2 }}
+                  >
+                    Sign In
+                  </Button>
+                  <Grid container>
+                    <Grid item xs>
+                      <Link
+                        href="#"
+                        variant="body2"
+                        onClick={recuperatePassword}
+                      >
+                        Forgot password?
+                      </Link>
+                    </Grid>
+                    <Grid item>
+                      <Link href="/signup" variant="body2">
+                        {"Don't have an account? Sign Up"}
+                      </Link>
+                    </Grid>
                   </Grid>
-                  <Grid item>
-                    <Link href="/signup" variant="body2">
-                      {"Don't have an account? Sign Up"}
-                    </Link>
-                  </Grid>
-                </Grid>
-                {forgotPassword ? (
-                  <>
-                    <AlertMessage />
-                  </>
-                ) : null}
-                <Copyright sx={{ mt: 5 }} />
+                  {forgotPassword ? (
+                    <>
+                      <AlertMessage />
+                    </>
+                  ) : null}
+                  <Copyright sx={{ mt: 5 }} />
+                </Box>
               </Box>
-            </Box>
+            </Grid>
           </Grid>
-        </Grid>
+        ) : (
+          <Box paddingTop={3} textAlign="center">
+            <h1>Welcome {session.fakeName}!</h1>
+          </Box>
+        )}
       </ThemeProvider>
     </div>
   );
