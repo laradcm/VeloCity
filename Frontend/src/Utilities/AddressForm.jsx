@@ -9,9 +9,25 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import { fetchRead } from "../scripts/fetch"
 // End of      select button - drop down ***********************
 
+
 export default function AddressForm() {
+  // data to be retrieved from server
+  const [stationsData, setStationsData] = React.useState("");
+  const [neighborhoodData, setNeighborhoodData] = React.useState("");
+  
+  React.useEffect(() => {
+    (async()=>{
+      const data = await fetchRead("/stations");
+      setStationsData(data);
+      const neighborhoods = data.map((val)=>val.neighborhood);
+      const uniqueNeighborhoodsSet = new Set(neighborhoods);
+      setNeighborhoodData(Array.from(uniqueNeighborhoodsSet));
+    })()
+  }, []);
+
   // start of the   Neighbourhood   dropdown box
   const [neighbourhood, setNeighbourhood] = React.useState("");
   const handleChange = (event) => {
@@ -48,9 +64,11 @@ export default function AddressForm() {
                 <MenuItem value="">
                   <em>None</em>
                 </MenuItem>
-                <MenuItem value={1}>Côtes-des-neiges</MenuItem>
-                <MenuItem value={2}>Mile-End</MenuItem>
-                <MenuItem value={3}>Downtown</MenuItem>
+                { 
+                  neighborhoodData && neighborhoodData.map((val, index)=>{
+                    return <MenuItem value={index}>{val}</MenuItem>
+                  })
+                }
               </Select>
             </FormControl>
           </div>
@@ -71,18 +89,12 @@ export default function AddressForm() {
                 <MenuItem value="">
                   <em>None</em>
                 </MenuItem>
-                <MenuItem value={10}>
-                  UdeM&nbsp;&nbsp;
-                  <strong>0 bikes available</strong>
+                {stationsData && stationsData.map((val, index)=>{
+                  return <MenuItem value={index}>
+                     {val.name}&nbsp;&nbsp;
+                  <strong>{val.available_bicycles} bikes available</strong>
                 </MenuItem>
-                <MenuItem value={20}>
-                  Oratory&nbsp;&nbsp;
-                  <strong>3 bikes available</strong>
-                </MenuItem>
-                <MenuItem value={22}>
-                  Old Port&nbsp;&nbsp;
-                  <strong>4 bikes available</strong>
-                </MenuItem>
+                })}
               </Select>
             </FormControl>
           </div>
