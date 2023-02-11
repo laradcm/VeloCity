@@ -60,9 +60,11 @@ export default function AddressForm() {
                 <MenuItem value="">
                   <em>None</em>
                 </MenuItem>
-                <MenuItem value={1}>{stationsData[0]?.neighborhood}</MenuItem>
-                <MenuItem value={2}>{stationsData[1]?.neighborhood}</MenuItem>
-                <MenuItem value={3}>{stationsData[2]?.neighborhood}</MenuItem>
+                { 
+                  stationsData && stationsData.map((val)=>{
+                    return <MenuItem value={1}>{val?.neighborhood}</MenuItem>
+                  })
+                }
               </Select>
             </FormControl>
           </div>
