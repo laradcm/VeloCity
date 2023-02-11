@@ -9,9 +9,21 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import { fetchRead } from "../scripts/fetch"
 // End of      select button - drop down ***********************
 
+
 export default function AddressForm() {
+  // data to be retrieved from server
+  const [stationsData, setStationsData] = React.useState("");
+  
+  React.useEffect(() => {
+    (async()=>{
+      const data = await fetchRead("/stations");
+      setStationsData(data);
+    })()
+  }, []);
+
   // start of the   Neighbourhood   dropdown box
   const [neighbourhood, setNeighbourhood] = React.useState("");
   const handleChange = (event) => {
@@ -48,9 +60,9 @@ export default function AddressForm() {
                 <MenuItem value="">
                   <em>None</em>
                 </MenuItem>
-                <MenuItem value={1}>Côtes-des-neiges</MenuItem>
-                <MenuItem value={2}>Mile-End</MenuItem>
-                <MenuItem value={3}>Downtown</MenuItem>
+                <MenuItem value={1}>{stationsData[0].neighborhood}</MenuItem>
+                <MenuItem value={2}>{stationsData[1].neighborhood}</MenuItem>
+                <MenuItem value={3}>{stationsData[2].neighborhood}</MenuItem>
               </Select>
             </FormControl>
           </div>
