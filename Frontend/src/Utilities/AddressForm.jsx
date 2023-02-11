@@ -16,11 +16,15 @@ import { fetchRead } from "../scripts/fetch"
 export default function AddressForm() {
   // data to be retrieved from server
   const [stationsData, setStationsData] = React.useState("");
+  const [neighborhoodData, setNeighborhoodData] = React.useState("");
   
   React.useEffect(() => {
     (async()=>{
       const data = await fetchRead("/stations");
       setStationsData(data);
+      const neighborhoods = data.map((val)=>val.neighborhood);
+      const uniqueNeighborhoodsSet = new Set(neighborhoods);
+      setNeighborhoodData(Array.from(uniqueNeighborhoodsSet));
     })()
   }, []);
 
@@ -61,8 +65,8 @@ export default function AddressForm() {
                   <em>None</em>
                 </MenuItem>
                 { 
-                  stationsData && stationsData.map((val, index)=>{
-                    return <MenuItem value={index}>{val?.neighborhood}</MenuItem>
+                  neighborhoodData && neighborhoodData.map((val, index)=>{
+                    return <MenuItem value={index}>{val}</MenuItem>
                   })
                 }
               </Select>
