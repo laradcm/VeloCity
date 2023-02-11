@@ -6,9 +6,9 @@
 
 Vélocity aims to:
 
--   **Dynamically monitor** and **readily manage** bike-sharing locations and availability with up-to-date analytics.
--   **Streamline inventory tracking processes** for bicycle provider administrators.
--   **Report losses and damages** for both administrator and customers quickly and easily without hassle.
+- **Dynamically monitor** and **readily manage** bike-sharing locations and availability with up-to-date analytics.
+- **Streamline inventory tracking processes** for bicycle provider administrators.
+- **Report losses and damages** for both administrator and customers quickly and easily without hassle.
 
 ## Brand Guidelines
 
@@ -16,10 +16,16 @@ Vélocity aims to:
 
 ## Installation
 
-### React: Bootstrap
+### React router
 
 ```sh
-npm i react-router-dom bootstrap react-bootstrap
+npm i react-router-dom
+```
+
+### Bootstrap
+
+```sh
+npm i bootstrap react-bootstrap
 ```
 
 ### MUI: Material UI
