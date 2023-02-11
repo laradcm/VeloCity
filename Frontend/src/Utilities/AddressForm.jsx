@@ -61,8 +61,8 @@ export default function AddressForm() {
                   <em>None</em>
                 </MenuItem>
                 { 
-                  stationsData && stationsData.map((val)=>{
-                    return <MenuItem value={1}>{val?.neighborhood}</MenuItem>
+                  stationsData && stationsData.map((val, index)=>{
+                    return <MenuItem value={index}>{val?.neighborhood}</MenuItem>
                   })
                 }
               </Select>
