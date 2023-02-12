@@ -37,11 +37,11 @@ export function NavBar() {
                         </Nav.Link>
                     </Nav>
                     <Nav id="NavCenter">
-                        <Nav.Link to="/signin" as={NavLink}>
-                            Sign In
-                        </Nav.Link>
                         <Nav.Link to="/signup" as={NavLink}>
                             Sign Up
+                        </Nav.Link>
+                        <Nav.Link to="/signin" as={NavLink}>
+                            Sign In
                         </Nav.Link>
                     </Nav>
                 </Navbar.Collapse>

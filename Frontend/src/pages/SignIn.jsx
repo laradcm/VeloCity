@@ -50,25 +50,10 @@ export function SignIn() {
     };
 
     return (
-        <ThemeProvider theme={theme} className="MainContentContainer">
+        <ThemeProvider theme={theme}>
             <Grid container component="main" sx={{ height: "70%" }}>
                 <CssBaseline />
-                <Grid
-                    item
-                    xs={false}
-                    sm={4}
-                    md={7}
-                    sx={
-                        {
-                            // backgroundImage: "url(/Banner.png)",
-                            // backgroundRepeat: "no-repeat",
-                            // backgroundColor: (t) =>
-                            //   t.palette.mode === "light"
-                            //     ? t.palette.grey[50]
-                            //     : t.palette.grey[900],
-                        }
-                    }
-                />
+                <Grid item xs={false} sm={4} md={7} sx={{}} />
                 <Grid
                     item
                     xs={12}
