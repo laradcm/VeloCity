@@ -13,19 +13,6 @@ import Box from "@mui/material/Box";
 import { useState, useEffect } from "react";
 import { fetchRead } from "../scripts/fetch";
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="/main">
-        Vélocity
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
-
 // to try to fetch *******************
 const url = "http://127.0.0.1:3000/users";
 function FetchProfileFromDB() {
@@ -134,9 +121,6 @@ export function Profile() {
   return (
     <>
       <FetchProfileFromDB />
-      <Box paddingTop={3}>
-        <Copyright />
-      </Box>
     </>
   );
 }

@@ -9,30 +9,32 @@ import { Rides } from "./pages/Rides";
 import { EndRide } from "./pages/EndRide";
 import { ReportBike } from "./pages/ReportBike";
 import { NavBar } from "./component/NavBar";
-// import { Footer } from "./component/Footer";
+import { FootBar } from "./component/FootBar";
+import { BGImgOverlay } from "./component/BGImgOverlay";
 
 function App() {
-  return (
-    <>
-      <NavBar />
-
-      <Container className="mb-4">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/main" element={<Main />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/rides" element={<Rides />} />
-          <Route path="/endride" element={<EndRide />} />
-          <Route path="/reportbike" element={<ReportBike />} />
-        </Routes>
-      </Container>
-
-      {/* <Footer /> */}
-    </>
-  );
+    return (
+        <>
+            <NavBar />
+            <Container className="mb-4">
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/signin" element={<SignIn />} />
+                    <Route path="/signup" element={<SignUp />} />
+                    <Route path="/main" element={<Main />} />
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/rides" element={<Rides />} />
+                    <Route path="/endride" element={<EndRide />} />
+                    <Route path="/reportbike" element={<ReportBike />} />
+                </Routes>
+            </Container>
+            <BGImgOverlay />
+            <FootBar />
+        </>
+    );
 }
+
+export default App;
 
 // import './App.css'
 
@@ -75,5 +77,3 @@ function App() {
 //     </>
 //   );
 // }
-
-export default App;

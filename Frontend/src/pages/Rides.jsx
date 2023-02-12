@@ -15,19 +15,6 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import AddressForm from "../Utilities/AddressForm";
 import Review from "/src/Utilities/Review";
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="/main">
-        Vélocity
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
-
 const steps = ["Departure", "Review your ride"];
 // const steps = ["Departure", "Payment details", "Review your order"];
 
@@ -156,7 +143,6 @@ export function Rides() {
             </React.Fragment>
           )}
         </Paper>
-        <Copyright />
       </Container>
     </ThemeProvider>
   );
