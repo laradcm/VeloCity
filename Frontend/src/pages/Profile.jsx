@@ -7,24 +7,11 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
-import Link from "@mui/material/Link";
-import Typography from "@mui/material/Typography";
+// import Link from "@mui/material/Link";
+// import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { useState, useEffect } from "react";
 import { fetchRead } from "../scripts/fetch";
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="/main">
-        Vélocity
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
 
 // to try to fetch *******************
 const url = "http://127.0.0.1:3000/users";
@@ -134,9 +121,6 @@ export function Profile() {
   return (
     <>
       <FetchProfileFromDB />
-      <Box paddingTop={3}>
-        <Copyright />
-      </Box>
     </>
   );
 }
