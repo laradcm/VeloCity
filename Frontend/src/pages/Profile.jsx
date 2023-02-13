@@ -36,7 +36,11 @@ function FetchProfileFromDB() {
 
   const fetchProfile = async () => {
     try {
-      const response = await fetchRead("/users");
+      const response = await fetchRead(`/users`);
+      console.log(response);
+      for (let i = 0; i < array.length; i++) {
+        const element = array[i];
+      }
       const oneProfile = response[0];
       setCoco(oneProfile);
       setLoadData(true);
