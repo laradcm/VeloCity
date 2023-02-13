@@ -11,6 +11,16 @@ export async function fetchRead(extension){
 
 }
 
+export async function fetchReadSingleUser(extension){
+    const options = {method:'GET'};
+
+    return await fetch(address+extension, options)
+    .then(res => res.json())
+    .then(res => res)
+    .catch(err => console.error(err));
+
+}
+
 export async function fetchCreate(extension, data){
     const options = {
         method:'POST',
