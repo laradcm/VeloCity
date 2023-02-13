@@ -34,3 +34,12 @@ const UserProvider = (props) => {
 // };
 
 export default UserProvider;
+
+/**Steps to implement global state on another page
+ * 1. paste on top
+ * import { useContext } from "react"; // global sate
+ * import { SessionContext } from "../context/userGlobalContext"; //global state
+ * 2. paste in the middle
+ *   const { userGlobal, logIn, logOut } = useContext(SessionContext);
+ *  now you can use userGlobal.email, logIn() and logOut()
+ */
