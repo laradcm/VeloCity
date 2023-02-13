@@ -1,8 +1,6 @@
 import { Button, Container, Row, Col, Card } from "react-bootstrap";
 import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
 
 export function Home() {
     return (
