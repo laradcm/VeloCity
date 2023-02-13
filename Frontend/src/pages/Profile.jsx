@@ -9,22 +9,20 @@ import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import { useState, useEffect } from "react";
-import { fetchRead } from "../scripts/fetch";
+import { fetchRead, fetchReadSingleUser } from "../scripts/fetch";
 import { useContext } from "react";
 import { SessionContext } from "../context/userGlobalContext";
 
 // to try to fetch *******************
-const url = "http://127.0.0.1:3000/users";
+// const url = "http://127.0.0.1:3000/users";
 function FetchProfileFromDB() {
   const [loadData, setLoadData] = useState(false);
   const [fullProfile, setFullProfile] = useState(null);
 
   const fetchProfile = async () => {
     try {
-      const response = await fetchRead("/users");
-      console.log(response);
-      const oneProfile = response[0];
-      setFullProfile(oneProfile);
+      const response = await fetchReadSingleUser("imaddicks47@newsvine.com");
+      setFullProfile(response);
       setLoadData(true);
     } catch (error) {
       setLoadData(false);
