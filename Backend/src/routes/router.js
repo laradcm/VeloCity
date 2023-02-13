@@ -12,6 +12,6 @@ router.put("/:table/:id", controller.update);
 
 router.delete("/:table/:id", controller.deleteRow);
 
-router.get("/users/:id", users.readSingle);
+router.get("/users/:email", users.readSingle);
 
 module.exports = router;
