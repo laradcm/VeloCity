@@ -50,10 +50,7 @@ export function SignIn() {
     event.preventDefault();
     // this grabs a whole HTML thing
     const data = new FormData(event.currentTarget);
-    // console.log({
-    //   email: data.get("email"),
-    //   password: data.get("password"),
-    // });
+    // console.log({email: data.get("email"), password: data.get("password"),});
     // passing the values into an object
     const credentialsObject = {
       fakeName: "NAME_PLACEHOLDER",
@@ -92,7 +89,8 @@ export function SignIn() {
             </Typography>
             <Box
               component="form"
-              noValidate
+              // noValidate
+              validate="true"
               onSubmit={handleSubmit}
               sx={{ mt: 1 }}
             >
@@ -136,7 +134,7 @@ export function SignIn() {
                 </Grid>
                 <Grid item>
                   <Link href="/signup" variant="body2">
-                    {"Don't have an account? Sign Up"}
+                    Don't have an account? Sign Up
                   </Link>
                 </Grid>
               </Grid>

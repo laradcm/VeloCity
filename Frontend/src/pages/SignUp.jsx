@@ -48,7 +48,8 @@ export function SignUp() {
             </Typography>
             <Box
               component="form"
-              noValidate
+              // noValidate
+              validate="true"
               onSubmit={handleSubmit}
               sx={{ mt: 3 }}
             >
