@@ -47,7 +47,6 @@ async function update(table, id, valuesInput) {
 
   const values = [id, ...input.values];
 
-  console.log(text, values);
   const result = await db.query(text, values);
 
   if (result.rowCount) {
@@ -63,7 +62,6 @@ async function deleteRow(table, id) {
   const text = `DELETE FROM ${table} WHERE id=$1;`;
   const values = [id];
 
-  console.log("i was here");
   const result = await db.query(text, values);
 
   let message = `Error in updating ${table}`;
