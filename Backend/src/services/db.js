@@ -8,6 +8,8 @@ async function query(sql, params) {
 
   const results = await client.query(sql, params);
 
+  await client.end();
+  
   return results;
 }
 
