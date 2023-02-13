@@ -7,24 +7,24 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
-// import Link from "@mui/material/Link";
-// import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { useState, useEffect } from "react";
 import { fetchRead } from "../scripts/fetch";
+import { useContext } from "react";
+import { SessionContext } from "../context/userGlobalContext";
 
 // to try to fetch *******************
 const url = "http://127.0.0.1:3000/users";
 function FetchProfileFromDB() {
   const [loadData, setLoadData] = useState(false);
-  const [coco, setCoco] = useState(null);
+  const [fullProfile, setFullProfile] = useState(null);
 
   const fetchProfile = async () => {
     try {
       const response = await fetchRead("/users");
       console.log(response);
       const oneProfile = response[0];
-      setCoco(oneProfile);
+      setFullProfile(oneProfile);
       setLoadData(true);
     } catch (error) {
       setLoadData(false);
@@ -67,47 +67,47 @@ function FetchProfileFromDB() {
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow key={coco.id}>
+            <TableRow key={fullProfile.id}>
               <TableCell component="th" scope="row">
                 User ID
               </TableCell>
-              <TableCell align="right">{coco.id}</TableCell>
+              <TableCell align="right">{fullProfile.id}</TableCell>
             </TableRow>
-            <TableRow key={coco.first_name}>
+            <TableRow key={fullProfile.first_name}>
               <TableCell component="th" scope="row">
                 First name
               </TableCell>
-              <TableCell align="right">{coco.first_name}</TableCell>
+              <TableCell align="right">{fullProfile.first_name}</TableCell>
             </TableRow>
-            <TableRow key={coco.last_name}>
+            <TableRow key={fullProfile.last_name}>
               <TableCell component="th" scope="row">
                 Last name
               </TableCell>
-              <TableCell align="right">{coco.last_name}</TableCell>
+              <TableCell align="right">{fullProfile.last_name}</TableCell>
             </TableRow>
-            <TableRow key={coco.phone}>
+            <TableRow key={fullProfile.phone}>
               <TableCell component="th" scope="row">
                 Phone number
               </TableCell>
-              <TableCell align="right">{coco.phone}</TableCell>
+              <TableCell align="right">{fullProfile.phone}</TableCell>
             </TableRow>
-            <TableRow key={coco.email}>
+            <TableRow key={fullProfile.email}>
               <TableCell component="th" scope="row">
                 Email
               </TableCell>
-              <TableCell align="right">{coco.email}</TableCell>
+              <TableCell align="right">{fullProfile.email}</TableCell>
             </TableRow>
-            <TableRow key={coco.address}>
+            <TableRow key={fullProfile.address}>
               <TableCell component="th" scope="row">
                 Billing address
               </TableCell>
-              <TableCell align="right">{coco.address}</TableCell>
+              <TableCell align="right">{fullProfile.address}</TableCell>
             </TableRow>
-            <TableRow key={coco.password}>
+            <TableRow key={fullProfile.password}>
               <TableCell component="th" scope="row">
                 Password
               </TableCell>
-              <TableCell align="right">{coco.password}</TableCell>
+              <TableCell align="right">{fullProfile.password}</TableCell>
             </TableRow>
           </TableBody>
         </Table>
@@ -118,9 +118,36 @@ function FetchProfileFromDB() {
 // end of Trying to fetch *********************************
 
 export function Profile() {
+  // start of Global context****************
+  const { userGlobal, logIn, logOut } = useContext(SessionContext);
+  // end of Global context for context****************
   return (
     <>
       <FetchProfileFromDB />
+      {/* Start of experiment with global state */}
+      <Box>
+        <h5>
+          Experiment about global data/user session: these are the login data
+          inserted by the user:
+        </h5>
+        <h6>email: {userGlobal.email}</h6>
+        <h6>password: {userGlobal.password}</h6>
+        <Button
+          variant="contained"
+          onClick={() => logIn("this will be in", "modify profile")}
+          sx={{ mt: 0.1, ml: 1 }}
+        >
+          Log in to change personal info
+        </Button>
+        <Button
+          variant="contained"
+          onClick={() => logOut()}
+          sx={{ mt: 0.1, ml: 1 }}
+        >
+          Log out to delete personal info
+        </Button>
+      </Box>
+      {/* End of experiment with global state */}
     </>
   );
 }
