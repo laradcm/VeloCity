@@ -58,13 +58,13 @@ export function SignIn() {
     // this grabs a whole HTML thing
     const data = new FormData(event.currentTarget);
     // console.log({email: data.get("email"), password: data.get("password"),});
+
     // passing the values into an object
     const credentialsObject = {
       fakeName: "NAME_PLACEHOLDER",
       email: data.get("email"),
       password: data.get("password"),
     };
-    console.log(credentialsObject);
     // aorund this area: after event.preventDefault() and before changing the state VALIDATION MUST OCURR
     //maybe a try catch. TRY = succesfull log ing. Catch = please try again
     setSession(credentialsObject);
