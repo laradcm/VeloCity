@@ -12,6 +12,8 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { useState, useEffect } from "react";
 import { fetchRead } from "../scripts/fetch";
+import { useContext } from "react";
+import { SessionContext } from "../context/userGlobalContext";
 
 function Copyright() {
   return (
@@ -130,12 +132,39 @@ function FetchProfileFromDB() {
 // end of Trying to fetch *********************************
 
 export function Profile() {
+  // start of Global context****************
+  const { userGlobal, logIn, logOut } = useContext(SessionContext);
+  // end of Global context for context****************
   return (
     <>
       <FetchProfileFromDB />
       <Box paddingTop={3}>
         <Copyright />
       </Box>
+      {/* Start of experiment with global state */}
+      <Box>
+        <h5>
+          Experiment about global data/user session: these are the login data
+          inserted by the user:
+        </h5>
+        <h6>email: {userGlobal.email}</h6>
+        <h6>password: {userGlobal.password}</h6>
+        <Button
+          variant="contained"
+          onClick={() => logIn("this will be in", "modify profile")}
+          sx={{ mt: 0.1, ml: 1 }}
+        >
+          Log in to change personal info
+        </Button>
+        <Button
+          variant="contained"
+          onClick={() => logOut()}
+          sx={{ mt: 0.1, ml: 1 }}
+        >
+          Log out to delete personal info
+        </Button>
+      </Box>
+      {/* End of experiment with global state */}
     </>
   );
 }

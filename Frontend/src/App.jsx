@@ -9,26 +9,30 @@ import { Rides } from "./pages/Rides";
 import { EndRide } from "./pages/EndRide";
 import { ReportBike } from "./pages/ReportBike";
 import { NavBar } from "./component/NavBar";
+import React, { useState } from "react";
+import UserProvider from "./context/userGlobalContext";
 // import { Footer } from "./component/Footer";
 
 function App() {
   return (
     <>
-      <NavBar />
-      <Container className="mb-4">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/main" element={<Main />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/rides" element={<Rides />} />
-          <Route path="/endride" element={<EndRide />} />
-          <Route path="/reportbike" element={<ReportBike />} />
-        </Routes>
-      </Container>
+      <UserProvider>
+        <NavBar />
+        <Container className="mb-4">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/signin" element={<SignIn />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/main" element={<Main />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/rides" element={<Rides />} />
+            <Route path="/endride" element={<EndRide />} />
+            <Route path="/reportbike" element={<ReportBike />} />
+          </Routes>
+        </Container>
 
-      {/* <Footer /> */}
+        {/* <Footer /> */}
+      </UserProvider>
     </>
   );
 }

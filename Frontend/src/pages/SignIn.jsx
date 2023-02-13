@@ -16,6 +16,8 @@ import { useState, useEffect, createContext } from "react";
 import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
 import { useNavigate } from "react-router-dom"; // this is used to redirect to dashboard
+import { useContext } from "react";
+import { SessionContext } from "../context/userGlobalContext";
 
 function Copyright(props) {
   return (
@@ -60,7 +62,12 @@ export function SignIn() {
   };
   // end of     Forgot password   message *************
 
-  // CREATE SESSION **********************************
+  //start of experiment for context****************
+  const { userGlobal, logIn, logOut } = useContext(SessionContext);
+  // logIn(); // moving this to below
+  //end of experiment for context****************
+
+  // LOG IN **********************************
   // this is grabbing data from input that came with MUI
   const [session, setSession] = useState({});
   const navigateTo = useNavigate(); // this is to redirect to dashboard
@@ -82,15 +89,15 @@ export function SignIn() {
     // aorund this area: after event.preventDefault() and before changing the state VALIDATION MUST OCURR
     //maybe a try catch. TRY = succesfull log ing. Catch = please try again
     setSession(credentialsObject);
-    navigateTo("/main"); // this redirects to dashboard
+    logIn(credentialsObject.email, credentialsObject.password);
+
+    // navigateTo("/main"); // this redirects to dashboard ******* commented out for the moment
   };
-  // END of create session ************************
+  // END of LOG IN ************************
 
   return (
     <div>
       <ThemeProvider theme={theme}>
-        {/* {session ? ( */}
-        {/* {session !== {} ? ( */}
         {Object.keys(session).length === 0 ? (
           <Grid container component="main" sx={{ height: "100vh" }}>
             <CssBaseline />
@@ -201,7 +208,25 @@ export function SignIn() {
           </Grid>
         ) : (
           <Box paddingTop={3} textAlign="center">
-            <h1>Welcome {session.fakeName}!</h1>
+            <h1>Welcome USER</h1>
+            <h3>
+              This is a dummy page that will disappear when{" "}
+              <em>i re-activate the auto redirect function</em>
+              .... that once i figure out something else.
+            </h3>
+            <h5>
+              In the meantime, here's the data the user just entered in the sign
+              in form:
+            </h5>
+            <h6>
+              email entered: <strong>{session.email}</strong>
+            </h6>
+            <h6>
+              password entered: <strong>{session.password}</strong>
+            </h6>
+            <h5>This is what the global state will integrate</h5>
+            <h6>email: {userGlobal.email}</h6>
+            <h6>password: {userGlobal.password}</h6>
           </Box>
         )}
       </ThemeProvider>

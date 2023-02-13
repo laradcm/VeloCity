@@ -45,6 +45,7 @@ export function EndRide() {
     setShouldShowButton(false);
   };
   // End of End ride button **************
+
   return (
     <>
       <Paper className="ccontainer">
@@ -60,13 +61,6 @@ export function EndRide() {
           <Typography variant="body1" gutterBottom align="center">
             Departure
           </Typography>
-          {/* <List disablePadding>
-              {products.map((product) => (
-               <ListItem key={product.name} sx={{}}>
-                 <ListItemText primary={product.name} secondary={product.desc} />
-               </ListItem>
-                 ))}
-                </List> */}
           <List disablePadding>
             {rideInfo.map((ride) => (
               <>
@@ -85,7 +79,7 @@ export function EndRide() {
                   />
                   {ride.neighbourhood}
                 </ListItem>
-                <ListItem key={ride.user_id} sx={{ py: 0, px: 19 }}>
+                <ListItem key={2} sx={{ py: 0, px: 19 }}>
                   <ListItemText
                     disableTypography
                     primary={
@@ -100,7 +94,7 @@ export function EndRide() {
                   />
                   {ride.station}
                 </ListItem>
-                <ListItem key={ride.user_id} sx={{ py: 0, px: 19 }}>
+                <ListItem key={3} sx={{ py: 0, px: 19 }}>
                   <ListItemText
                     disableTypography
                     primary={
@@ -115,7 +109,7 @@ export function EndRide() {
                   />
                   {ride.date}
                 </ListItem>
-                <ListItem key={ride.user_id} sx={{ py: 0, px: 19 }}>
+                <ListItem key={4} sx={{ py: 0, px: 19 }}>
                   <ListItemText
                     disableTypography
                     primary={
@@ -130,7 +124,7 @@ export function EndRide() {
                   />
                   {ride.time}
                 </ListItem>
-                <ListItem key={ride.user_id} sx={{ py: 0, px: 19 }}>
+                <ListItem key={5} sx={{ py: 0, px: 19 }}>
                   <ListItemText
                     disableTypography
                     primary={
@@ -145,7 +139,7 @@ export function EndRide() {
                   />
                   #2001539
                 </ListItem>
-                <ListItem key={ride.user_id} sx={{ py: 0, px: 19 }}>
+                <ListItem key={6} sx={{ py: 0, px: 19 }}>
                   <ListItemText
                     disableTypography
                     primary={
