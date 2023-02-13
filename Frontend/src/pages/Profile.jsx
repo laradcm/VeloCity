@@ -32,17 +32,20 @@ function Copyright() {
 // const url = "http://127.0.0.1:3000/users";
 function FetchProfileFromDB() {
   const [loadData, setLoadData] = useState(false);
-  const [coco, setCoco] = useState(null);
+  const [fullProfile, setfullProfile] = useState(null);
 
   const fetchProfile = async () => {
     try {
       const response = await fetchRead(`/users`);
       console.log(response);
-      for (let i = 0; i < array.length; i++) {
-        const element = array[i];
+      let profileFound;
+      for (let i = 0; i < response.length; i++) {
+        if (response[i].email.includes("mpeakman0@nhs.uk")) {
+          profileFound = response[i];
+        }
       }
-      const oneProfile = response[0];
-      setCoco(oneProfile);
+      // const oneProfile = response[0];
+      setfullProfile(profileFound);
       setLoadData(true);
     } catch (error) {
       setLoadData(false);
@@ -85,47 +88,47 @@ function FetchProfileFromDB() {
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow key={coco.id}>
+            <TableRow key={fullProfile.id}>
               <TableCell component="th" scope="row">
                 User ID
               </TableCell>
-              <TableCell align="right">{coco.id}</TableCell>
+              <TableCell align="right">{fullProfile.id}</TableCell>
             </TableRow>
-            <TableRow key={coco.first_name}>
+            <TableRow key={fullProfile.first_name}>
               <TableCell component="th" scope="row">
                 First name
               </TableCell>
-              <TableCell align="right">{coco.first_name}</TableCell>
+              <TableCell align="right">{fullProfile.first_name}</TableCell>
             </TableRow>
-            <TableRow key={coco.last_name}>
+            <TableRow key={fullProfile.last_name}>
               <TableCell component="th" scope="row">
                 Last name
               </TableCell>
-              <TableCell align="right">{coco.last_name}</TableCell>
+              <TableCell align="right">{fullProfile.last_name}</TableCell>
             </TableRow>
-            <TableRow key={coco.phone}>
+            <TableRow key={fullProfile.phone}>
               <TableCell component="th" scope="row">
                 Phone number
               </TableCell>
-              <TableCell align="right">{coco.phone}</TableCell>
+              <TableCell align="right">{fullProfile.phone}</TableCell>
             </TableRow>
-            <TableRow key={coco.email}>
+            <TableRow key={fullProfile.email}>
               <TableCell component="th" scope="row">
                 Email
               </TableCell>
-              <TableCell align="right">{coco.email}</TableCell>
+              <TableCell align="right">{fullProfile.email}</TableCell>
             </TableRow>
-            <TableRow key={coco.address}>
+            <TableRow key={fullProfile.address}>
               <TableCell component="th" scope="row">
                 Billing address
               </TableCell>
-              <TableCell align="right">{coco.address}</TableCell>
+              <TableCell align="right">{fullProfile.address}</TableCell>
             </TableRow>
-            <TableRow key={coco.password}>
+            <TableRow key={fullProfile.password}>
               <TableCell component="th" scope="row">
                 Password
               </TableCell>
-              <TableCell align="right">{coco.password}</TableCell>
+              <TableCell align="right">{fullProfile.password}</TableCell>
             </TableRow>
           </TableBody>
         </Table>
