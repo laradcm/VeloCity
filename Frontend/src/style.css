@@ -39,26 +39,189 @@ p {
     font-size: 1em;
 }
 
+h1.MuiTypography-root {
+    font-family: "Raleway", sans-serif;
+    color: #000000;
+    font-size: 2em;
+}
+
+h2.MuiTypography-root {
+    font-family: "Raleway", sans-serif;
+    color: #000000;
+    font-size: 1.5em;
+}
+
+h3.MuiTypography-root {
+    font-family: "Raleway", sans-serif;
+    color: #000000;
+    font-size: 1.2em;
+}
+
+h4.MuiTypography-root {
+    font-family: "Raleway", sans-serif;
+    color: #000000;
+    font-size: 1em;
+}
+
+h5.MuiTypography-root {
+    font-family: "Raleway", sans-serif;
+    color: #000000;
+    font-size: 0.83em;
+}
+
+h6.MuiTypography-root {
+    font-family: "Raleway", sans-serif;
+    color: #000000;
+    font-size: 0.7em;
+}
+
+p.MuiTypography-root {
+    font-family: "Open Sans", sans-serif;
+    color: #000000;
+    font-size: 1em;
+}
+
+span.MuiStepLabel-label {
+    font-family: "Open Sans", sans-serif;
+    color: #000000;
+    font-size: 1em;
+}
+
+div.MuiSelect-select {
+    font-family: "Open Sans", sans-serif;
+    color: #000000;
+    font-size: 1em;
+    text-align: left;
+}
+
+fieldset.MuiOutlinedInput {
+    font-family: "Open Sans", sans-serif;
+    color: #000000;
+    font-size: 1em;
+    text-align: left;
+}
+
+li.MuiButtonBase-root {
+    font-family: "Open Sans", sans-serif;
+    color: #000000;
+    font-size: 1em;
+    text-align: left;
+}
+
 #RaleNav {
     font-family: "Raleway", sans-serif;
     font-size: 2em;
+}
+
+#NavCenter {
+    text-align: center;
+}
+
+#NavRight {
+    text-align: right;
+}
+
+#Foot {
+    color: #ffffff;
+}
+
+.color-nav {
+    background-color: #000000;
 }
 
 .navbar-nav {
     font-family: "Open Sans", sans-serif;
 }
 
-.ccontainer {
-    margin-top: 2rem;
+a.nav-link:hover {
+    color: #f15060;
 }
 
-.cccontainer{
+a.nav-link {
+    color: #cccccc;
+}
+
+a.MuiTypography-root {
+    font-family: "Open Sans", sans-serif;
+}
+
+a.MuiTypography-root:hover {
+    color: #f15060;
+}
+
+div.card-body {
+    padding: 2rem;
+}
+
+#BGContainer {
+    max-width: 100%;
+    max-height: 40%;
+    margin: 0px;
+    padding: 0px;
+    z-index: -1;
+    /* background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain; */
+}
+
+/* #BannerImage {
+    margin: 5%;
+    max-width: 90%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+} */
+
+#BGImage {
+    /* max-height: 100%; */
+    max-width: 100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    z-index: -3;
+}
+
+/* #BannerContainer {
+    max-width: 100%;
+    margin: 0px;
+    padding: 0px;
+    z-index: -1;
+} */
+
+.MainContentContainer {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    padding: 2rem;
+    z-index: 2;
+}
+
+/* div.MuiBox-root {
+    background-color: #ffffff;
+    padding: 1em;
+    margin: 1em;
+} */
+
+button.btn.btn-primary {
+    color: #ffffff;
+    background-color: #0078bf;
+    text-transform: uppercase;
+}
+
+.ccontainer {
+    margin-top: 2rem;
+    padding: 2rem;
+}
+
+.cccontainer {
     padding-top: 1rem;
     padding-bottom: 2rem;
 }
 
-.form-textarea{
-    width:auto;
+.form-textarea {
+    width: auto;
     max-width: 60vh;
     display: block;
     margin-left: auto;
@@ -67,7 +230,7 @@ p {
     padding-bottom: 0rem;
 }
 
-.hidden{
+.hidden {
     display: none;
 }
 
