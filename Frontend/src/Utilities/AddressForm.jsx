@@ -6,31 +6,32 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { fetchRead } from "../scripts/fetch"
 // End of      select button - drop down ***********************
-
+import { fetchRead } from "../scripts/fetch";
 
 export default function AddressForm() {
   // data to be retrieved from server
   const [stationsData, setStationsData] = React.useState("");
   const [neighborhoodData, setNeighborhoodData] = React.useState("");
-  
+  const [selectedNeighborhood, setSelectedNeighborhood] = React.useState("");
+
   React.useEffect(() => {
-    (async()=>{
+    (async () => {
       const data = await fetchRead("/stations");
       setStationsData(data);
-      const neighborhoods = data.map((val)=>val.neighborhood);
+      const neighborhoods = data.map((val) => val.neighborhood);
       const uniqueNeighborhoodsSet = new Set(neighborhoods);
       setNeighborhoodData(Array.from(uniqueNeighborhoodsSet));
-    })()
+    })();
   }, []);
 
-  // start of the   Neighbourhood   dropdown box
-  const [neighbourhood, setNeighbourhood] = React.useState("");
+  // start of the   Neighborhood   dropdown box
+  const [neighborhood, setNeighborhood] = React.useState("");
   const handleChange = (event) => {
-    setNeighbourhood(event.target.value);
+    setNeighborhood(event.target.value);
+    setSelectedNeighborhood(event.target.value);
   };
-  // end of the   Neighbourhood   dropdown box
+  // end of the   Neighborhood   dropdown box
   // start of the   Station   dropdown box
   const [station, setSation] = React.useState("");
   const handleChangeStation = (event) => {
@@ -45,27 +46,26 @@ export default function AddressForm() {
       </Typography>
       <Grid container spacing={1} align="center">
         {/* Above: This is space between rows */}
-        {/* neighbourhood */}
+        {/* neighborhood */}
         <Grid item xs={12}>
           <div>
             <FormControl sx={{ m: 1, minWidth: 300 }}>
-              <InputLabel id="neighbourhood">Neighbourhood</InputLabel>
+              <InputLabel id="neighborhood">Neighborhood</InputLabel>
               <Select
-                labelId="neighbourhood"
-                id="neighbourhood"
-                value={neighbourhood}
+                labelId="neighborhood"
+                id="neighborhood"
+                value={neighborhood}
                 onChange={handleChange}
                 autoWidth
-                label="neighbourhood"
+                label="neighborhood"
               >
-                <MenuItem value="">
+                <MenuItem value="" key="">
                   <em>None</em>
                 </MenuItem>
-                { 
-                  neighborhoodData && neighborhoodData.map((val, index)=>{
-                    return <MenuItem value={index}>{val}</MenuItem>
-                  })
-                }
+                {neighborhoodData &&
+                  neighborhoodData.map((val) => {
+                    return <MenuItem value={val} key={val}>{val}</MenuItem>;
+                  })}
               </Select>
             </FormControl>
           </div>
@@ -74,7 +74,7 @@ export default function AddressForm() {
         <Grid item xs={12}>
           <div>
             <FormControl sx={{ m: 1, minWidth: 300 }}>
-              <InputLabel id="neighbourhood">Station</InputLabel>
+              <InputLabel id="neighborhood">Station</InputLabel>
               <Select
                 labelId="station"
                 id="station"
@@ -83,15 +83,22 @@ export default function AddressForm() {
                 autoWidth
                 label="station"
               >
-                <MenuItem value="">
+                <MenuItem value="" key="">
                   <em>None</em>
                 </MenuItem>
-                {stationsData && stationsData.map((val, index)=>{
-                  return <MenuItem value={index}>
-                     {val.name}&nbsp;&nbsp;
-                  <strong>{val.available_bicycles} bikes available</strong>
-                </MenuItem>
-                })}
+                {stationsData &&
+                  stationsData.map((val) => {
+                    return (
+                      val.neighborhood === selectedNeighborhood && (
+                        <MenuItem value={val.name} key={val.id}>
+                          {val.name}&nbsp;&nbsp;
+                          <strong>
+                            {val.available_bicycles} bikes available
+                          </strong>
+                        </MenuItem>
+                      )
+                    );
+                  })}
               </Select>
             </FormControl>
           </div>
