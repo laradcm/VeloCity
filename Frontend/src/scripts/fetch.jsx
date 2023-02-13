@@ -11,12 +11,16 @@ export async function fetchRead(extension){
 
 }
 
-export async function fetchReadSingleUser(extension){
-    const options = {method:'GET'};
+export async function fetchReadSingleUser(email){
+    const options = {
+        method:'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({"email": email})
+    };
 
-    return await fetch(address+extension, options)
+    return await fetch(address+"/singleUser/", options)
     .then(res => res.json())
-    .then(res => res)
+    .then(res => res[0])
     .catch(err => console.error(err));
 
 }
