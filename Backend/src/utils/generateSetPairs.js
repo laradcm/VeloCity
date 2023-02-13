@@ -1,31 +1,24 @@
+function generateSetPairs(inObj) {
+  const entries = Object.entries(inObj);
 
-function generateSetPairs( inObj ){
+  const keys = Object.keys(inObj);
+  const size = keys.length;
+  const values = Object.values(inObj);
 
-    const entries = Object.entries( inObj );
+  const setPairs = [];
 
-    const keys = Object.keys( inObj );
-    const size = keys.length;
-    const values =  Object.values( inObj );
+  let ref = 2;
 
-    const setPairs = [];
- 
+  for (const key of keys) {
+    setPairs.push(key + ` = $${ref}`);
+    ref++;
+  }
 
-    let ref = 2;
-
-    for ( const key of keys ) {
- 
-        setPairs.push(key + ` = $${ref}`);
-        ref++;
-    }
-
-    
-
-    return {
-        setPairs,
-        size,
-        values
-    }
-
+  return {
+    setPairs,
+    size,
+    values,
+  };
 }
 
 module.exports = generateSetPairs;
