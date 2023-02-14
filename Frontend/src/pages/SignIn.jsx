@@ -16,8 +16,7 @@ import { useState, useEffect } from "react";
 import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
 import { useNavigate } from "react-router-dom"; // this is used to redirect to dashboard
-import { useContext } from "react"; // global sate
-import { SessionContext } from "../context/userGlobalContext"; //global state
+import { fetchReadSingleUser } from "../scripts/fetch";
 
 function AlertMessage() {
   return (
@@ -44,34 +43,40 @@ export function SignIn() {
   };
   // end of     Forgot password   message *************
 
-  //start of experiment for context****************
-  const { userGlobal, logIn, logOut } = useContext(SessionContext);
-  // logIn(); // moving this to below
-  //end of experiment for context****************
-
-  // LOG IN **********************************
-  // this is grabbing data from input that came with MUI
-  const [session, setSession] = useState({});
+  // LOG IN *****  this is grabbing data from input that came with MUI *******************
+  const [session, setSession] = useState({}); // this only serves to render the dummy page
   const navigateTo = useNavigate(); // this is to redirect to dashboard
+  const [thereIsEmailToFetch, setThereIsEmailToFetch] = useState(false); // state to activate fetch
   const handleSubmit = (event) => {
     event.preventDefault();
     // this grabs a whole HTML thing
-    const data = new FormData(event.currentTarget);
-    // console.log({email: data.get("email"), password: data.get("password"),});
-
+    const data = new FormData(event.currentTarget); // console.log({email: data.get("email"), password: data.get("password"),});
     // passing the values into an object
     const credentialsObject = {
-      fakeName: "NAME_PLACEHOLDER",
       email: data.get("email"),
       password: data.get("password"),
     };
-    // aorund this area: after event.preventDefault() and before changing the state VALIDATION MUST OCURR
-    //maybe a try catch. TRY = succesfull log ing. Catch = please try again
-    setSession(credentialsObject);
-    logIn(credentialsObject.email, credentialsObject.password);
-    // navigateTo("/main"); // this redirects to dashboard ******* commented out for the moment
+
+    // Here goes the authorization VALIDATION MUST OCURR   maybe a try catch. TRY = succesfull log ing. Catch = please try again
+    setThereIsEmailToFetch(true); // to trigger the fetch
+    setSession(credentialsObject); // this is useful only to render the dummy page
+    // navigateTo("/main"); // this redirects to dashboard ******* commented out at the moment
   };
   // END of LOG IN ************************
+
+  // Start of fetching user by email
+  const fetchProfile = async () => {
+    try {
+      const response = await fetchReadSingleUser(session.email);
+      console.log("here goes the fetch");
+      console.log(response);
+    } catch (error) {
+      console.log("error fetching user");
+    }
+  };
+  useEffect(() => {
+    fetchProfile();
+  }, [thereIsEmailToFetch]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -89,7 +94,7 @@ export function SignIn() {
             square
           >
             <Box
-              ClassName="MainContentContainer"
+              className="MainContentContainer"
               sx={{
                 my: 8,
                 mx: 4,
@@ -170,22 +175,8 @@ export function SignIn() {
           <h3>
             This is a dummy page that will disappear when{" "}
             <em>i re-activate the auto redirect function</em>
-            .... that once i figure out something else.
+            .... that once we figure out authorization and storage in cookies.
           </h3>
-          <h5>
-            In the meantime, here's the data the user just entered in the sign
-            in form:
-          </h5>
-          <h6>
-            email entered: <strong>{session.email}</strong>
-          </h6>
-          <h6>
-            password entered: <strong>{session.password}</strong>
-          </h6>
-          <h5>This is what the global state will integrate</h5>
-          <h6>email: {userGlobal.email}</h6>
-          <h6>password: {userGlobal.password}</h6>
-          <h6>Go to PROFILE to see the data displaying</h6>
         </Box>
       )}
     </ThemeProvider>

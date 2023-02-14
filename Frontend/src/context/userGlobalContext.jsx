@@ -1,3 +1,6 @@
+// i removed the global state of everything as weMre goign to work with cookies
+// left this in case we want to implement dark mode or something that requires global state
+
 import React, { useState, createContext, useContext } from "react"; // context to storage the user data (global satatus) and make it available in all pages of the website
 
 export const SessionContext = createContext(); // to use context and have global status
@@ -8,11 +11,35 @@ const UserProvider = (props) => {
   const [userGlobal, setUserGlobal] = useState({
     email: "not logged in yet, this should be empty",
     password: "not logged in yet, this should be empty",
+    address: "not logged in yet, this should be empty",
+    first_name: "not logged in yet, this should be empty",
+    id: "not logged in yet, this should be empty",
+    last_name: "not logged in yet, this should be empty",
+    phone: "not logged in yet, this should be empty",
+    role: "not logged in yet, this should be empty",
   });
 
   // this will be the changing state function
-  const logIn = (enteredEmail, enteredPassword) => {
-    setUserGlobal({ email: enteredEmail, password: enteredPassword });
+  const logIn = (
+    enteredEmail,
+    enteredPassword,
+    enteredAddress,
+    enteredFirst_name,
+    entered_id,
+    enteredLast_name,
+    enteredPhone,
+    enteredRole
+  ) => {
+    setUserGlobal({
+      email: enteredEmail,
+      password: enteredPassword,
+      address: enteredAddress,
+      first_name: enteredFirst_name,
+      id: entered_id,
+      last_name: enteredLast_name,
+      phone: enteredPhone,
+      role: enteredRole,
+    });
   };
   const logOut = () => {
     setUserGlobal({});
