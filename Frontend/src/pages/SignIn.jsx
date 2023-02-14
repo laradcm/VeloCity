@@ -17,6 +17,7 @@ import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
 import { useNavigate } from "react-router-dom"; // this is used to redirect to dashboard
 import { fetchReadSingleUser } from "../scripts/fetch";
+import Cookies from "js-cookie"; // cookies
 
 function AlertMessage() {
   return (
@@ -59,6 +60,9 @@ export function SignIn() {
 
     // Here goes the authorization VALIDATION MUST OCURR   maybe a try catch. TRY = succesfull log ing. Catch = please try again
     setThereIsEmailToFetch(true); // to trigger the fetch
+
+    Cookies.set("user", "LogInTrue"); // cookie
+
     setSession(credentialsObject); // this is useful only to render the dummy page
     // navigateTo("/main"); // this redirects to dashboard ******* commented out at the moment
   };
