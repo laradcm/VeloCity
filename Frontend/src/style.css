@@ -234,6 +234,12 @@ button.btn.btn-primary {
     display: none;
 }
 
+/* sign up alerts of errors in the form */
+.MuiFormHelperText-root {
+    color: red !important;
+}
+
+
 /* COLOR REFERENCE
 BLUE - #0078bf
 ORANGE - #ffae3b
