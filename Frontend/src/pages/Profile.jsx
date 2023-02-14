@@ -10,16 +10,21 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import { useState, useEffect } from "react";
 import { fetchReadSingleUser } from "../scripts/fetch";
+import Cookies from "js-cookie"; // cookies
+import { useContext } from "react"; // global sate
+import { SessionContext } from "../context/userGlobalContext"; //global state
 
 // to try to fetch *******************
 // const url = "http://127.0.0.1:3000/users";
 function FetchProfileFromDB() {
-  const [loadData, setLoadData] = useState(false);
-  const [fullProfile, setFullProfile] = useState(null);
+  const { userGlobal, logIn, logOut } = useContext(SessionContext); // global context state
+  //
+  const [loadData, setLoadData] = useState(false); // in case there's a problem when fetching
+  const [fullProfile, setFullProfile] = useState(null); // new state will be used to render the table
 
   const fetchProfile = async () => {
     try {
-      const response = await fetchReadSingleUser("imaddicks47@newsvine.com");
+      const response = await fetchReadSingleUser(userGlobal.email);
       setFullProfile(response);
       setLoadData(true);
     } catch (error) {
@@ -29,6 +34,8 @@ function FetchProfileFromDB() {
   useEffect(() => {
     fetchProfile();
   }, []);
+
+  // console.log(document.cookie);  // to log the cookie it that was implemented in sign-in page
 
   // if there's an error while fetching the data
   if (!loadData) {
@@ -103,7 +110,7 @@ function FetchProfileFromDB() {
               <TableCell component="th" scope="row">
                 Password
               </TableCell>
-              <TableCell align="right">{fullProfile.password}</TableCell>
+              <TableCell align="right">**********</TableCell>
             </TableRow>
           </TableBody>
         </Table>
