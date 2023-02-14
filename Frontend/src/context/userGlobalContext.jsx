@@ -6,18 +6,20 @@ import React, { useState, createContext, useContext } from "react"; // context t
 export const SessionContext = createContext(); // to use context and have global status
 
 const UserProvider = (props) => {
+  // state of authorization
+  const [userAuthorized, setUserAuthorized] = useState(false);
+
+  const logInAuth = () => {
+    setUserAuthorized(true);
+  };
+  const logOutAuth = () => {
+    setUserAuthorized(false);
+  };
+  // BELOW previous experiment ********************
+
   // this state will carry the info entered by the user when logging in
   //with this we can fetch the right profile to display in Profile page
-  const [userGlobal, setUserGlobal] = useState({
-    email: "not logged in yet, this should be empty",
-    password: "not logged in yet, this should be empty",
-    address: "not logged in yet, this should be empty",
-    first_name: "not logged in yet, this should be empty",
-    id: "not logged in yet, this should be empty",
-    last_name: "not logged in yet, this should be empty",
-    phone: "not logged in yet, this should be empty",
-    role: "not logged in yet, this should be empty",
-  });
+  const [userGlobal, setUserGlobal] = useState({});
 
   // this will be the changing state function
   const logIn = (
@@ -46,7 +48,7 @@ const UserProvider = (props) => {
   };
 
   return (
-    <SessionContext.Provider value={{ userGlobal, logIn, logOut }}>
+    <SessionContext.Provider value={{ userAuthorized, logIn, logOut }}>
       {props.children}
     </SessionContext.Provider>
   );
