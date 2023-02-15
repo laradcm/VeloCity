@@ -49,7 +49,11 @@ function FetchProfileFromDB() {
   return (
     <>
       {/* <h1>data -bikes- fetched correctly</h1> */}
-      <TableContainer component={Paper} className="ccontainer">
+      <TableContainer
+        sx={{ maxWidth: 600 }}
+        component={Paper}
+        className="ccontainer"
+      >
         <Table sx={{ minWidth: 300 }} aria-label="caption table">
           <caption>
             <Box textAlign="right">

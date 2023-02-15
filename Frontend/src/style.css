@@ -213,6 +213,8 @@ button.btn.btn-primary {
 .ccontainer {
     margin-top: 2rem;
     padding: 2rem;
+    margin-left: auto;
+    margin-right:auto;
 }
 
 .cccontainer {
