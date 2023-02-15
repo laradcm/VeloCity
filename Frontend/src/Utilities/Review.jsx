@@ -27,13 +27,14 @@ import { SessionContext } from "../context/userGlobalContext";
 
 export default function Review() {
   const { userGlobal, addToGlobalState } = useContext(SessionContext); // global state context
+  const date = new Date;
   const rideInfo = [
     {
       userID: "150",
       neighbourhood: userGlobal.neighbourhood,
       station: userGlobal.station,
-      date: "2023/02/31",
-      time: "14:05",
+      date: date.toLocaleDateString("fr-CA"),
+      time: date.toLocaleTimeString("default", {"timeStyle":"short"}),
     },
   ];
 
