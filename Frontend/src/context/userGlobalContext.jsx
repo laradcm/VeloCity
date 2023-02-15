@@ -6,61 +6,32 @@ import React, { useState, createContext, useContext } from "react"; // context t
 export const SessionContext = createContext(); // to use context and have global status
 
 const UserProvider = (props) => {
-  // state of authorization
-  const [userAuthorized, setUserAuthorized] = useState(false);
-
-  const logInAuth = () => {
-    setUserAuthorized(true);
-  };
-  const logOutAuth = () => {
-    setUserAuthorized(false);
-  };
-  // BELOW previous experiment ********************
-
   // this state will carry the info entered by the user when logging in
   //with this we can fetch the right profile to display in Profile page
   const [userGlobal, setUserGlobal] = useState({});
 
   // this will be the changing state function
-  const logIn = (
-    enteredEmail,
-    enteredPassword,
-    enteredAddress,
-    enteredFirst_name,
-    entered_id,
-    enteredLast_name,
-    enteredPhone,
-    enteredRole
-  ) => {
-    setUserGlobal({
-      email: enteredEmail,
-      password: enteredPassword,
-      address: enteredAddress,
-      first_name: enteredFirst_name,
-      id: entered_id,
-      last_name: enteredLast_name,
-      phone: enteredPhone,
-      role: enteredRole,
-    });
+  const logIn = (object) => {
+    setUserGlobal(object);
   };
+
   const logOut = () => {
     setUserGlobal({});
   };
 
+  const addToGlobalState = (param1, param2) => {
+    setUserGlobal({ ...userGlobal, neighbourhood: param1, station: param2 });
+  };
+
   return (
-    <SessionContext.Provider value={{ userAuthorized, logIn, logOut }}>
+    // <SessionContext.Provider value={{ userAuthorized, logInAuth, logOutAuth }}>
+    <SessionContext.Provider
+      value={{ userGlobal, logIn, logOut, addToGlobalState }}
+    >
       {props.children}
     </SessionContext.Provider>
   );
 };
-
-// usually people create a central "context creator expression" to avoid creating context
-// in each page you need access to the global state
-// BUT THE CODE ABOVE WAS WORKING PERFECTLY
-// this breaks my code idk why
-// export const userSessionInfo = () => {
-//   useContext(SessionContext);
-// };
 
 export default UserProvider;
 
