@@ -31,7 +31,7 @@ function getStepContent(step) {
 const theme = createTheme();
 
 export function Rides() {
-  const { userGlobal, addToGlobalState } = useContext(SessionContext); // global state context
+  //const { userGlobal, addToGlobalState } = useContext(SessionContext); // global state context
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {

@@ -49,7 +49,6 @@ export default function AddressForm() {
     addToGlobalState(neighborhood, station); // test
   }, [isDepartureReady]);
 
-  console.log(userGlobal);
   // end of the   Station   dropdown box
   return (
     <React.Fragment>
