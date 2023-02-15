@@ -15,12 +15,12 @@ const UserProvider = (props) => {
     setUserGlobal(object);
   };
 
-  const addToGlobalState = () => {
-    setUserGlobal({ ...userGlobal, comida: "pollo" });
-  };
-
   const logOut = () => {
     setUserGlobal({});
+  };
+
+  const addToGlobalState = (param1, param2) => {
+    setUserGlobal({ ...userGlobal, neighbourhood: param1, station: param2 });
   };
 
   return (

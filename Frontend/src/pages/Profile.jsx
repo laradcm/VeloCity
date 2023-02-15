@@ -10,7 +10,6 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import { useState, useEffect } from "react";
 import { fetchReadSingleUser } from "../scripts/fetch";
-import Cookies from "js-cookie"; // cookies
 import { useContext } from "react"; // global sate
 import { SessionContext } from "../context/userGlobalContext"; //global state
 
