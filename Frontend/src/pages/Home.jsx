@@ -5,7 +5,7 @@ import Paper from "@mui/material/Paper";
 export function Home() {
   return (
     <>
-      <Paper className="MainContentContainer">
+      <Paper className="MainContentContainer" sx={{ maxWidth: 600 }}>
         <Container>
           <Row>
             <Col>

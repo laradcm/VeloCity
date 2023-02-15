@@ -20,13 +20,11 @@ import { useNavigate } from "react-router-dom"; // this is used to redirect to d
 const theme = createTheme();
 
 export function SignUp() {
-
-
   // Start of Submitting the form *******************
-  const[isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [formHasErrors, setFormHasErrors] = useState(false);
 
-  const  handleSubmit = async (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const data = new FormData(event.currentTarget);
@@ -38,10 +36,10 @@ export function SignUp() {
       first_name: data.get("firstName"),
       phone: data.get("phone"),
       address: data.get("address"),
-      role: "user"
-    }
+      role: "user",
+    };
 
-    if(
+    if (
       firstNameError ||
       lastNameError ||
       emailError ||
@@ -49,25 +47,21 @@ export function SignUp() {
       addressError ||
       passwordError ||
       confirmPasswordError
-    ){setFormHasErrors(true);
+    ) {
+      setFormHasErrors(true);
       setIsSubmitted(false);
-     }
-    else{
-
+    } else {
       const result = await fetchCreate("/users", inputData);
       console.log(result.message);
 
-      if (result.message.indexOf("Error") === -1 ) {
+      if (result.message.indexOf("Error") === -1) {
         setIsSubmitted(true);
         setFormHasErrors(false);
-
-      }else{
+      } else {
         setIsSubmitted(false);
         setFormHasErrors(true);
-      }  
-
+      }
     }
-
   };
   // End of Submitting the form *************
 
@@ -75,17 +69,14 @@ export function SignUp() {
   const navigate = useNavigate();
 
   React.useEffect(() => {
-
-    if(isSubmitted){
+    if (isSubmitted) {
       setTimeout(() => {
         navigate("/SignIn");
-      },1000)
+      }, 2000);
     }
-
-  },[isSubmitted]);
+  }, [isSubmitted]);
   // End of Redirect to Sign In ************************
 
-  
   // start of handle errors in form ********************
   const [firstNameValue, setFirstNameValue] = useState("");
   const [firstNameError, setFirstNameError] = useState(false);
@@ -197,13 +188,13 @@ export function SignUp() {
   return (
     <ThemeProvider theme={theme}>
       {/* <Container component="main" maxWidth="xs"> */}
-      <Grid container component="main" sx={{ height: "70%" }}> {/* MAIN CONTAINER */}
-
+      <Grid container component="main" sx={{ height: "70%" }}>
+        {" "}
+        {/* MAIN CONTAINER */}
         <CssBaseline />
         <Grid item xs={false} sm={4} md={7} sx={{}} />
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-
-          <Box 
+          <Box
             className="MainContentContainer"
             sx={{
               my: 8,
@@ -213,7 +204,6 @@ export function SignUp() {
               alignItems: "center",
             }}
           >
-
             <Avatar sx={{ m: 1, bgcolor: "#000000" }}>
               <LockOutlinedIcon />
             </Avatar>
@@ -229,9 +219,11 @@ export function SignUp() {
               onSubmit={(e) => handleSubmit(e)}
               sx={{ mt: 3 }}
             >
-              <Grid container spacing={3}> {/* FORM INPUTS */}
-
-                <Grid item xs={12} sm={6}>{/* FIRST NAME */}
+              <Grid container spacing={3}>
+                {" "}
+                {/* FORM INPUTS */}
+                <Grid item xs={12} sm={6}>
+                  {/* FIRST NAME */}
                   <TextField
                     autoComplete="given-name"
                     name="firstName"
@@ -244,11 +236,14 @@ export function SignUp() {
                     value={firstNameValue}
                     onChange={handleErrorsFirstName}
                     helperText={
-                      firstNameError ? "Name must be at least 3 characters long." : ""
+                      firstNameError
+                        ? "Name must be at least 3 characters long."
+                        : ""
                     }
                   />
                 </Grid>
-                <Grid item xs={12} sm={6}>{/* LAST NAME */}
+                <Grid item xs={12} sm={6}>
+                  {/* LAST NAME */}
                   <TextField
                     required
                     fullWidth
@@ -266,7 +261,8 @@ export function SignUp() {
                     }
                   />
                 </Grid>
-                <Grid item xs={12}>{/* EMAIL */}
+                <Grid item xs={12}>
+                  {/* EMAIL */}
                   <TextField
                     required
                     fullWidth
@@ -284,7 +280,8 @@ export function SignUp() {
                     }
                   />
                 </Grid>
-                <Grid item xs={12}>{/* PHONE */}
+                <Grid item xs={12}>
+                  {/* PHONE */}
                   <TextField
                     required
                     fullWidth
@@ -297,12 +294,13 @@ export function SignUp() {
                     onChange={handlePhoneErrors}
                     helperText={
                       phoneError
-                        ? "Use the following format: (123)456-7890 or 123-456-7890."
+                        ? "Use on of the following formats: (123) 456-7890, (123)456-7890, 123-456-7890, 123.456.7890, 1234567890, +31636363634, 075-63546725."
                         : ""
                     }
                   />
                 </Grid>
-                <Grid item xs={12}>{/* ADDRESS */}
+                <Grid item xs={12}>
+                  {/* ADDRESS */}
                   <TextField
                     required
                     fullWidth
@@ -320,7 +318,9 @@ export function SignUp() {
                     }
                   />
                 </Grid>
-                <Grid item xs={12}> {/* PASSWORD */}
+                <Grid item xs={12}>
+                  {" "}
+                  {/* PASSWORD */}
                   <TextField
                     required
                     fullWidth
@@ -339,7 +339,9 @@ export function SignUp() {
                     }
                   />
                 </Grid>
-                <Grid item xs={12}> {/* PASSWORD CONFIRM */}
+                <Grid item xs={12}>
+                  {" "}
+                  {/* PASSWORD CONFIRM */}
                   <TextField
                     required
                     fullWidth
@@ -358,7 +360,6 @@ export function SignUp() {
                     }
                   />
                 </Grid>
-
               </Grid>
 
               {/* SUBMIT BUTTON */}
@@ -371,14 +372,10 @@ export function SignUp() {
                 Sign Up
               </Button>
 
-              {formHasErrors? (
-                <>
-                  {<AlertMessageError />}
-                </>
+              {formHasErrors ? (
+                <>{<AlertMessageError />}</>
               ) : (
-                <>
-                { isSubmitted && <AlertMessageSuccess />}
-                </>
+                <>{isSubmitted && <AlertMessageSuccess />}</>
               )}
               <Grid container justifyContent="flex-end">
                 <Grid item>
@@ -388,17 +385,13 @@ export function SignUp() {
                 </Grid>
               </Grid>
             </Box>
-
           </Box>
-
         </Grid>
-
       </Grid>
       {/* </Container> */}
     </ThemeProvider>
   );
 }
-
 
 //supporting components
 function AlertMessageSuccess() {
@@ -418,10 +411,10 @@ function AlertMessageError() {
     <>
       <Stack sx={{ width: "100%" }} marginTop="1rem">
         <Alert severity="error">
-          There were errors while creating your account, please verify your data and try again.
+          There were errors while creating your account, please verify your data
+          and try again.
         </Alert>
       </Stack>
     </>
   );
 }
-
