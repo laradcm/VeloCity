@@ -16,9 +16,7 @@ import { useState, useEffect } from "react";
 import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
 import { useNavigate } from "react-router-dom"; // this is used to redirect to dashboard
-import { fetchReadSingleUser } from "../scripts/fetch";
-import { useContext } from "react"; // global sate
-import { SessionContext } from "../context/userGlobalContext"; //global state
+import { useCookies } from "react-cookie"; // cookies
 
 function AlertMessage() {
   return (
@@ -46,44 +44,26 @@ export function SignIn() {
   // end of     Forgot password   message *************
 
   // LOG IN *****  this is grabbing data from input that came with MUI *******************
-  const { userGlobal, logIn, logOut } = useContext(SessionContext); // global state context
-  const [tempProfile, setTempProfile] = useState({});
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+  // removeCookie("email"); // remove exiting EMAIL cookies before creating a new one
   const [enteredUserEmail, setEnteredUserEmail] = useState(null); // this only serves to render the dummy page
   const navigateTo = useNavigate(); // this is to redirect to dashboard
-  const [thereIsEmailToFetch, setThereIsEmailToFetch] = useState(false); // state to activate fetch
   const handleSubmit = (event) => {
     event.preventDefault();
     // this grabs a whole HTML thing
-    const data = new FormData(event.currentTarget); // console.log({email: data.get("email"), password: data.get("password"),});
+    const data = new FormData(event.currentTarget);
     const enteredEmail = data.get("email");
     const enteredPassword = data.get("password");
+
+    setCookie("email", enteredEmail); // cookie
+
     setEnteredUserEmail(enteredEmail); // carries email entered
+
     // Here goes the authorization VALIDATION MUST OCURR   maybe a try catch. TRY = succesfull log ing. Catch = please try again
-    setThereIsEmailToFetch(true); // to trigger the fetch
 
     // navigateTo("/main"); // this redirects to dashboard ******* commented out at the moment
   };
   // END of LOG IN ************************
-
-  // Start of fetching user by email
-  const fetchProfile = async () => {
-    try {
-      const response = await fetchReadSingleUser(enteredUserEmail);
-      console.log("here goes the fetch");
-      // console.log(response);
-      setTempProfile(response);
-    } catch (error) {
-      console.log("error fetching user");
-    }
-  };
-  useEffect(() => {
-    fetchProfile();
-  }, [thereIsEmailToFetch]);
-
-  // updating the global state
-  logIn(tempProfile);
-  console.log("this is the global user state");
-  console.log(userGlobal);
 
   // start of handle errors in form ********************
   const [emailValue, setEmailValue] = useState("");
