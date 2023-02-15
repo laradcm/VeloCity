@@ -5,6 +5,8 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Grid from "@mui/material/Grid";
 import { fontSize } from "@mui/system";
+import { useContext } from "react";
+import { SessionContext } from "../context/userGlobalContext";
 
 // const products = [
 //   {
@@ -21,17 +23,20 @@ import { fontSize } from "@mui/system";
 //   },
 // ];
 
-const rideInfo = [
-  {
-    userID: "150",
-    neighbourhood: "Hochelaga",
-    station: "Stadium",
-    date: "2023/02/31",
-    time: "14:05",
-  },
-];
+
 
 export default function Review() {
+  const { userGlobal, addToGlobalState } = useContext(SessionContext); // global state context
+  const rideInfo = [
+    {
+      userID: "150",
+      neighbourhood: userGlobal.neighbourhood,
+      station: userGlobal.station,
+      date: "2023/02/31",
+      time: "14:05",
+    },
+  ];
+
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom align="center">
