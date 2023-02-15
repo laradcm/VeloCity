@@ -58,7 +58,7 @@ export function SignIn() {
     const data = new FormData(event.currentTarget); // console.log({email: data.get("email"), password: data.get("password"),});
     const enteredEmail = data.get("email");
     const enteredPassword = data.get("password");
-    setEnteredUserEmail(enteredEmail); // renders the dummy page // carries email entered
+    setEnteredUserEmail(enteredEmail); // carries email entered
     // Here goes the authorization VALIDATION MUST OCURR   maybe a try catch. TRY = succesfull log ing. Catch = please try again
     setThereIsEmailToFetch(true); // to trigger the fetch
     Cookies.set("user", "LogInTrue"); // cookie
@@ -179,10 +179,7 @@ export function SignIn() {
         </Grid>
       ) : (
         <Box paddingTop={3} textAlign="center">
-          <h1>
-            Welcome
-            {/* <em>{userGlobal.first_name} !</em> */}
-          </h1>
+          <h1>Welcome</h1>
           <h3>
             This is a dummy page that will disappear when{" "}
             <em>i re-activate the auto redirect function</em>
