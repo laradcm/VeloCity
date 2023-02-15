@@ -14,25 +14,24 @@ const UserProvider = (props) => {
   const logIn = (object) => {
     setUserGlobal(object);
   };
+
+  const addToGlobalState = () => {
+    setUserGlobal({ ...userGlobal, comida: "pollo" });
+  };
+
   const logOut = () => {
     setUserGlobal({});
   };
 
   return (
     // <SessionContext.Provider value={{ userAuthorized, logInAuth, logOutAuth }}>
-    <SessionContext.Provider value={{ userGlobal, logIn, logOut }}>
+    <SessionContext.Provider
+      value={{ userGlobal, logIn, logOut, addToGlobalState }}
+    >
       {props.children}
     </SessionContext.Provider>
   );
 };
-
-// usually people create a central "context creator expression" to avoid creating context
-// in each page you need access to the global state
-// BUT THE CODE ABOVE WAS WORKING PERFECTLY
-// this breaks my code idk why
-// export const userSessionInfo = () => {
-//   useContext(SessionContext);
-// };
 
 export default UserProvider;
 
