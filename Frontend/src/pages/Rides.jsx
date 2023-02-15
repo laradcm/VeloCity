@@ -11,6 +11,8 @@ import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import AddressForm from "../Utilities/AddressForm";
 import Review from "/src/Utilities/Review";
+import { useContext } from "react";
+import { SessionContext } from "../context/userGlobalContext";
 
 const steps = ["Departure", "Review your ride"];
 // const steps = ["Departure", "Payment details", "Review your order"];
@@ -29,6 +31,7 @@ function getStepContent(step) {
 const theme = createTheme();
 
 export function Rides() {
+  const { userGlobal, addToGlobalState } = useContext(SessionContext); // global state context
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
