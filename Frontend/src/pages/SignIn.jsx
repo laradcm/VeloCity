@@ -185,6 +185,7 @@ export function SignIn() {
             <em>i re-activate the auto redirect function</em>
             .... that once we figure out authorization and storage in cookies.
           </h3>
+          <h2>Go to profile page now you should be able to see your info</h2>
         </Box>
       )}
     </ThemeProvider>
