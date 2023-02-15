@@ -11,28 +11,25 @@ import { ReportBike } from "./pages/ReportBike";
 import { NavBar } from "./component/NavBar";
 import { FootBar } from "./component/FootBar";
 import { BGImgOverlay } from "./component/BGImgOverlay";
-import UserProvider from "./context/userGlobalContext";
 
 function App() {
   return (
     <>
-      <UserProvider>
-        <NavBar />
-        <Container className="mb-4">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/signin" element={<SignIn />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/main" element={<Main />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/rides" element={<Rides />} />
-            <Route path="/endride" element={<EndRide />} />
-            <Route path="/reportbike" element={<ReportBike />} />
-          </Routes>
-        </Container>
-        <BGImgOverlay />
-        <FootBar />
-      </UserProvider>
+      <NavBar />
+      <Container className="mb-4">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/main" element={<Main />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/rides" element={<Rides />} />
+          <Route path="/endride" element={<EndRide />} />
+          <Route path="/reportbike" element={<ReportBike />} />
+        </Routes>
+      </Container>
+      <BGImgOverlay />
+      <FootBar />
     </>
   );
 }
