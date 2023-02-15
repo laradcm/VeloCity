@@ -17,7 +17,8 @@ import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
 import { useNavigate } from "react-router-dom"; // this is used to redirect to dashboard
 import { fetchReadSingleUser } from "../scripts/fetch";
-import Cookies from "js-cookie"; // cookies
+import { useContext } from "react"; // global sate
+import { SessionContext } from "../context/userGlobalContext"; //global state
 
 function AlertMessage() {
   return (
@@ -45,25 +46,21 @@ export function SignIn() {
   // end of     Forgot password   message *************
 
   // LOG IN *****  this is grabbing data from input that came with MUI *******************
-  const [session, setSession] = useState({}); // this only serves to render the dummy page
+  const { userGlobal, logIn, logOut } = useContext(SessionContext); // global state context
+  const [tempProfile, setTempProfile] = useState({});
+  const [enteredUserEmail, setEnteredUserEmail] = useState(null); // this only serves to render the dummy page
   const navigateTo = useNavigate(); // this is to redirect to dashboard
   const [thereIsEmailToFetch, setThereIsEmailToFetch] = useState(false); // state to activate fetch
   const handleSubmit = (event) => {
     event.preventDefault();
     // this grabs a whole HTML thing
     const data = new FormData(event.currentTarget); // console.log({email: data.get("email"), password: data.get("password"),});
-    // passing the values into an object
-    const credentialsObject = {
-      email: data.get("email"),
-      password: data.get("password"),
-    };
-
+    const enteredEmail = data.get("email");
+    const enteredPassword = data.get("password");
+    setEnteredUserEmail(enteredEmail); // carries email entered
     // Here goes the authorization VALIDATION MUST OCURR   maybe a try catch. TRY = succesfull log ing. Catch = please try again
     setThereIsEmailToFetch(true); // to trigger the fetch
 
-    Cookies.set("user", "LogInTrue"); // cookie
-
-    setSession(credentialsObject); // this is useful only to render the dummy page
     // navigateTo("/main"); // this redirects to dashboard ******* commented out at the moment
   };
   // END of LOG IN ************************
@@ -71,9 +68,10 @@ export function SignIn() {
   // Start of fetching user by email
   const fetchProfile = async () => {
     try {
-      const response = await fetchReadSingleUser(session.email);
+      const response = await fetchReadSingleUser(enteredUserEmail);
       console.log("here goes the fetch");
-      console.log(response);
+      // console.log(response);
+      setTempProfile(response);
     } catch (error) {
       console.log("error fetching user");
     }
@@ -82,9 +80,30 @@ export function SignIn() {
     fetchProfile();
   }, [thereIsEmailToFetch]);
 
+  // updating the global state
+  logIn(tempProfile);
+  console.log("this is the global user state");
+  console.log(userGlobal);
+
+  // start of handle errors in form ********************
+  const [emailValue, setEmailValue] = useState("");
+  const [emailError, setEmailError] = useState(false);
+  const handleErrorsEmail = (event) => {
+    setEmailValue(event.target.value);
+    // Validate the text field
+    const pattern =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (!pattern.test(event.target.value)) {
+      setEmailError(true);
+    } else {
+      setEmailError(false);
+    }
+  };
+  // end of handle errors in form ***********
+
   return (
     <ThemeProvider theme={theme}>
-      {Object.keys(session).length === 0 ? (
+      {enteredUserEmail === null ? (
         <Grid container component="main" sx={{ height: "70%" }}>
           <CssBaseline />
           <Grid item xs={false} sm={4} md={7} sx={{}} />
@@ -129,6 +148,14 @@ export function SignIn() {
                   name="email"
                   autoComplete="email"
                   autoFocus
+                  emailError={emailError}
+                  emailValue={emailValue}
+                  onChange={handleErrorsEmail}
+                  helperText={
+                    emailError
+                      ? "Make sure you are entering a valid email address."
+                      : ""
+                  }
                 />
                 <TextField
                   margin="normal"
@@ -175,12 +202,13 @@ export function SignIn() {
         </Grid>
       ) : (
         <Box paddingTop={3} textAlign="center">
-          <h1>Welcome USER</h1>
+          <h1>Welcome</h1>
           <h3>
             This is a dummy page that will disappear when{" "}
             <em>i re-activate the auto redirect function</em>
             .... that once we figure out authorization and storage in cookies.
           </h3>
+          <h2>Go to profile page now you should be able to see your info</h2>
         </Box>
       )}
     </ThemeProvider>
