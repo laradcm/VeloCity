@@ -64,7 +64,11 @@ export default function AddressForm() {
                 </MenuItem>
                 {neighborhoodData &&
                   neighborhoodData.map((val) => {
-                    return <MenuItem value={val} key={val}>{val}</MenuItem>;
+                    return (
+                      <MenuItem value={val} key={val}>
+                        {val}
+                      </MenuItem>
+                    );
                   })}
               </Select>
             </FormControl>
