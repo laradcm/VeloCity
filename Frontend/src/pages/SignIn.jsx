@@ -17,6 +17,7 @@ import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
 import { useNavigate } from "react-router-dom"; // this is used to redirect to dashboard
 import { useCookies } from "react-cookie"; // cookies
+import { fetchReadSingleUser } from "../scripts/fetch";
 
 function AlertMessage() {
   return (
@@ -33,6 +34,9 @@ function AlertMessage() {
 const theme = createTheme();
 
 export function SignIn() {
+  // this is to redirect to dashboard
+  const navigateTo = useNavigate();
+
   // start of   Forgot password   message *************
   const [forgotPassword, setForgotPassword] = useState(false);
   const recuperatePassword = () => {
@@ -43,27 +47,71 @@ export function SignIn() {
   };
   // end of     Forgot password   message *************
 
-  // LOG IN *****  this is grabbing data from input that came with MUI *******************
+  // Setup for Cookies
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
   // removeCookie("email"); // remove exiting EMAIL cookies before creating a new one
-  const [enteredUserEmail, setEnteredUserEmail] = useState(null); // this only serves to render the dummy page
-  const navigateTo = useNavigate(); // this is to redirect to dashboard
+  // end of setup for cookies
+
+  // setup of State that will triger the fetch
+  const [fetchedPassword, setFetchedPassword] = useState({});
+  const [thereIsEmailToFetch, setThereIsEmailToFetch] = useState(false);
+  // end of State that will triger the fetch
+
+  // LOG IN *****  this is grabbing data from input that came with MUI *******************
+  const [enteredUserEmail, setEnteredUserEmail] = useState(""); // this only serves to render the dummy page
+  const [enteredUserPassword, setEnteredUserPassword] = useState(null);
   const handleSubmit = (event) => {
     event.preventDefault();
     // this grabs a whole HTML thing
     const data = new FormData(event.currentTarget);
     const enteredEmail = data.get("email");
     const enteredPassword = data.get("password");
+    setEnteredUserEmail(enteredEmail); // state carries the email
+    setEnteredUserPassword(enteredPassword); // state carries the password
 
-    setCookie("email", enteredEmail); // cookie
+    // to trigger the fetch
+    setThereIsEmailToFetch(true);
+    // end of triggering the fetch
 
-    setEnteredUserEmail(enteredEmail); // carries email entered
-
-    // Here goes the authorization VALIDATION MUST OCURR   maybe a try catch. TRY = succesfull log ing. Catch = please try again
+    // setCookie("email", enteredEmail); // cookie
 
     // navigateTo("/main"); // this redirects to dashboard ******* commented out at the moment
+
+    console.log("this is the end of this section");
   };
   // END of LOG IN ************************
+
+  // start of FETCH user by email
+  const fetchProfile = async () => {
+    try {
+      const response = await fetchReadSingleUser(enteredUserEmail);
+      setFetchedPassword(response.password);
+    } catch (error) {
+      console.log("there was a problem with the fetch");
+    }
+  };
+  useEffect(() => {
+    fetchProfile();
+  }, [thereIsEmailToFetch]);
+  // end of fetch user by email
+
+  //when the fetch, and everything written before, ends. Here's the validation of both passwords
+  // useEffect(() => {
+  function comparePasswords() {
+    console.log("comparison of passwords");
+    console.log("this is the password fetched");
+    console.log(fetchedPassword);
+    console.log("this is the password entered");
+    console.log(enteredUserPassword);
+    if (fetchedPassword === enteredUserPassword) {
+      console.log("Both passwords are the same");
+      setCookie("email", enteredUserEmail); // cookie
+    } else {
+      console.log("Passwords don't match");
+    }
+  }
+  comparePasswords();
+  // }, [fetchedPassword !== {}]);
 
   // start of handle errors in form ********************
   const [emailValue, setEmailValue] = useState("");
@@ -83,7 +131,7 @@ export function SignIn() {
 
   return (
     <ThemeProvider theme={theme}>
-      {enteredUserEmail === null ? (
+      {enteredUserEmail === "" ? (
         <Grid container component="main" sx={{ height: "70%" }}>
           <CssBaseline />
           <Grid item xs={false} sm={4} md={7} sx={{}} />
