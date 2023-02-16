@@ -16,7 +16,8 @@ function Copyright() {
 
 export function FootBar() {
   return (
-    <Navbar className="fixed-bottom navbar navbar-dark color-nav">
+    <Navbar className="navbar navbar-dark color-nav">
+      {/* this will make the footer stick to the bottom of the page className="fixed-bottom" */}
       <Container>
         <Nav>
           <Copyright />
