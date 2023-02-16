@@ -20,7 +20,7 @@ const UserProvider = (props) => {
   };
 
   const addToGlobalState = (param1, param2) => {
-    setUserGlobal({ ...userGlobal, neighbourhood: param1, station: param2 });
+    setUserGlobal({ ...userGlobal, neighborhood: param1, station: param2 });
   };
 
   return (
