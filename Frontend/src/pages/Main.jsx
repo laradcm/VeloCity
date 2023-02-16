@@ -36,7 +36,7 @@ export function Main() {
   if (!loadData) {
     return (
       <>
-        <h1>Error occurred while fetching data</h1>
+        <h1>Error occurred while fetching data, please refresh the page</h1>
       </>
     );
   }
@@ -67,7 +67,6 @@ export function Main() {
             <Button
               variant="contained"
               href="/rides"
-              // onClick={}
               sx={{ mt: 0.1, ml: 1, mb: 3 }}
             >
               Book a Ride
@@ -75,12 +74,11 @@ export function Main() {
           </Box>
           <Box textAlign="center">
             <Typography variant="h2" align="center">
-              Profile and ride
+              Profile
             </Typography>
             <Button
               variant="contained"
               href="/profile"
-              // onClick={}
               sx={{ mt: 0.1, ml: 1, mb: 3 }}
             >
               Go to profile
@@ -93,7 +91,6 @@ export function Main() {
             <Button
               variant="contained"
               href="/reportbike"
-              // onClick={}
               sx={{ mt: 0.1, ml: 1, mb: 3 }}
             >
               Contact Support
