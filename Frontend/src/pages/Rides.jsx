@@ -33,15 +33,16 @@ const theme = createTheme();
 
 export function Rides() {
   const { userGlobal, addToGlobalState } = useContext(SessionContext); // global state context
-  const { ride_session, setRideSession } = React.useState("");
+  const [ rideSession, setRideSession ] = React.useState("");
   const [activeStep, setActiveStep] = React.useState(0);
 
-  const handleNext = () => {
+  async function handleNext(){
     if (activeStep === steps.length -1) {
-      fetchInitiateRideSession({
+      const conf = await fetchInitiateRideSession({
         user_id: "150",
         origin_station: userGlobal.station,
       });
+      setRideSession(conf);
     }
     setActiveStep(activeStep + 1);
   };
@@ -51,6 +52,7 @@ export function Rides() {
   };
   
   const handleEnd = () => {
+    console.log(rideSession)
     window.location.href="/endride";
   };
 
@@ -94,9 +96,9 @@ export function Rides() {
                   It's all set. Enjoy your ride🚲💨!
                 </Typography>
                 <Typography variant="subtitle1">
-                  Your confirmation number is #2001539.<br></br>
+                  Your confirmation number is {rideSession.ticket}.<br></br>
                   The code to unlock a bike is: 3850.<br></br>
-                  Departing at 14:30 from {}, Stadium station.
+                  Departing at {new Date(rideSession.start_time).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })} from {userGlobal.neighborhood}, {userGlobal.station} station.
                 </Typography>
                 <Typography variant="subtitle2" color={"red"}>
                   {`Remember to check in the bike through the app when you return it at your destination.`}
