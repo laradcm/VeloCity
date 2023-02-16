@@ -17,10 +17,9 @@ import { useCookies } from "react-cookie"; // cookies
 function FetchProfileFromDB() {
   const [loadData, setLoadData] = useState(false); // in case there's a problem when fetching
   const [fullProfile, setFullProfile] = useState(null); // new state will be used to render the table
-  // cookies
-  const [cookies, setCookie] = useCookies(["user"]);
-  console.log(cookies.email);
-  //
+
+  const [cookies, setCookie] = useCookies(["user"]); // cookies
+
   const fetchProfile = async () => {
     try {
       const response = await fetchReadSingleUser(cookies.email);
