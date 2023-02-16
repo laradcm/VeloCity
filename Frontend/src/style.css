@@ -213,11 +213,18 @@ button.btn.btn-primary {
 .ccontainer {
     margin-top: 2rem;
     padding: 2rem;
+    margin-left: auto;
+    margin-right:auto;
 }
 
 .cccontainer {
     padding-top: 1rem;
     padding-bottom: 2rem;
+}
+
+.centereddd {
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .form-textarea {

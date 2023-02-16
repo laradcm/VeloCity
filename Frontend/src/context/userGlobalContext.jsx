@@ -1,5 +1,5 @@
 // i removed the global state of everything as weMre goign to work with cookies
-// left this in case we want to implement dark mode or something that requires global state
+// left this in case we want to reuse it
 
 import React, { useState, createContext, useContext } from "react"; // context to storage the user data (global satatus) and make it available in all pages of the website
 

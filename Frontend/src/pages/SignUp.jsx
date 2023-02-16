@@ -14,63 +14,80 @@ import FormHelperText from "@mui/material/FormHelperText";
 import { useState } from "react";
 import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
+import { fetchCreate } from "../scripts/fetch";
+import { useNavigate } from "react-router-dom"; // this is used to redirect to dashboard
 
 const theme = createTheme();
 
-function AlertMessageSucces() {
-  return (
-    <>
-      <Stack sx={{ width: "100%" }} marginTop="1rem">
-        <Alert severity="error">
-          There's a problem in the form, please verify the data entered.
-        </Alert>
-      </Stack>
-    </>
-  );
-}
-
-function AlertMessageError() {
-  return (
-    <>
-      <Stack sx={{ width: "100%" }} marginTop="1rem">
-        <Alert severity="success">
-          Everything's in order, welcome to Vélocity.
-        </Alert>
-      </Stack>
-    </>
-  );
-}
-
 export function SignUp() {
   // Start of Submitting the form *******************
-  const [formHasErrors, setFormHasErrors] = useState(true);
-  const handleSubmit = (event) => {
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [formHasErrors, setFormHasErrors] = useState(false);
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
+
     const data = new FormData(event.currentTarget);
-    console.log({
+
+    const inputData = {
       email: data.get("email"),
       password: data.get("password"),
-      confirmPassword: data.get("confirmPassword"),
-      lastName: data.get("lastName"),
-      firstName: data.get("firstName"),
+      last_name: data.get("lastName"),
+      first_name: data.get("firstName"),
       phone: data.get("phone"),
       address: data.get("address"),
-    });
-    // setFormHasErrors(false);
+      role: "user",
+    };
+
+    if (
+      firstNameError ||
+      lastNameError ||
+      emailError ||
+      phoneError ||
+      addressError ||
+      passwordError ||
+      confirmPasswordError
+    ) {
+      setFormHasErrors(true);
+      setIsSubmitted(false);
+    } else {
+      const result = await fetchCreate("/users", inputData);
+      console.log(result.message);
+
+      if (result.message.indexOf("Error") === -1) {
+        setIsSubmitted(true);
+        setFormHasErrors(false);
+      } else {
+        setIsSubmitted(false);
+        setFormHasErrors(true);
+      }
+    }
   };
   // End of Submitting the form *************
 
+  // Start of Redirect to Sign In **********************
+  const navigate = useNavigate();
+
+  React.useEffect(() => {
+    if (isSubmitted) {
+      setTimeout(() => {
+        navigate("/SignIn");
+      }, 2000);
+    }
+  }, [isSubmitted]);
+  // End of Redirect to Sign In ************************
+
   // start of handle errors in form ********************
-  const [nameValue, setNameValue] = useState("");
-  const [error, setError] = useState(false);
+  const [firstNameValue, setFirstNameValue] = useState("");
+  const [firstNameError, setFirstNameError] = useState(false);
   const handleErrorsFirstName = (event) => {
-    setNameValue(event.target.value);
+    setFirstNameValue(event.target.value);
 
     // Validate the text field
     if (event.target.value.length < 3) {
-      setError(true);
+      setFirstNameError(true);
     } else {
-      setError(false);
+      setFirstNameError(false);
     }
   };
 
@@ -91,7 +108,8 @@ export function SignUp() {
   const [emailError, setEmailError] = useState(false);
   const handleErrorsEmail = (event) => {
     setEmailValue(event.target.value);
-    // Validate the text field
+
+    // Validate the text field for email
     const pattern =
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (!pattern.test(event.target.value)) {
@@ -106,10 +124,9 @@ export function SignUp() {
   const handlePhoneErrors = (event) => {
     setPhoneValue(event.target.value);
 
-    // Validate the text field
-    const pattern = /^(\()?\d{3}(\))?(-|\s)?\d{3}(-|\s)\d{4}$/;
-    // supported Format: (123) 456-7890 or 123-456-7890
-    const pattern2 =
+    // Validate the text field for phone
+
+    const pattern =
       /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
     // Fomats supported: (123) 456-7890, (123)456-7890, 123-456-7890, 123.456.7890, 1234567890, +31636363634, 075-63546725
     if (!pattern.test(event.target.value)) {
@@ -137,29 +154,18 @@ export function SignUp() {
   const handlePasswordErrors = (event) => {
     setPasswordValue(event.target.value);
 
-    // Validate the text field
-    // Minimum eight characters, at least one letter and one number:
-    const pattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-    // Minimum eight characters, at least one letter, one number and one special character:
-    const pattern2 =
-      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
-    // Minimum eight characters, at least one uppercase letter, one lowercase letter and one number:
-    const pattern3 = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
-    // Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character:
-    const pattern4 =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    // Minimum eight and maximum 15 characters, at least one uppercase letter, one lowercase letter, one number and one special character:
-    const pattern5 =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,15}$/;
-    // At least one upper case English letter, (?=.*?[A-Z])
-    // At least one lower case English letter, (?=.*?[a-z])
-    // At least one digit, (?=.*?[0-9])
-    // At least one special character, (?=.*?[#?!@$%^&*-])
-    //Minimum eight in length .{8,} (with the anchors)
-    const pattern6 =
-      /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+    // Validate the text field for password
 
-    if (!pattern5.test(event.target.value)) {
+    // Minimum eight and maximum 15 characters,
+    // at least one uppercase letter
+    // one lowercase letter
+    // one number
+    // one special character:
+
+    const pattern =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,15}$/;
+
+    if (!pattern.test(event.target.value)) {
       setPasswordError(true);
     } else {
       setPasswordError(false);
@@ -183,6 +189,8 @@ export function SignUp() {
     <ThemeProvider theme={theme}>
       {/* <Container component="main" maxWidth="xs"> */}
       <Grid container component="main" sx={{ height: "70%" }}>
+        {" "}
+        {/* MAIN CONTAINER */}
         <CssBaseline />
         <Grid item xs={false} sm={4} md={7} sx={{}} />
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
@@ -199,18 +207,23 @@ export function SignUp() {
             <Avatar sx={{ m: 1, bgcolor: "#000000" }}>
               <LockOutlinedIcon />
             </Avatar>
+
             <Typography component="h1" variant="h5">
               Sign Up
             </Typography>
+
+            {/* FORM */}
             <Box
               component="form"
-              // noValidate
               validate="true"
-              onSubmit={handleSubmit}
+              onSubmit={(e) => handleSubmit(e)}
               sx={{ mt: 3 }}
             >
               <Grid container spacing={3}>
+                {" "}
+                {/* FORM INPUTS */}
                 <Grid item xs={12} sm={6}>
+                  {/* FIRST NAME */}
                   <TextField
                     autoComplete="given-name"
                     name="firstName"
@@ -219,18 +232,18 @@ export function SignUp() {
                     id="firstName"
                     label="First Name"
                     autoFocus
-                    error={error}
-                    nameValue={nameValue}
+                    error={firstNameError}
+                    value={firstNameValue}
                     onChange={handleErrorsFirstName}
                     helperText={
-                      error ? "Name must be at least 3 characters long." : ""
+                      firstNameError
+                        ? "Name must be at least 3 characters long."
+                        : ""
                     }
                   />
-                  {/* <FormHelperText error>
-                    {error ? "Name is required" : ""}
-                  </FormHelperText> */}
                 </Grid>
                 <Grid item xs={12} sm={6}>
+                  {/* LAST NAME */}
                   <TextField
                     required
                     fullWidth
@@ -238,8 +251,8 @@ export function SignUp() {
                     label="Last Name"
                     name="lastName"
                     autoComplete="family-name"
-                    lastNameError={lastNameError}
-                    lastNameValue={lastNameValue}
+                    error={lastNameError}
+                    value={lastNameValue}
                     onChange={handleErrorsLastName}
                     helperText={
                       lastNameError
@@ -249,6 +262,7 @@ export function SignUp() {
                   />
                 </Grid>
                 <Grid item xs={12}>
+                  {/* EMAIL */}
                   <TextField
                     required
                     fullWidth
@@ -256,8 +270,8 @@ export function SignUp() {
                     label="Email Address"
                     name="email"
                     autoComplete="email"
-                    emailError={emailError}
-                    emailValue={emailValue}
+                    error={emailError}
+                    value={emailValue}
                     onChange={handleErrorsEmail}
                     helperText={
                       emailError
@@ -267,6 +281,7 @@ export function SignUp() {
                   />
                 </Grid>
                 <Grid item xs={12}>
+                  {/* PHONE */}
                   <TextField
                     required
                     fullWidth
@@ -274,17 +289,18 @@ export function SignUp() {
                     label="Phone number"
                     name="phone"
                     autoComplete="phone-number"
-                    phoneError={phoneError}
-                    phoneValue={phoneValue}
+                    error={phoneError}
+                    value={phoneValue}
                     onChange={handlePhoneErrors}
                     helperText={
                       phoneError
-                        ? "Use the following format: (123)456-7890 or 123-456-7890."
+                        ? "Use on of the following formats: (123) 456-7890, (123)456-7890, 123-456-7890, 123.456.7890, 1234567890, +31636363634, 075-63546725."
                         : ""
                     }
                   />
                 </Grid>
                 <Grid item xs={12}>
+                  {/* ADDRESS */}
                   <TextField
                     required
                     fullWidth
@@ -292,8 +308,8 @@ export function SignUp() {
                     label="Billing Address"
                     name="address"
                     autoComplete="civic-address"
-                    addressError={addressError}
-                    addressValue={addressValue}
+                    error={addressError}
+                    value={addressValue}
                     onChange={handleErrorsAddress}
                     helperText={
                       addressError
@@ -303,6 +319,8 @@ export function SignUp() {
                   />
                 </Grid>
                 <Grid item xs={12}>
+                  {" "}
+                  {/* PASSWORD */}
                   <TextField
                     required
                     fullWidth
@@ -311,8 +329,8 @@ export function SignUp() {
                     type="password"
                     id="password"
                     autoComplete="new-password"
-                    passwordError={passwordError}
-                    passwordValue={passwordValue}
+                    error={passwordError}
+                    value={passwordValue}
                     onChange={handlePasswordErrors}
                     helperText={
                       passwordError
@@ -322,6 +340,8 @@ export function SignUp() {
                   />
                 </Grid>
                 <Grid item xs={12}>
+                  {" "}
+                  {/* PASSWORD CONFIRM */}
                   <TextField
                     required
                     fullWidth
@@ -330,8 +350,8 @@ export function SignUp() {
                     type="password"
                     id="confirm-password"
                     autoComplete="new-password"
-                    confirmPasswordError={confirmPasswordError}
-                    confirmPasswordValue={confirmPasswordValue}
+                    error={confirmPasswordError}
+                    value={confirmPasswordValue}
                     onChange={handleConfirmPasswordErrors}
                     helperText={
                       confirmPasswordError
@@ -341,6 +361,8 @@ export function SignUp() {
                   />
                 </Grid>
               </Grid>
+
+              {/* SUBMIT BUTTON */}
               <Button
                 type="submit"
                 fullWidth
@@ -349,12 +371,11 @@ export function SignUp() {
               >
                 Sign Up
               </Button>
+
               {formHasErrors ? (
-                <>
-                  <AlertMessageSucces />
-                </>
+                <>{<AlertMessageError />}</>
               ) : (
-                <AlertMessageError />
+                <>{isSubmitted && <AlertMessageSuccess />}</>
               )}
               <Grid container justifyContent="flex-end">
                 <Grid item>
@@ -372,6 +393,28 @@ export function SignUp() {
   );
 }
 
-// export function SignUp() {
-//   return <h1>Sign up page</h1>;
-// }
+//supporting components
+function AlertMessageSuccess() {
+  return (
+    <>
+      <Stack sx={{ width: "100%" }} marginTop="1rem">
+        <Alert severity="success">
+          Account created successfully, welcome to Vélocity!
+        </Alert>
+      </Stack>
+    </>
+  );
+}
+
+function AlertMessageError() {
+  return (
+    <>
+      <Stack sx={{ width: "100%" }} marginTop="1rem">
+        <Alert severity="error">
+          There were errors while creating your account, please verify your data
+          and try again.
+        </Alert>
+      </Stack>
+    </>
+  );
+}
