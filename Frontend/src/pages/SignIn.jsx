@@ -70,8 +70,9 @@ export function SignIn() {
 
   //setup Alert Messages state & Submit text input
   const [credentialsMatch, setCredentialsMatch] = useState(false);
-  const [thereIsErrorInCredentials, setThereIsErrorInCredentials] = useState(false);
-   //end of alert messages state
+  const [thereIsErrorInCredentials, setThereIsErrorInCredentials] =
+    useState(false);
+  //end of alert messages state
 
   // Setup for Cookies
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
@@ -85,12 +86,11 @@ export function SignIn() {
   // end of State that will trigger the fetch
 
   // LOG IN *****  this is grabbing data from input that came with MUI *******************
-  const [enteredUserEmail, setEnteredUserEmail] = useState(""); // this only serves to render the dummy page
+  const [enteredUserEmail, setEnteredUserEmail] = useState("");
   const [enteredUserPassword, setEnteredUserPassword] = useState(null);
   const handleSubmit = (event) => {
     event.preventDefault();
-    // this grabs a whole HTML thing
-    const data = new FormData(event.currentTarget);
+    const data = new FormData(event.currentTarget); // this grabs a whole HTML thing
     const enteredEmail = data.get("email");
     const enteredPassword = data.get("password");
     setEnteredUserEmail(enteredEmail); // state carries the email
@@ -116,7 +116,7 @@ export function SignIn() {
   };
 
   useEffect(() => {
-    if(thereIsEmailToFetch){
+    if (thereIsEmailToFetch) {
       fetchProfile();
       setThereIsEmailToFetch(false);
     }
@@ -137,7 +137,6 @@ export function SignIn() {
         setCookie("email", enteredUserEmail); // cookie
         setCredentialsMatch(true);
         setThereIsErrorInCredentials(false);
-
       } else {
         console.log("Passwords don't match");
         setThereIsErrorInCredentials(true);
@@ -247,9 +246,7 @@ export function SignIn() {
                 Sign In
               </Button>
               {credentialsMatch ? <AlertMessageSuccess /> : null}
-              {thereIsErrorInCredentials ? (
-                <AlertMessageError />
-              ) : null}
+              {thereIsErrorInCredentials ? <AlertMessageError /> : null}
               <Grid container>
                 <Grid item xs>
                   <Link href="#" variant="body2" onClick={recuperatePassword}>
