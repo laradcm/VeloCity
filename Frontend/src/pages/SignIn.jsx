@@ -131,13 +131,15 @@ export function SignIn() {
       console.log(fetchedPassword);
       console.log("this is the password entered");
       console.log(enteredUserPassword);
-      if (fetchedPassword === enteredUserPassword) {
-        console.log("Both passwords are the same");
-        setCookie("email", enteredUserEmail); // cookie
-        setCredentialsMatch(true);
-      } else {
-        console.log("Passwords don't match");
-        setThereIsErrorInCredentials(true);
+      if (isFetchOver) {
+        if (fetchedPassword === enteredUserPassword) {
+          console.log("Both passwords are the same");
+          setCookie("email", enteredUserEmail); // cookie
+          setCredentialsMatch(true);
+        } else {
+          console.log("Passwords don't match");
+          setThereIsErrorInCredentials(true);
+        }
       }
     }
     comparePasswords();
@@ -239,11 +241,6 @@ export function SignIn() {
               >
                 Sign In
               </Button>
-              {/* {isSubmitted ? (
-                <>{credentialsMatch && <AlertMessageSuccess />}</>
-              ) : (
-                <>{!credentialsMatch && <AlertMessageError />}</>
-              )} */}
               {isSubmitted && credentialsMatch ? <AlertMessageSuccess /> : null}
               {isSubmitted && thereIsErrorInCredentials ? (
                 <AlertMessageError />
