@@ -19,6 +19,30 @@ import { useNavigate } from "react-router-dom"; // this is used to redirect to d
 import { useCookies } from "react-cookie"; // cookies
 import { fetchReadSingleUser } from "../scripts/fetch";
 
+//supporting components
+function AlertMessageSuccess() {
+  return (
+    <>
+      <Stack sx={{ width: "100%" }} marginTop="1rem">
+        <Alert severity="success">
+          Welcome to Vélocity! You'll be redirected in 2 seconds
+        </Alert>
+      </Stack>
+    </>
+  );
+}
+
+function AlertMessageError() {
+  return (
+    <>
+      <Stack sx={{ width: "100%" }} marginTop="1rem">
+        <Alert severity="error">
+          Credentials don't match, please try again.
+        </Alert>
+      </Stack>
+    </>
+  );
+}
 function AlertMessage() {
   return (
     <>
@@ -34,9 +58,6 @@ function AlertMessage() {
 const theme = createTheme();
 
 export function SignIn() {
-  // this is to redirect to dashboard
-  const navigateTo = useNavigate();
-
   // start of   Forgot password   message *************
   const [forgotPassword, setForgotPassword] = useState(false);
   const recuperatePassword = () => {
@@ -47,14 +68,23 @@ export function SignIn() {
   };
   // end of     Forgot password   message *************
 
+  //setup Alert Messages state & Submit text input
+  const [credentialsMatch, setCredentialsMatch] = useState(false);
+  const [thereIsErrorInCredentials, setThereIsErrorInCredentials] =
+    useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  //end of alert messages state
+
   // Setup for Cookies
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
   // removeCookie("email"); // remove exiting EMAIL cookies before creating a new one
   // end of setup for cookies
 
-  // setup of State that will triger the fetch
+  // setup of State that will triger and control the fetch
   const [fetchedPassword, setFetchedPassword] = useState({});
   const [thereIsEmailToFetch, setThereIsEmailToFetch] = useState(false);
+  const [isFetchOver, setIsFetchOver] = useState(false);
   // end of State that will triger the fetch
 
   // LOG IN *****  this is grabbing data from input that came with MUI *******************
@@ -73,10 +103,7 @@ export function SignIn() {
     setThereIsEmailToFetch(true);
     // end of triggering the fetch
 
-    // setCookie("email", enteredEmail); // cookie
-
-    // navigateTo("/main"); // this redirects to dashboard ******* commented out at the moment
-
+    setIsSubmitted(true);
     console.log("this is the end of this section");
   };
   // END of LOG IN ************************
@@ -86,6 +113,7 @@ export function SignIn() {
     try {
       const response = await fetchReadSingleUser(enteredUserEmail);
       setFetchedPassword(response.password);
+      setIsFetchOver(true);
     } catch (error) {
       console.log("there was a problem with the fetch");
     }
@@ -96,22 +124,24 @@ export function SignIn() {
   // end of fetch user by email
 
   //when the fetch, and everything written before, ends. Here's the validation of both passwords
-  // useEffect(() => {
-  function comparePasswords() {
-    console.log("comparison of passwords");
-    console.log("this is the password fetched");
-    console.log(fetchedPassword);
-    console.log("this is the password entered");
-    console.log(enteredUserPassword);
-    if (fetchedPassword === enteredUserPassword) {
-      console.log("Both passwords are the same");
-      setCookie("email", enteredUserEmail); // cookie
-    } else {
-      console.log("Passwords don't match");
+  useEffect(() => {
+    function comparePasswords() {
+      console.log("comparison of passwords");
+      console.log("this is the password fetched");
+      console.log(fetchedPassword);
+      console.log("this is the password entered");
+      console.log(enteredUserPassword);
+      if (fetchedPassword === enteredUserPassword) {
+        console.log("Both passwords are the same");
+        setCookie("email", enteredUserEmail); // cookie
+        setCredentialsMatch(true);
+      } else {
+        console.log("Passwords don't match");
+        setThereIsErrorInCredentials(true);
+      }
     }
-  }
-  comparePasswords();
-  // }, [fetchedPassword !== {}]);
+    comparePasswords();
+  }, [isSubmitted && isFetchOver]);
 
   // start of handle errors in form ********************
   const [emailValue, setEmailValue] = useState("");
@@ -129,116 +159,116 @@ export function SignIn() {
   };
   // end of handle errors in form ***********
 
+  // start of REDIRECTING to dashboard
+  const navigateTo = useNavigate();
+  useEffect(() => {
+    if (isSubmitted && credentialsMatch) {
+      setTimeout(() => {
+        navigateTo("/main");
+      }, 2000);
+    }
+  }, [isSubmitted && credentialsMatch]);
+  // end of REDIRECTING to dashboard
+
   return (
     <ThemeProvider theme={theme}>
-      {enteredUserEmail === "" ? (
-        <Grid container component="main" sx={{ height: "70%" }}>
-          <CssBaseline />
-          <Grid item xs={false} sm={4} md={7} sx={{}} />
-          <Grid
-            item
-            xs={12}
-            sm={8}
-            md={5}
-            component={Paper}
-            elevation={6}
-            square
+      <Grid container component="main" sx={{ height: "70%" }}>
+        <CssBaseline />
+        <Grid item xs={false} sm={4} md={7} sx={{}} />
+        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+          <Box
+            className="MainContentContainer"
+            sx={{
+              my: 8,
+              mx: 4,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
           >
+            <Avatar sx={{ m: 1, bgcolor: "#000000" }}>
+              <LockOutlinedIcon />
+            </Avatar>
+            <Typography component="h1" variant="h5">
+              Sign In
+            </Typography>
             <Box
-              className="MainContentContainer"
-              sx={{
-                my: 8,
-                mx: 4,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
+              component="form"
+              // noValidate
+              validate="true"
+              onSubmit={handleSubmit}
+              sx={{ mt: 1 }}
             >
-              <Avatar sx={{ m: 1, bgcolor: "#000000" }}>
-                <LockOutlinedIcon />
-              </Avatar>
-              <Typography component="h1" variant="h5">
-                Sign In
-              </Typography>
-              <Box
-                component="form"
-                // noValidate
-                validate="true"
-                onSubmit={handleSubmit}
-                sx={{ mt: 1 }}
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="email"
+                autoComplete="email"
+                autoFocus
+                emailError={emailError}
+                emailValue={emailValue}
+                onChange={handleErrorsEmail}
+                helperText={
+                  emailError
+                    ? "Make sure you are entering a valid email address."
+                    : ""
+                }
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+              />
+              <FormControlLabel
+                control={<Checkbox value="remember" color="primary" />}
+                label="Remember me"
+              />
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
               >
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                  autoFocus
-                  emailError={emailError}
-                  emailValue={emailValue}
-                  onChange={handleErrorsEmail}
-                  helperText={
-                    emailError
-                      ? "Make sure you are entering a valid email address."
-                      : ""
-                  }
-                />
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="current-password"
-                />
-                <FormControlLabel
-                  control={<Checkbox value="remember" color="primary" />}
-                  label="Remember me"
-                />
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  sx={{ mt: 3, mb: 2 }}
-                >
-                  Sign In
-                </Button>
-                <Grid container>
-                  <Grid item xs>
-                    <Link href="#" variant="body2" onClick={recuperatePassword}>
-                      Forgot password?
-                    </Link>
-                  </Grid>
-                  <Grid item>
-                    <Link href="/signup" variant="body2">
-                      Don't have an account? Sign Up
-                    </Link>
-                  </Grid>
+                Sign In
+              </Button>
+              {/* {isSubmitted ? (
+                <>{credentialsMatch && <AlertMessageSuccess />}</>
+              ) : (
+                <>{!credentialsMatch && <AlertMessageError />}</>
+              )} */}
+              {isSubmitted && credentialsMatch ? <AlertMessageSuccess /> : null}
+              {isSubmitted && thereIsErrorInCredentials ? (
+                <AlertMessageError />
+              ) : null}
+              <Grid container>
+                <Grid item xs>
+                  <Link href="#" variant="body2" onClick={recuperatePassword}>
+                    Forgot password?
+                  </Link>
                 </Grid>
-                {forgotPassword ? (
-                  <>
-                    <AlertMessage />
-                  </>
-                ) : null}
-              </Box>
+                <Grid item>
+                  <Link href="/signup" variant="body2">
+                    Don't have an account? Sign Up
+                  </Link>
+                </Grid>
+              </Grid>
+              {forgotPassword ? (
+                <>
+                  <AlertMessage />
+                </>
+              ) : null}
             </Box>
-          </Grid>
+          </Box>
         </Grid>
-      ) : (
-        <Box paddingTop={3} textAlign="center">
-          <h1>Welcome</h1>
-          <h3>
-            This is a dummy page that will disappear when{" "}
-            <em>i re-activate the auto redirect function</em>
-            .... that once we figure out authorization and storage in cookies.
-          </h3>
-          <h2>Go to profile page now you should be able to see your info</h2>
-        </Box>
-      )}
+      </Grid>
     </ThemeProvider>
   );
 }

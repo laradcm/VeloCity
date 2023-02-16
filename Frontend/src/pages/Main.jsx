@@ -4,15 +4,51 @@ import Paper from "@mui/material/Paper";
 import { Container } from "react-bootstrap";
 import Button from "@mui/material/Button";
 import { Player, Controls } from "@lottiefiles/react-lottie-player";
+import { useCookies } from "react-cookie"; // cookies
+import { fetchReadSingleUser } from "../scripts/fetch";
+import { useState, useEffect } from "react";
 
 export function Main() {
+  // to retrieve the cookie
+  const [cookies, setCookie] = useCookies(["user"]);
+
+  // in case there's a problem when fetching
+  const [loadData, setLoadData] = useState(false);
+
+  // to store the fetch name
+  const [fetchedFirstName, setFetchedFirstName] = useState("");
+
+  // fetch user profile for the name
+  const fetchProfile = async () => {
+    try {
+      const response = await fetchReadSingleUser(cookies.email);
+      setFetchedFirstName(response.first_name);
+      setLoadData(true);
+    } catch (error) {
+      setLoadData(false);
+    }
+  };
+  useEffect(() => {
+    fetchProfile();
+  }, []);
+
+  // if there's an error while fetching the data
+  if (!loadData) {
+    return (
+      <>
+        <h1>Error occurred while fetching data</h1>
+      </>
+    );
+  }
+
+  // data was fetched correctly
   return (
     <>
-      <Paper className="MainContentContainer" sx={{ maxWidth: 600 }}>
+      <Paper className="MainContentContainer ccontainer" sx={{ maxWidth: 600 }}>
         <Container>
           <Box textAlign="center">
             <Typography component="h1" align="center">
-              Hi, Username!
+              Hi, {fetchedFirstName}!
             </Typography>
             <Player
               autoplay
