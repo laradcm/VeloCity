@@ -40,10 +40,10 @@ npm i @mui/material @mui/icons-material @emotion/styled @emotion/react
 npm i --save @lottiefiles/react-lottie-player
 ```
 
-### JS-cookie
+### react-cookie
 
 ```sh
-npm i js-cookie
+npm i react-cookie
 ```
 
 ## Logo
