@@ -52,7 +52,6 @@ export function Rides() {
   };
   
   const handleEnd = () => {
-    console.log(rideSession)
     window.location.href="/endride";
   };
 
