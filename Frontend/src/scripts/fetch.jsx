@@ -39,6 +39,20 @@ export async function fetchCreate(extension, data){
 
 }
 
+export async function fetchInitiateRideSession(data){
+    const options = {
+        method:'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    };
+
+    return await fetch(address+"/initiateRide", options)
+    .then(res => res.json())
+    .then(res => res)
+    .catch(err => console.error(err));
+
+}
+
 export async function fetchUpdate(extension, data){
     const options = {
         method:'PUT',

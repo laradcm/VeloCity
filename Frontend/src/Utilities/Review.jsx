@@ -10,7 +10,7 @@ import { SessionContext } from "../context/userGlobalContext";
 
 // const products = [
 //   {
-//     name: "Departing neighbourhood",
+//     name: "Departing neighborhood",
 //     desc: "Hochelaga",
 //   },
 //   {
@@ -31,7 +31,7 @@ export default function Review() {
   const rideInfo = [
     {
       userID: "150",
-      neighbourhood: userGlobal.neighbourhood,
+      neighborhood: userGlobal.neighborhood,
       station: userGlobal.station,
       date: date.toLocaleDateString("fr-CA"),
       time: date.toLocaleTimeString("default", {"timeStyle":"short"}),
@@ -61,12 +61,12 @@ export default function Review() {
                     variant="body1"
                     style={{ color: "#46505A", fontWeight: 600 }}
                   >
-                    Neighbourhood
+                    Neighborhood
                   </Typography>
                 }
-                // primary="Neighbourhood"
+                // primary="Neighborhood"
               />
-              {ride.neighbourhood}
+              {ride.neighborhood}
             </ListItem>
             <ListItem key={ride.userID} sx={{ py: 0, px: 19 }}>
               <ListItemText
@@ -79,7 +79,7 @@ export default function Review() {
                     Station
                   </Typography>
                 }
-                // primary="Neighbourhood"
+                // primary="Neighborhood"
               />
               {ride.station}
             </ListItem>
@@ -94,7 +94,7 @@ export default function Review() {
                     Date
                   </Typography>
                 }
-                // primary="Neighbourhood"
+                // primary="Neighborhood"
               />
               {ride.date}
             </ListItem>
@@ -109,7 +109,7 @@ export default function Review() {
                     Time
                   </Typography>
                 }
-                // primary="Neighbourhood"
+                // primary="Neighborhood"
               />
               {ride.time}
             </ListItem>

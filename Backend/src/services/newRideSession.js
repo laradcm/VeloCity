@@ -53,6 +53,9 @@ async function updateStation(station){
   return;
 }
 
+/*
+ * Begining of function to be exported
+*/
 async function initiateRideSession(rideObject) {
   let message = "";
   if (rideObject.id) {

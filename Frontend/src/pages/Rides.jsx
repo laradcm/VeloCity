@@ -11,7 +11,9 @@ import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import AddressForm from "../Utilities/AddressForm";
 import Review from "/src/Utilities/Review";
-import { fetchCreate } from "../scripts/fetch";
+import { fetchInitiateRideSession } from "../scripts/fetch";
+import { useContext } from "react";
+import { SessionContext } from "../context/userGlobalContext";
 
 const steps = ["Departure", "Review your ride"];
 // const steps = ["Departure", "Payment details", "Review your order"];
@@ -30,12 +32,15 @@ function getStepContent(step) {
 const theme = createTheme();
 
 export function Rides() {
+  const { userGlobal, addToGlobalState } = useContext(SessionContext); // global state context
   const { ride_session, setRideSession } = React.useState("");
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
-    if (activeStep === steps.length) {
-      fetchCreate("/ride_sessions", {
+    if (activeStep === steps.length -1) {
+      fetchInitiateRideSession({
+        user_id: "150",
+        origin_station: userGlobal.station,
       });
     }
     setActiveStep(activeStep + 1);

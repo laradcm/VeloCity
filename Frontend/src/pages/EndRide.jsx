@@ -25,7 +25,7 @@ export function EndRide() {
   const rideInfo = [
     {
       user_id: "150",
-      neighbourhood: userGlobal.neighbourhood,
+      neighborhood: userGlobal.neighborhood,
       station: userGlobal.station,
       date: date.toLocaleDateString("fr-CA"),
       time: date.toLocaleTimeString("default", {"timeStyle":"short"}),
@@ -56,12 +56,12 @@ export function EndRide() {
                           fontWeight: 600,
                         }}
                       >
-                        Neighbourhood
+                        Neighborhood
                       </Typography>
                     }
-                    // primary="Neighbourhood"
+                    // primary="Neighborhood"
                   />
-                  {ride.neighbourhood}
+                  {ride.neighborhood}
                 </ListItem>
                 <ListItem key={ride.user_id} sx={{ py: 0, px: 19 }}>
                   <ListItemText
@@ -77,7 +77,7 @@ export function EndRide() {
                         Station
                       </Typography>
                     }
-                    // primary="Neighbourhood"
+                    // primary="Neighborhood"
                   />
                   {ride.station}
                 </ListItem>
@@ -95,7 +95,7 @@ export function EndRide() {
                         Date
                       </Typography>
                     }
-                    // primary="Neighbourhood"
+                    // primary="Neighborhood"
                   />
                   {ride.date}
                 </ListItem>
@@ -113,7 +113,7 @@ export function EndRide() {
                         Time
                       </Typography>
                     }
-                    // primary="Neighbourhood"
+                    // primary="Neighborhood"
                   />
                   {ride.time}
                 </ListItem>
@@ -131,7 +131,7 @@ export function EndRide() {
                         Confirmation code
                       </Typography>
                     }
-                    // primary="Neighbourhood"
+                    // primary="Neighborhood"
                   />
                   #2001539
                 </ListItem>
@@ -149,7 +149,7 @@ export function EndRide() {
                         Unlock code
                       </Typography>
                     }
-                    // primary="Neighbourhood"
+                    // primary="Neighborhood"
                   />
                   3850
                 </ListItem>
@@ -202,7 +202,7 @@ export function EndRide() {
                           Arrival time
                         </Typography>
                       }
-                      // primary="Neighbourhood"
+                      // primary="Neighborhood"
                     />
                     15:30
                   </ListItem>
@@ -222,7 +222,7 @@ export function EndRide() {
                           Total time of ride
                         </Typography>
                       }
-                      // primary="Neighbourhood"
+                      // primary="Neighborhood"
                     />
                     0 h 30 min
                   </ListItem>
