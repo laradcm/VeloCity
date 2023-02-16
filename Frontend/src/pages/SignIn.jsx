@@ -48,7 +48,7 @@ function AlertMessage() {
     <>
       <Stack sx={{ width: "100%" }} marginTop="1rem">
         <Alert severity="success">
-          An email was sent to you, plese check your inbox
+          An email was sent to you, please check your inbox
         </Alert>
       </Stack>
     </>
@@ -70,22 +70,19 @@ export function SignIn() {
 
   //setup Alert Messages state & Submit text input
   const [credentialsMatch, setCredentialsMatch] = useState(false);
-  const [thereIsErrorInCredentials, setThereIsErrorInCredentials] =
-    useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
-  //end of alert messages state
+  const [thereIsErrorInCredentials, setThereIsErrorInCredentials] = useState(false);
+   //end of alert messages state
 
   // Setup for Cookies
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
   // removeCookie("email"); // remove exiting EMAIL cookies before creating a new one
   // end of setup for cookies
 
-  // setup of State that will triger and control the fetch
+  // setup of State that will trigger and control the fetch
   const [fetchedPassword, setFetchedPassword] = useState({});
   const [thereIsEmailToFetch, setThereIsEmailToFetch] = useState(false);
   const [isFetchOver, setIsFetchOver] = useState(false);
-  // end of State that will triger the fetch
+  // end of State that will trigger the fetch
 
   // LOG IN *****  this is grabbing data from input that came with MUI *******************
   const [enteredUserEmail, setEnteredUserEmail] = useState(""); // this only serves to render the dummy page
@@ -103,7 +100,6 @@ export function SignIn() {
     setThereIsEmailToFetch(true);
     // end of triggering the fetch
 
-    setIsSubmitted(true);
     console.log("this is the end of this section");
   };
   // END of LOG IN ************************
@@ -118,8 +114,12 @@ export function SignIn() {
       console.log("there was a problem with the fetch");
     }
   };
+
   useEffect(() => {
-    fetchProfile();
+    if(thereIsEmailToFetch){
+      fetchProfile();
+      setThereIsEmailToFetch(false);
+    }
   }, [thereIsEmailToFetch]);
   // end of fetch user by email
 
@@ -131,19 +131,24 @@ export function SignIn() {
       console.log(fetchedPassword);
       console.log("this is the password entered");
       console.log(enteredUserPassword);
-      if (isFetchOver) {
-        if (fetchedPassword === enteredUserPassword) {
-          console.log("Both passwords are the same");
-          setCookie("email", enteredUserEmail); // cookie
-          setCredentialsMatch(true);
-        } else {
-          console.log("Passwords don't match");
-          setThereIsErrorInCredentials(true);
-        }
+
+      if (fetchedPassword === enteredUserPassword) {
+        console.log("Both passwords are the same");
+        setCookie("email", enteredUserEmail); // cookie
+        setCredentialsMatch(true);
+        setThereIsErrorInCredentials(false);
+
+      } else {
+        console.log("Passwords don't match");
+        setThereIsErrorInCredentials(true);
+        setCredentialsMatch(false);
       }
     }
-    comparePasswords();
-  }, [isSubmitted && isFetchOver]);
+    if (isFetchOver) {
+      comparePasswords();
+      setIsFetchOver(false);
+    }
+  }, [isFetchOver]);
 
   // start of handle errors in form ********************
   const [emailValue, setEmailValue] = useState("");
@@ -164,12 +169,12 @@ export function SignIn() {
   // start of REDIRECTING to dashboard
   const navigateTo = useNavigate();
   useEffect(() => {
-    if (isSubmitted && credentialsMatch) {
+    if (credentialsMatch) {
       setTimeout(() => {
         navigateTo("/main");
       }, 2000);
     }
-  }, [isSubmitted && credentialsMatch]);
+  }, [credentialsMatch]);
   // end of REDIRECTING to dashboard
 
   return (
@@ -241,8 +246,8 @@ export function SignIn() {
               >
                 Sign In
               </Button>
-              {isSubmitted && credentialsMatch ? <AlertMessageSuccess /> : null}
-              {isSubmitted && thereIsErrorInCredentials ? (
+              {credentialsMatch ? <AlertMessageSuccess /> : null}
+              {thereIsErrorInCredentials ? (
                 <AlertMessageError />
               ) : null}
               <Grid container>
