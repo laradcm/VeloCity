@@ -222,6 +222,11 @@ button.btn.btn-primary {
     padding-bottom: 2rem;
 }
 
+.centereddd {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .form-textarea {
     width: auto;
     max-width: 60vh;
