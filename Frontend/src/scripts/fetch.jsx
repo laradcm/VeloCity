@@ -20,7 +20,7 @@ export async function fetchReadSingleUser(email){
 
     return await fetch(address+"/singleUser/", options)
     .then(res => res.json())
-    .then(res => res[0])
+    .then(res => res)
     .catch(err => console.error(err));
 
 }

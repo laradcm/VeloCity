@@ -9,8 +9,12 @@ import Select from "@mui/material/Select";
 // End of      select button - drop down ***********************
 import { fetchRead } from "../scripts/fetch";
 import { useState, useEffect } from "react";
+import { useContext } from "react";
+import { SessionContext } from "../context/userGlobalContext";
 
 export default function AddressForm() {
+
+  const { userGlobal, addToGlobalState } = useContext(SessionContext); // global state context
   const [isDepartureReady, setIsDepartureReady] = useState(false); // final data
 
   // data to be retrieved from server
@@ -39,7 +43,11 @@ export default function AddressForm() {
   const [station, setSation] = React.useState("");
   const handleChangeStation = (event) => {
     setSation(event.target.value);
+    setIsDepartureReady(true);
   };
+  useEffect(() => {
+    addToGlobalState(neighborhood, station); // test
+  }, [isDepartureReady]);
 
   // end of the   Station   dropdown box
   return (

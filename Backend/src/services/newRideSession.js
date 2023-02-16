@@ -97,7 +97,8 @@ async function initiateRideSession(rideObject) {
   const valueReferences = genValRef(input.size);
 
   const text = `INSERT INTO ride_sessions(${input.keys.join(",")})
-                VALUES(${valueReferences});`;
+                VALUES(${valueReferences})
+                RETURNING start_time, ticket;`;
 
   const values = input.values;
   const result = await db.query(text, values);
@@ -106,6 +107,8 @@ async function initiateRideSession(rideObject) {
     updateStation(rideObject.origin_station); // should be done along with creation as a transaction
     updateBicycle(rideObject.bicycle_id); // should be done along with creation as a transaction
     message = `ride_sessions updated successfully`;
+    console.log(result)
+    return result.rows[0];
   } else {
     return { message: `Error in updating ride_sessions` };
   }
