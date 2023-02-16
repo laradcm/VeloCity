@@ -12,6 +12,7 @@ import { NavBar } from "./component/NavBar";
 import { FootBar } from "./component/FootBar";
 import { BGImgOverlay } from "./component/BGImgOverlay";
 import UserProvider from "./context/userGlobalContext";
+import { SignOut } from "./pages/SignOut";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <Route path="/rides" element={<Rides />} />
             <Route path="/endride" element={<EndRide />} />
             <Route path="/reportbike" element={<ReportBike />} />
+            <Route path="/signout" element={<SignOut />} />
           </Routes>
         </Container>
         <BGImgOverlay />
