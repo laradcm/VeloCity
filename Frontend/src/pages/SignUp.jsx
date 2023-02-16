@@ -189,9 +189,9 @@ export function SignUp() {
     <ThemeProvider theme={theme}>
       {/* <Container component="main" maxWidth="xs"> */}
       <Grid container component="main" sx={{ height: "70%" }}>
-        {/* MAIN CONTAINER is divided into 2 columns(grids) we're only using the right side
-        thus the first GRID is empty and set to false. xs = xtra small, sm= small, md=medium
-        both pairs should add 12 to maintain the same width*/}
+        {/* MAIN CONTAINER is divided into 2 columns(grids) we're only using the right side thus the first GRID is empty and set to false. 
+        Breakpoints:  xs, extra-small: 0px,   sm, small: 600px;  md, medium: 900px;   lg, large: 1200px;   xl, extra-large: 1536px
+        Both pairs should add 12 to maintain the same width*/}
         <CssBaseline />
         <Grid item xs={false} sm={false} md={2} lg={7} sx={{}} />
         <Grid
