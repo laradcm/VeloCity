@@ -9,7 +9,9 @@ export function NavBar() {
         <Nav>
           <Navbar.Brand href="/" id="RaleNav">Vélocity</Navbar.Brand>
         </Nav>
-        <Navbar.Toggle aria-controls="navbarScroll" />
+        {/* Hamburger menu */}
+        <Navbar.Toggle  /> 
+        {/* this hides the tabs when screesize is small */}
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto" id="NavCenter">
             <Nav.Link to="/" as={NavLink}>Home</Nav.Link>

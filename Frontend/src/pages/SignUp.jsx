@@ -189,11 +189,21 @@ export function SignUp() {
     <ThemeProvider theme={theme}>
       {/* <Container component="main" maxWidth="xs"> */}
       <Grid container component="main" sx={{ height: "70%" }}>
-        {" "}
-        {/* MAIN CONTAINER */}
+        {/* MAIN CONTAINER is divided into 2 columns(grids) we're only using the right side
+        thus the first GRID is empty and set to false. xs = xtra small, sm= small, md=medium
+        both pairs should add 12 to maintain the same width*/}
         <CssBaseline />
-        <Grid item xs={false} sm={4} md={7} sx={{}} />
-        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+        <Grid item xs={false} sm={false} md={2} lg={7} sx={{}} />
+        <Grid
+          item
+          xs={12}
+          sm={12}
+          md={10}
+          lg={5}
+          component={Paper}
+          elevation={6}
+          square
+        >
           <Box
             className="MainContentContainer"
             sx={{
@@ -202,6 +212,7 @@ export function SignUp() {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
+              marginTop: "-1rem",
             }}
           >
             <Avatar sx={{ m: 1, bgcolor: "#000000" }}>
