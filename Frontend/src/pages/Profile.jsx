@@ -10,20 +10,20 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import { useState, useEffect } from "react";
 import { fetchReadSingleUser } from "../scripts/fetch";
-import { useContext } from "react"; // global sate
-import { SessionContext } from "../context/userGlobalContext"; //global state
+import { useCookies } from "react-cookie"; // cookies
 
 // to try to fetch *******************
 // const url = "http://127.0.0.1:3000/users";
 function FetchProfileFromDB() {
-  const { userGlobal, logIn, logOut } = useContext(SessionContext); // global context state
-  //
   const [loadData, setLoadData] = useState(false); // in case there's a problem when fetching
   const [fullProfile, setFullProfile] = useState(null); // new state will be used to render the table
-
+  // cookies
+  const [cookies, setCookie] = useCookies(["user"]);
+  console.log(cookies.email);
+  //
   const fetchProfile = async () => {
     try {
-      const response = await fetchReadSingleUser(userGlobal.email);
+      const response = await fetchReadSingleUser(cookies.email);
       setFullProfile(response);
       setLoadData(true);
     } catch (error) {
@@ -49,7 +49,11 @@ function FetchProfileFromDB() {
   return (
     <>
       {/* <h1>data -bikes- fetched correctly</h1> */}
-      <TableContainer component={Paper} className="ccontainer">
+      <TableContainer
+        sx={{ maxWidth: 600 }}
+        component={Paper}
+        className="ccontainer"
+      >
         <Table sx={{ minWidth: 300 }} aria-label="caption table">
           <caption>
             <Box textAlign="right">
