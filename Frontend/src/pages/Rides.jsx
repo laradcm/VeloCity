@@ -11,8 +11,7 @@ import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import AddressForm from "../Utilities/AddressForm";
 import Review from "/src/Utilities/Review";
-import { useContext } from "react";
-import { SessionContext } from "../context/userGlobalContext";
+import { fetchCreate } from "../scripts/fetch";
 
 const steps = ["Departure", "Review your ride"];
 // const steps = ["Departure", "Payment details", "Review your order"];
@@ -31,15 +30,23 @@ function getStepContent(step) {
 const theme = createTheme();
 
 export function Rides() {
-  //const { userGlobal, addToGlobalState } = useContext(SessionContext); // global state context
+  const { ride_session, setRideSession } = React.useState("");
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
+    if (activeStep === steps.length) {
+      fetchCreate("/ride_sessions", {
+      });
+    }
     setActiveStep(activeStep + 1);
   };
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
+  };
+  
+  const handleEnd = () => {
+    window.location.href="/endride";
   };
 
   return (
@@ -84,7 +91,7 @@ export function Rides() {
                 <Typography variant="subtitle1">
                   Your confirmation number is #2001539.<br></br>
                   The code to unlock a bike is: 3850.<br></br>
-                  Departing at 14:30 from Hochelaga, Stadium station.
+                  Departing at 14:30 from {}, Stadium station.
                 </Typography>
                 <Typography variant="subtitle2" color={"red"}>
                   {`Remember to check in the bike through the app when you return it at your destination.`}
@@ -96,8 +103,7 @@ export function Rides() {
                 </Typography>
                 <Button
                   variant="contained"
-                  // onClick={handleNext}
-                  href="/endride"
+                  onClick={handleEnd}
                   sx={{ mt: 0.1, ml: 1 }}
                 >
                   End ride
