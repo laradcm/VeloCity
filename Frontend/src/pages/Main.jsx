@@ -3,9 +3,9 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import { Container } from "react-bootstrap";
 import Button from "@mui/material/Button";
-import { Player, Controls } from "@lottiefiles/react-lottie-player";
+import { Player, Controls } from "@lottiefiles/react-lottie-player"; // sund and cloud pictures
 import { useCookies } from "react-cookie"; // cookies
-import { fetchReadSingleUser } from "../scripts/fetch";
+import { fetchReadSingleUser } from "../scripts/fetch"; // fetch
 import { useState, useEffect } from "react";
 
 export function Main() {
