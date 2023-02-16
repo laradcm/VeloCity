@@ -7,18 +7,12 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import { useState, useEffect } from "react";
+import { useContext } from "react";
+import { SessionContext } from "../context/userGlobalContext";
 
-const rideInfo = [
-  {
-    user_id: "150",
-    neighbourhood: "Hochelaga",
-    station: "Stadium",
-    date: "2023/02/31",
-    time: "14:05",
-  },
-];
 
 export function EndRide() {
+  const { userGlobal, addToGlobalState } = useContext(SessionContext); // global state context
   // start of End ride button ********
   const [rideEnded, setRideEnded] = useState(false);
   const [shouldShowButton, setShouldShowButton] = useState(true);
@@ -27,6 +21,17 @@ export function EndRide() {
     setShouldShowButton(false);
   };
   // End of End ride button **************
+  const date = new Date;
+  const rideInfo = [
+    {
+      user_id: "150",
+      neighbourhood: userGlobal.neighbourhood,
+      station: userGlobal.station,
+      date: date.toLocaleDateString("fr-CA"),
+      time: date.toLocaleTimeString("default", {"timeStyle":"short"}),
+    },
+  ];
+  
   return (
     <>
       <Paper className="MainContentContainer">
