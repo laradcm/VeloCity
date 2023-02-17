@@ -23,9 +23,9 @@ Instructions:
 - Both applications should be running, navigate to 127.0.0.1:5173 on your browser and the homepage will be displayed and ready to be used.
   <br/><br/>
 
-### Front End - React + VITE Application (set to port 5173)
+## Front End:
 
-#### React + Vite
+#### React + Vite (set to port 5173)
 
 ```sh
 npm i create vite@latest
@@ -67,9 +67,9 @@ npm i --save @lottiefiles/react-lottie-player
 npm i react-cookie
 ```
 
-### Back End - Express JS Application (set to port 3000 or env setup)
+## Back End: 
 
-#### Express JS
+#### Express JS (set to port 3000 or env setup)
 
 ```sh
 npm i express
@@ -87,7 +87,7 @@ npm i cors
 npm i pg
 ```
 
-### Database
+## Database
 
 #### mockdb.sql
 
