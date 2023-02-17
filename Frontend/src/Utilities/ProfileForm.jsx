@@ -14,7 +14,7 @@ import FormHelperText from "@mui/material/FormHelperText";
 import { useState } from "react";
 import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
-import { fetchCreate } from "../scripts/fetch";
+import { fetchUpdate } from "../scripts/fetch";
 import { useNavigate } from "react-router-dom"; // this is used to redirect to dashboard
 import { useCookies } from "react-cookie"; // cookies
 import { fetchReadSingleUser } from "../scripts/fetch";
@@ -22,37 +22,9 @@ import { fetchReadSingleUser } from "../scripts/fetch";
 
 const theme = createTheme();
 
-export default function ProfileForm() {
+export default function ProfileForm(props) {
 
-  //scroll when mounted
-  React.useEffect(() => {
-    console.log('got here')
-    scrollTo(550,0);
-  },[])
-  //end of scroll
-
-  // Fetch the user data first ******************
-  const [loadData, setLoadData] = useState(false); // in case there's a problem when fetching
-  const [fullProfile, setFullProfile] = useState(null); // new state will be used to render the table
-
-
-  const [cookies, setCookie] = useCookies(["user"]); // cookies
-
-  const fetchProfile = async () => {
-    try {
-      const response = await fetchReadSingleUser(cookies.email);
-      setFullProfile(response);
-      setLoadData(true);
-    } catch (error) {
-      console.log(error.message)
-      setLoadData(false);
-    }
-  };
-  React.useEffect(() => {
-    fetchProfile();
-  }, []);
-  // End of Fetch user data *******************************
-
+  
   // Start of Submitting the form *******************
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [formHasErrors, setFormHasErrors] = useState(false);
@@ -61,17 +33,34 @@ export default function ProfileForm() {
     event.preventDefault();
 
     const data = new FormData(event.currentTarget);
+    const inputData = {};
 
-    const inputData = {
-      email: data.get("email"),
-      password: data.get("password"),
-      last_name: data.get("lastName"),
-      first_name: data.get("firstName"),
-      phone: data.get("phone"),
-      address: data.get("address"),
-      role: "user",
-    };
+    if( data.get("firstName") &&
+        data.get("firstName") != props.first_name )
+      { inputData.first_name = data.get("firstName") }
+      console.log(data.get("firstName"), props.first_name)
 
+    if( data.get("lastName") &&
+        data.get("lastName") != props.last_name )
+      { inputData.last_name = data.get("lastName") }
+
+    if( data.get("email") &&
+        data.get("email") != props.email )
+      { inputData.email = data.get("email") }
+
+    if( data.get("phone") &&
+        data.get("phone") != props.phone )
+      { inputData.phone = data.get("phone") }
+
+    if( data.get("address") &&
+        data.get("address") != props.address )
+      { inputData.address = data.get("address") }
+
+    if( data.get("password") &&
+        data.get("password") != props.password )
+      { inputData.password = data.get("password") }
+
+    console.log(inputData)
     if (
       firstNameError ||
       lastNameError ||
@@ -79,12 +68,13 @@ export default function ProfileForm() {
       phoneError ||
       addressError ||
       passwordError ||
-      confirmPasswordError
+      confirmPasswordError||
+      inputData === {}
     ) {
       setFormHasErrors(true);
       setIsSubmitted(false);
     } else {
-      const result = await fetchCreate("/users", inputData);
+      const result = await fetchUpdate(`/users/${props.user_id}`, inputData);
       console.log(result.message);
 
       if (result.message.indexOf("Error") === -1) {
@@ -104,14 +94,14 @@ export default function ProfileForm() {
   React.useEffect(() => {
     if (isSubmitted) {
       setTimeout(() => {
-        navigate("/SignIn");
+        props.updateModify();
       }, 2000);
     }
   }, [isSubmitted]);
   // End of Redirect to Sign In ************************
 
   // start of handle errors in form ********************
-  const [firstNameValue, setFirstNameValue] = useState("abc");
+  const [firstNameValue, setFirstNameValue] = useState(props.first_name);
   const [firstNameError, setFirstNameError] = useState(false);
   const handleErrorsFirstName = (event) => {
     setFirstNameValue(event.target.value);
@@ -124,7 +114,7 @@ export default function ProfileForm() {
     }
   };
 
-  const [lastNameValue, setLastNameValue] = useState("");
+  const [lastNameValue, setLastNameValue] = useState(props.last_name);
   const [lastNameError, setLastNameError] = useState(false);
   const handleErrorsLastName = (event) => {
     setLastNameValue(event.target.value);
@@ -137,7 +127,7 @@ export default function ProfileForm() {
     }
   };
 
-  const [emailValue, setEmailValue] = useState("");
+  const [emailValue, setEmailValue] = useState(props.email);
   const [emailError, setEmailError] = useState(false);
   const handleErrorsEmail = (event) => {
     setEmailValue(event.target.value);
@@ -152,7 +142,7 @@ export default function ProfileForm() {
     }
   };
 
-  const [phoneValue, setPhoneValue] = useState("");
+  const [phoneValue, setPhoneValue] = useState(props.phone);
   const [phoneError, setPhoneError] = useState(false);
   const handlePhoneErrors = (event) => {
     setPhoneValue(event.target.value);
@@ -169,7 +159,7 @@ export default function ProfileForm() {
     }
   };
 
-  const [addressValue, setAddressValue] = useState("");
+  const [addressValue, setAddressValue] = useState(props.address);
   const [addressError, setAddressError] = useState(false);
   const handleErrorsAddress = (event) => {
     setAddressValue(event.target.value);
@@ -182,7 +172,7 @@ export default function ProfileForm() {
     }
   };
 
-  const [passwordValue, setPasswordValue] = useState("");
+  const [passwordValue, setPasswordValue] = useState(props.password);
   const [passwordError, setPasswordError] = useState(false);
   const handlePasswordErrors = (event) => {
     setPasswordValue(event.target.value);
@@ -205,7 +195,7 @@ export default function ProfileForm() {
     }
   };
 
-  const [confirmPasswordValue, setConfirmPasswordValue] = useState("");
+  const [confirmPasswordValue, setConfirmPasswordValue] = useState(props.password);
   const [confirmPasswordError, setConfirmPasswordError] = useState(false);
   const handleConfirmPasswordErrors = (event) => {
     setConfirmPasswordValue(event.target.value);
@@ -217,15 +207,6 @@ export default function ProfileForm() {
     }
   };
   // end of handle errors in form **************
-
-    // if there's an error while fetching the data
-    if (!loadData) {
-      return (
-        <>
-          <h1>Error occurred while fetching data</h1>
-        </>
-      );
-    }
 
   return (
     <ThemeProvider theme={theme}>
