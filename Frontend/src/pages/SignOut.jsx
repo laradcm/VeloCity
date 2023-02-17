@@ -35,11 +35,22 @@ function AlertMessageSuccess() {
 export function SignOut() {
   const [displaySuccessAlert, setDisplaySuccessAlert] = useState(false); // display alert
   const [cookies, setCookie, removeCookie] = useCookies(["user"]); // cookies
+  // const [readyToRedirect, setReadyToRedirect] = useState(false); // trigger redirect
 
   function deleteCookie() {
     removeCookie("email");
     setDisplaySuccessAlert(true);
+    // setReadyToRedirect(true);
   }
+
+  // const navigateTo = useNavigate();
+  // useEffect(() => {
+  //   if (readyToRedirect) {
+  //     setTimeout(() => {
+  //       navigateTo("/");
+  //     }, 2000);
+  //   }
+  // }, [readyToRedirect]);
 
   return (
     <>
