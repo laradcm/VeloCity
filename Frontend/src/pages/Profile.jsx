@@ -63,14 +63,14 @@ function FetchProfileFromDB() {
   // data was fetched correctly
   return (
     <>
-      <ThemeProvider theme={theme} >
-
-        <Grid container 
-        component="main" 
-        sx={{height:"70%"}}
-        direction="row"
-        justifyContent="center"
-        alignItems="stretch"        
+      <ThemeProvider theme={theme}>
+        <Grid
+          container
+          component="main"
+          sx={{ height: "70%" }}
+          direction="row"
+          justifyContent="center"
+          alignItems="stretch"
         >
           {/* MAIN CONTAINER is divided into 2 columns(grids) we're only using the right side thus the first GRID is empty and set to false. 
         Breakpoints:  xs, extra-small: 0px,   sm, small: 600px;  md, medium: 900px;   lg, large: 1200px;   xl, extra-large: 1536px
@@ -83,6 +83,11 @@ function FetchProfileFromDB() {
               component={Paper}
               className="ccontainer"
             >
+              <Box>
+                <Typography component="h1" variant="h4" align="center">
+                  Personal Information
+                </Typography>
+              </Box>
               <Table sx={{ minWidth: 300 }} aria-label="caption table">
                 <caption>
                   <Box textAlign="right">
@@ -99,16 +104,9 @@ function FetchProfileFromDB() {
                   </Box>
                 </caption>
                 <TableHead>
-                  <TableRow>
-                    <TableCell>
-                      <Typography component="h2" variant="h5">
-                        Personal Information
-                      </Typography>
-                      {/* <strong style={{ textTransform: "uppercase" }}>
-                        Personal information
-                      </strong> */}
-                    </TableCell>
-                    <TableCell align="right"></TableCell>
+                  <TableRow fullwidth>
+                    <TableCell align="center"></TableCell>
+                    <TableCell align="center"></TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>

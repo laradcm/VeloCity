@@ -237,7 +237,7 @@ export default function ProfileForm(props) {
           >
 
             <Typography component="h3" variant="h5">
-              Info to Update
+              Update Your Information Here
             </Typography>
 
             {/* FORM */}
