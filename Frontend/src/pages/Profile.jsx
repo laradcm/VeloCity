@@ -16,6 +16,7 @@ import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
+import Typography from "@mui/material/Typography";
 
 
 const theme = createTheme();
@@ -54,7 +55,7 @@ function FetchProfileFromDB() {
   if (!loadData) {
     return (
       <>
-        <h1>Error occurred while fetching data</h1>
+        <h1>Loading...</h1>
       </>
     );
   }
@@ -62,8 +63,15 @@ function FetchProfileFromDB() {
   // data was fetched correctly
   return (
     <>
-      <ThemeProvider theme={theme}>
-        <Grid container component="main" sx={{ height: "70%" }}>
+      <ThemeProvider theme={theme} >
+
+        <Grid container 
+        component="main" 
+        sx={{height:"70%"}}
+        direction="row"
+        justifyContent="center"
+        alignItems="stretch"        
+        >
           {/* MAIN CONTAINER is divided into 2 columns(grids) we're only using the right side thus the first GRID is empty and set to false. 
         Breakpoints:  xs, extra-small: 0px,   sm, small: 600px;  md, medium: 900px;   lg, large: 1200px;   xl, extra-large: 1536px
         Both pairs should add 12 to maintain the same width*/}
@@ -82,7 +90,7 @@ function FetchProfileFromDB() {
                       variant="contained"
                       sx={{ mt: 0.1, ml: 1 }}
                       onClick={() => {
-                        updateModify()
+                        updateModify();
                       }}
                     >
                       {!modify && "Modify"}
@@ -93,9 +101,12 @@ function FetchProfileFromDB() {
                 <TableHead>
                   <TableRow>
                     <TableCell>
-                      <strong style={{ textTransform: "uppercase" }}>
+                      <Typography component="h2" variant="h5">
+                        Personal Information
+                      </Typography>
+                      {/* <strong style={{ textTransform: "uppercase" }}>
                         Personal information
-                      </strong>
+                      </strong> */}
                     </TableCell>
                     <TableCell align="right"></TableCell>
                   </TableRow>
@@ -150,30 +161,26 @@ function FetchProfileFromDB() {
             </TableContainer>
           </Grid>
 
-          {modify && <Grid
-            sx={{ maxWidth: 600 }}
-            item
-            xs={12}
-            sm={12}
-            md={6}
-            lg={6}
-            component={Paper}
-            elevation={6}
-            square
-          >
-            <Box>
-              <ProfileForm 
-              user_id={fullProfile.id}
-              first_name={fullProfile.first_name}
-              last_name ={fullProfile.last_name}
-              phone ={fullProfile.phone}
-              email={fullProfile.email}
-              address={fullProfile.address}
-              password ={fullProfile.password}
-              updateModify={updateModify}
-              />
-            </Box>
-          </Grid>}
+          {modify && (
+            <Grid item xs={12} sm={12} md={6} lg={6} sx={{}}>
+              <Box
+                sx={{ maxWidth: 600 }}
+                component={Paper}
+                className="ccontainer"
+              >
+                <ProfileForm
+                  user_id={fullProfile.id}
+                  first_name={fullProfile.first_name}
+                  last_name={fullProfile.last_name}
+                  phone={fullProfile.phone}
+                  email={fullProfile.email}
+                  address={fullProfile.address}
+                  password={fullProfile.password}
+                  updateModify={updateModify}
+                />
+              </Box>
+            </Grid>
+          )}
         </Grid>
       </ThemeProvider>
     </>

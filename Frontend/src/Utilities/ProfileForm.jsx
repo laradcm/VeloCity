@@ -216,31 +216,25 @@ export default function ProfileForm(props) {
         Breakpoints:  xs, extra-small: 0px,   sm, small: 600px;  md, medium: 900px;   lg, large: 1200px;   xl, extra-large: 1536px
         Both pairs should add 12 to maintain the same width*/}
         <CssBaseline />
-        <Grid item xs={false} sm={false} md={2} lg={7} sx={{}} />
+        {/* <Grid item xs={false} sm={false} md={2} lg={7} sx={{}} /> */}
         <Grid
           item
           xs={12}
           sm={12}
-          md={10}
-          lg={5}
-          component={Paper}
-          elevation={6}
-          square
+          md={12}
+          lg={12}
         >
           <Box
             className="MainContentContainer"
             sx={{
-              my: 8,
-              mx: 4,
+              // my: 8,
+              // mx: 4,
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
               marginTop: "-1rem",
             }}
           >
-            {/* <Avatar sx={{ m: 1, bgcolor: "#000000" }}>
-              <LockOutlinedIcon />
-            </Avatar> */}
 
             <Typography component="h3" variant="h5">
               Info to Update
