@@ -55,7 +55,12 @@ function FetchProfileFromDB() {
         <Table sx={{ minWidth: 300 }} aria-label="caption table">
           <caption>
             <Box textAlign="right">
-              <Button variant="contained" href="#" sx={{ mt: 0.1, ml: 1 }}>
+              <Button
+                variant="contained"
+                className="white-font-hovering"
+                href="#"
+                sx={{ mt: 0.1, ml: 1 }}
+              >
                 Modify
               </Button>
             </Box>

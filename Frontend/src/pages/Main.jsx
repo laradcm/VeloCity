@@ -65,6 +65,7 @@ export function Main() {
               Where are you going today?
             </Typography>
             <Button
+              className="white-font-hovering"
               variant="contained"
               href="/rides"
               sx={{ mt: 0.1, ml: 1, mb: 3 }}
@@ -77,6 +78,7 @@ export function Main() {
               Profile
             </Typography>
             <Button
+              className="white-font-hovering"
               variant="contained"
               href="/profile"
               sx={{ mt: 0.1, ml: 1, mb: 3 }}
@@ -89,6 +91,7 @@ export function Main() {
               Something not working?
             </Typography>
             <Button
+              className="white-font-hovering"
               variant="contained"
               href="/reportbike"
               sx={{ mt: 0.1, ml: 1, mb: 3 }}
