@@ -12,8 +12,6 @@ Vélocity aims to:
 
 ## Installation
 
-Instructions:
-
 - Install latest version of _postgres_ (15.1).
 - Create a database named velocity.
 - Run _mockdb.sql_ script.
@@ -21,7 +19,6 @@ Instructions:
 - On each terminal run _npm i_ , this will install all packages.
 - After all packages are installed, on each terminal run _npm run dev_.
 - Both applications should be running, navigate to 127.0.0.1:5173 on your browser and the homepage will be displayed and ready to be used.
-  <br/><br/>
 
 ## Front End:
 
@@ -91,13 +88,9 @@ npm i pg
 
 #### mockdb.sql
 
-<br/><br/>
-
 ## Brand Guidelines
 
 ![BrandGuidelines](Frontend/public/brandguidelines.png)
-
-<br/><br/>
 
 ## Logo
 
