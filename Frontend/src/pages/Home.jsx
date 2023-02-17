@@ -2,8 +2,20 @@ import { Container, Row, Col, Card } from "react-bootstrap";
 import Button from "@mui/material/Button";
 import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
+import { useEffect } from "react";
 
 export function Home() {
+  //experiment to refresh the page and finally set the cookie using localstorage (it needs a refresh)
+  // refreshes HOME page. This const is created when pressing logout button
+  useEffect(() => {
+    const alreadyLoaded2 = localStorage.getItem("alreadyLoaded2");
+    if (alreadyLoaded2) {
+      localStorage.removeItem("alreadyLoaded2");
+      window.location.reload();
+    }
+  }, []);
+  // end of experiment**********
+
   return (
     <>
       <Paper className="MainContentContainer centereddd" sx={{ maxWidth: 600 }}>

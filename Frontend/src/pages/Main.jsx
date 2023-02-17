@@ -12,6 +12,17 @@ export function Main() {
   // to retrieve the cookie
   const [cookies, setCookie] = useCookies(["user"]);
 
+  //experiment to refresh the page and finally set the cookie using localstorage (it needs a refresh)
+  // this refreshes dashboard. This const is removed when pressing the signout button
+  useEffect(() => {
+    const alreadyLoaded = localStorage.getItem("alreadyLoaded");
+    if (!alreadyLoaded) {
+      localStorage.setItem("alreadyLoaded", true);
+      window.location.reload();
+    }
+  }, []);
+  // end of experiment**********
+
   // in case there's a problem when fetching
   const [loadData, setLoadData] = useState(false);
 
@@ -36,7 +47,7 @@ export function Main() {
   if (!loadData) {
     return (
       <>
-        <h1>Error occurred while fetching data, please refresh the page</h1>
+        <h6>Error occurred while fetching data, please refresh the page</h6>
       </>
     );
   }
