@@ -33,11 +33,11 @@ const theme = createTheme();
 
 export function Rides() {
   const { userGlobal, addToGlobalState } = useContext(SessionContext); // global state context
-  const [ rideSession, setRideSession ] = React.useState("");
+  const [rideSession, setRideSession] = React.useState("");
   const [activeStep, setActiveStep] = React.useState(0);
 
-  async function handleNext(){
-    if (activeStep === steps.length -1) {
+  async function handleNext() {
+    if (activeStep === steps.length - 1) {
       const conf = await fetchInitiateRideSession({
         user_id: "150",
         origin_station: userGlobal.station,
@@ -45,14 +45,14 @@ export function Rides() {
       setRideSession(conf);
     }
     setActiveStep(activeStep + 1);
-  };
+  }
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
-  
+
   const handleEnd = () => {
-    window.location.href="/endride";
+    window.location.href = "/endride";
   };
 
   return (
@@ -97,7 +97,12 @@ export function Rides() {
                 <Typography variant="subtitle1">
                   Your confirmation number is {rideSession.ticket}.<br></br>
                   The code to unlock a bike is: 3850.<br></br>
-                  Departing at {new Date(rideSession.start_time).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })} from {userGlobal.neighborhood}, {userGlobal.station} station.
+                  Departing at{" "}
+                  {new Date(rideSession.start_time).toLocaleTimeString([], {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}{" "}
+                  from {userGlobal.neighborhood}, {userGlobal.station} station.
                 </Typography>
                 <Typography variant="subtitle2" color={"red"}>
                   {`Remember to check in the bike through the app when you return it at your destination.`}
@@ -118,6 +123,7 @@ export function Rides() {
                   Something went wrong?
                 </Typography>
                 <Button
+                  className="white-font-hovering"
                   variant="contained"
                   href="/reportbike"
                   sx={{ mt: 0.1, ml: 1 }}

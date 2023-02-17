@@ -1,4 +1,5 @@
-import { Button, Container, Row, Col, Card } from "react-bootstrap";
+import { Container, Row, Col, Card } from "react-bootstrap";
+import Button from "@mui/material/Button";
 import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
 
@@ -22,14 +23,22 @@ export function Home() {
           </Row>
           <Row>
             <Col>
-              <Link href="/signin">
-                <Button>Sign In</Button>
-              </Link>
+              <Button
+                href="/signin"
+                className="white-font-hovering"
+                variant="contained"
+              >
+                Sign In
+              </Button>
             </Col>
             <Col>
-              <Link href="/signup">
-                <Button>Sign Up</Button>
-              </Link>
+              <Button
+                href="/signup"
+                className="white-font-hovering"
+                variant="contained"
+              >
+                Sign Up
+              </Button>
             </Col>
           </Row>
         </Container>
