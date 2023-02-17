@@ -38,7 +38,6 @@ export function EndRide() {
           time: date.toLocaleTimeString("default", {"timeStyle":"short"}),
         },
       );
-      console.log(rideInfo)
     })();
   }, []);
 
