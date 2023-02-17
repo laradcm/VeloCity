@@ -13,7 +13,6 @@ import { fetchReadSingleUser } from "../scripts/fetch";
 import { useCookies } from "react-cookie"; // cookies
 
 // to try to fetch *******************
-// const url = "http://127.0.0.1:3000/users";
 function FetchProfileFromDB() {
   const [loadData, setLoadData] = useState(false); // in case there's a problem when fetching
   const [fullProfile, setFullProfile] = useState(null); // new state will be used to render the table
@@ -56,7 +55,12 @@ function FetchProfileFromDB() {
         <Table sx={{ minWidth: 300 }} aria-label="caption table">
           <caption>
             <Box textAlign="right">
-              <Button variant="contained" href="#" sx={{ mt: 0.1, ml: 1 }}>
+              <Button
+                variant="contained"
+                className="white-font-hovering"
+                href="#"
+                sx={{ mt: 0.1, ml: 1 }}
+              >
                 Modify
               </Button>
             </Box>

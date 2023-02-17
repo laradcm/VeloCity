@@ -55,29 +55,21 @@ export function Rides() {
     setActiveStep(activeStep - 1);
   };
 
+
   const handleEnd = () => {
+    window.location.href = "/endride";
     window.location.href = "/endride";
   };
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      {/* <AppBar
-        position="absolute"
-        color="default"
-        elevation={0}
-        sx={{
-          position: "relative",
-          borderBottom: (t) => `1px solid ${t.palette.divider}`,
-        }}
+      <Container
+        component="main"
+        maxWidth="sm"
+        sx={{ mb: 4 }}
+        className="warning"
       >
-        <Toolbar>
-          <Typography variant="h6" color="inherit" noWrap>
-            Let's set your ride
-          </Typography>
-        </Toolbar>
-      </AppBar> */}
-      <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
         <Paper
           variant="outlined"
           sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}
@@ -95,10 +87,10 @@ export function Rides() {
           {activeStep === steps.length ? (
             <>
               <React.Fragment>
-                <Typography variant="h5" gutterBottom>
+                <Typography variant="h4" gutterBottom textAlign={"center"}>
                   It's all set. Enjoy your ride🚲💨!
                 </Typography>
-                <Typography variant="subtitle1">
+                <Typography variant="body1" textAlign={"center"}>
                   Your confirmation number is {rideSession.ticket}.<br></br>
                   The code to unlock a bike is: 3850.<br></br>
                   Departing at{" "}
@@ -107,32 +99,63 @@ export function Rides() {
                     minute: "2-digit",
                   })}{" "}
                   from {userGlobal.neighborhood}, {userGlobal.station} station.
+                  Departing at{" "}
+                  {new Date(rideSession.start_time).toLocaleTimeString([], {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}{" "}
+                  from {userGlobal.neighborhood}, {userGlobal.station} station.
                 </Typography>
-                <Typography variant="subtitle2" color={"red"}>
-                  {`Remember to check in the bike through the app when you return it at your destination.`}
-                </Typography>
+                <Box className="warning" sx={{ color: "warning.main" }}>
+                  <Typography
+                    variant="h5"
+                    textAlign={"center"}
+                    marginTop={"1.5rem"}
+                  >
+                    Remember to check in the bike through the app when you
+                    return it at your destination.
+                  </Typography>
+                </Box>
               </React.Fragment>
               <React.Fragment>
-                <Typography variant="h6" color={"grey"} gutterBottom>
+                <Typography
+                  variant="h3"
+                  gutterBottom
+                  marginTop={"1.5rem"}
+                  display="block"
+                  align="center"
+                >
                   Have you arrived to your destination?
                 </Typography>
-                <Button
-                  variant="contained"
-                  onClick={handleEnd}
-                  sx={{ mt: 0.1, ml: 1 }}
+                <Box align="center">
+                  <Button
+                    variant="contained"
+                    onClick={handleEnd}
+                    sx={{ mt: 0.1, ml: 1 }}
+                  >
+                    End ride
+                  </Button>
+                </Box>
+                <Typography
+                  variant="h3"
+                  color={"grey"}
+                  gutterBottom
+                  marginTop={"1rem"}
+                  display="block"
+                  align="center"
                 >
-                  End ride
-                </Button>
-                <Typography variant="h6" color={"grey"} gutterBottom>
                   Something went wrong?
                 </Typography>
-                <Button
-                  variant="contained"
-                  href="/reportbike"
-                  sx={{ mt: 0.1, ml: 1 }}
-                >
-                  Contact support
-                </Button>
+                <Box align="center">
+                  <Button
+                    className="white-font-hovering"
+                    variant="contained"
+                    href="/reportbike"
+                    sx={{ mt: 0.1, ml: 1 }}
+                  >
+                    Contact support
+                  </Button>
+                </Box>
               </React.Fragment>
             </>
           ) : (

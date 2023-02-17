@@ -76,7 +76,6 @@ export function SignIn() {
 
   // Setup for Cookies
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
-  // removeCookie("email"); // remove exiting EMAIL cookies before creating a new one
   // end of setup for cookies
 
   // setup of State that will trigger and control the fetch
@@ -180,8 +179,17 @@ export function SignIn() {
     <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: "70%" }}>
         <CssBaseline />
-        <Grid item xs={false} sm={4} md={7} sx={{}} />
-        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+        <Grid item xs={false} sm={false} md={2} lg={7} sx={{}} />
+        <Grid
+          item
+          xs={12}
+          sm={12}
+          md={10}
+          lg={5}
+          component={Paper}
+          elevation={6}
+          square
+        >
           <Box
             className="MainContentContainer"
             sx={{
