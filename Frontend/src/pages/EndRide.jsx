@@ -22,22 +22,24 @@ export function EndRide() {
   // start of End ride button ********
   const [shouldShowButton, setShouldShowButton] = useState(true);
   const [rideInfo, setRideInfo] = useState("");
+  const [completeRideInfo, setCompleteRideInfo] = useState("");
   const endRideButton = async () => {
-    setRideInfo( await fetchEndRide(rideInfo.ride_id) );
+    setCompleteRideInfo( (await fetchEndRide(rideInfo.ride_id)).updated_row );
     setRideEnded(true);
     setShouldShowButton(false);
   };
+
   // End of End ride button **************
   React.useEffect(() => {
     (async () => {
       const user = await fetchReadSingleUser(cookies.email);
       const currentRideData = await fetchCurrentRide(user.id);
-      console.log(currentRideData);
       setRideInfo({
         user_id: user.id,
         ride_id: currentRideData.ride_session.id,
         neighborhood: currentRideData.station.neighborhood,
         station: currentRideData.station.name,
+        timestamp: new Date(currentRideData.ride_session.start_time),
         start_time: new Date(
           currentRideData.ride_session.start_time
         ).toLocaleTimeString([], {
@@ -243,7 +245,14 @@ export function EndRide() {
                         }
                         // primary="Neighborhood"
                       />
-                      15:30
+                      {completeRideInfo
+                        ? new Date(
+                            completeRideInfo.arrival_time
+                          ).toLocaleTimeString([], {
+                            hour: "2-digit",
+                            minute: "2-digit",
+                          })
+                        : null}
                     </ListItem>
                   </List>
                   <List>
@@ -263,7 +272,11 @@ export function EndRide() {
                         }
                         // primary="Neighborhood"
                       />
-                      0 h 30 min
+                      {completeRideInfo ? 
+                      Math.floor(((new Date(completeRideInfo.arrival_time)).getTime() - rideInfo.timestamp.getTime()) / 3600000) + " h " +
+                      (0 + (Math.floor((((new Date(completeRideInfo.arrival_time)).getTime() - rideInfo.timestamp.getTime()) % 3600000) / 60000).toString())).slice(-2) + " min"
+                       
+                      : null }
                     </ListItem>
                   </List>
                   <Typography
