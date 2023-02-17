@@ -25,7 +25,6 @@ export function EndRide() {
     setShouldShowButton(false);
   };
   // End of End ride button **************
-  const date = new Date();
   React.useEffect(() => {
     (async () => {
       const user = await fetchReadSingleUser(cookies.email);
@@ -33,10 +32,14 @@ export function EndRide() {
       console.log(currentRideData);
       setRideInfo({
         user_id: user.id,
-        neighborhood: userGlobal.neighborhood,
-        station: userGlobal.station,
-        date: date.toLocaleDateString("fr-CA"),
-        time: date.toLocaleTimeString("default", { timeStyle: "short" }),
+        neighborhood: currentRideData.station.neighborhood,
+        station: currentRideData.station.name,
+        start_time: new Date(currentRideData.ride_session.start_time).toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+        }),
+        start_date: new Date(currentRideData.ride_session.start_time).toLocaleDateString([], {}),
+        ticket: currentRideData.ride_session.ticket,
       });
     })();
   }, []);
@@ -105,7 +108,7 @@ export function EndRide() {
                   }
                   // primary="Neighborhood"
                 />
-                {rideInfo.date}
+                {rideInfo.start_date}
               </ListItem>
               <ListItem sx={{ py: 0, px: 19 }}>
                 <ListItemText
@@ -123,7 +126,7 @@ export function EndRide() {
                   }
                   // primary="Neighborhood"
                 />
-                {rideInfo.time}
+                {rideInfo.start_time}
               </ListItem>
               <ListItem sx={{ py: 0, px: 19 }}>
                 <ListItemText
@@ -141,7 +144,7 @@ export function EndRide() {
                   }
                   // primary="Neighborhood"
                 />
-                #2001539
+                {rideInfo.ticket}
               </ListItem>
               <ListItem sx={{ py: 0, px: 19 }}>
                 <ListItemText

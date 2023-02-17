@@ -15,7 +15,7 @@ import { fetchInitiateRideSession } from "../scripts/fetch";
 import { useContext } from "react";
 import { SessionContext } from "../context/userGlobalContext";
 import { useCookies } from "react-cookie"; // cookies
-import { fetchReadSingleUser } from "../scripts/fetch"
+import { fetchReadSingleUser } from "../scripts/fetch";
 
 const steps = ["Departure", "Review your ride"];
 // const steps = ["Departure", "Payment details", "Review your order"];
@@ -23,9 +23,9 @@ const steps = ["Departure", "Review your ride"];
 function getStepContent(step) {
   switch (step) {
     case 0:
-      return <AddressForm key={step}/>;
+      return <AddressForm key={step} />;
     case 1:
-      return <Review key={step}/>;
+      return <Review key={step} />;
     default:
       throw new Error("Unknown step");
   }
@@ -36,11 +36,11 @@ const theme = createTheme();
 export function Rides() {
   const { userGlobal, addToGlobalState } = useContext(SessionContext); // global state context
   const [cookies, setCookie] = useCookies(["user"]); // cookies
-  const [ rideSession, setRideSession ] = React.useState("");
+  const [rideSession, setRideSession] = React.useState("");
   const [activeStep, setActiveStep] = React.useState(0);
 
-  async function handleNext(){
-    if (activeStep === steps.length -1) {
+  async function handleNext() {
+    if (activeStep === steps.length - 1) {
       const user = await fetchReadSingleUser(cookies.email);
       const conf = await fetchInitiateRideSession({
         user_id: user.id,
@@ -49,14 +49,14 @@ export function Rides() {
       setRideSession(conf);
     }
     setActiveStep(activeStep + 1);
-  };
+  }
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
-  
+
   const handleEnd = () => {
-    window.location.href="/endride";
+    window.location.href = "/endride";
   };
 
   return (
@@ -101,7 +101,12 @@ export function Rides() {
                 <Typography variant="subtitle1">
                   Your confirmation number is {rideSession.ticket}.<br></br>
                   The code to unlock a bike is: 3850.<br></br>
-                  Departing at {new Date(rideSession.start_time).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })} from {userGlobal.neighborhood}, {userGlobal.station} station.
+                  Departing at{" "}
+                  {new Date(rideSession.start_time).toLocaleTimeString([], {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}{" "}
+                  from {userGlobal.neighborhood}, {userGlobal.station} station.
                 </Typography>
                 <Typography variant="subtitle2" color={"red"}>
                   {`Remember to check in the bike through the app when you return it at your destination.`}
