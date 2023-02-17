@@ -76,7 +76,7 @@ async function endRide(ride_id) {
   console.log("ride_comleteted", completedRide)
   
   updateStation(completedRide.updated_row.return_station); // should be done along with ride_sessions update as a transaction
-  updateBicycle(completedRide.updated_row.bicycle_id); // should be done along with ride_sessions update as a transaction
+  updateBicycle(completedRide.updated_row.bicycle_id, completedRide.updated_row.return_station); // should be done along with ride_sessions update as a transaction
   return completedRide;
 }
 
