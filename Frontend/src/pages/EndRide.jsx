@@ -9,28 +9,45 @@ import Paper from "@mui/material/Paper";
 import { useState, useEffect } from "react";
 import { useContext } from "react";
 import { SessionContext } from "../context/userGlobalContext";
+import { fetchReadSingleUser } from "../scripts/fetch";
+import { fetchCurrentRide } from "../scripts/fetch";
+import { useCookies } from "react-cookie"; // cookies
 import Stack from "@mui/material/Stack";
 
 export function EndRide() {
   const { userGlobal, addToGlobalState } = useContext(SessionContext); // global state context
-  // start of End ride button ********
+  const [cookies, setCookie] = useCookies(["user"]); // cookies
   const [rideEnded, setRideEnded] = useState(false);
+  // start of End ride button ********
   const [shouldShowButton, setShouldShowButton] = useState(true);
+  const [rideInfo, setRideInfo] = useState("");
   const endRideButton = () => {
     setRideEnded(true);
     setShouldShowButton(false);
   };
   // End of End ride button **************
-  const date = new Date();
-  const rideInfo = [
-    {
-      user_id: "150",
-      neighborhood: userGlobal.neighborhood,
-      station: userGlobal.station,
-      date: date.toLocaleDateString("fr-CA"),
-      time: date.toLocaleTimeString("default", { timeStyle: "short" }),
-    },
-  ];
+  React.useEffect(() => {
+    (async () => {
+      const user = await fetchReadSingleUser(cookies.email);
+      const currentRideData = await fetchCurrentRide(user.id);
+      console.log(currentRideData);
+      setRideInfo({
+        user_id: user.id,
+        neighborhood: currentRideData.station.neighborhood,
+        station: currentRideData.station.name,
+        start_time: new Date(
+          currentRideData.ride_session.start_time
+        ).toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+        }),
+        start_date: new Date(
+          currentRideData.ride_session.start_time
+        ).toLocaleDateString([], {}),
+        ticket: currentRideData.ride_session.ticket,
+      });
+    })();
+  }, []);
 
   return (
     <>
@@ -56,120 +73,116 @@ export function EndRide() {
             }}
           >
             <List disablePadding>
-              {rideInfo.map((ride) => (
-                <>
-                  <ListItem key={ride.user_id} sx={{ py: 0, px: 0 }}>
-                    <ListItemText
-                      disableTypography
-                      primary={
-                        <Typography
-                          variant="body1"
-                          style={{
-                            color: "#46505A",
-                            fontWeight: 600,
-                          }}
-                        >
-                          Neighborhood
-                        </Typography>
-                      }
-                    />
-                    Hochelaga-Maisonneuve
-                    {/* {ride.neighborhood} */}
-                  </ListItem>
-                  <ListItem key={ride.user_id} sx={{ py: 0, px: 0 }}>
-                    <ListItemText
-                      disableTypography
-                      primary={
-                        <Typography
-                          variant="body1"
-                          style={{
-                            color: "#46505A",
-                            fontWeight: 600,
-                          }}
-                        >
-                          Station
-                        </Typography>
-                      }
-                      // primary="Neighborhood"
-                    />
-                    Weeping Birch
-                    {/* {ride.station} */}
-                  </ListItem>
-                  <ListItem key={ride.user_id} sx={{ py: 0, px: 0 }}>
-                    <ListItemText
-                      disableTypography
-                      primary={
-                        <Typography
-                          variant="body1"
-                          style={{
-                            color: "#46505A",
-                            fontWeight: 600,
-                          }}
-                        >
-                          Date
-                        </Typography>
-                      }
-                      // primary="Neighborhood"
-                    />
-
-                    {ride.date}
-                  </ListItem>
-                  <ListItem key={ride.user_id} sx={{ py: 0, px: 0 }}>
-                    <ListItemText
-                      disableTypography
-                      primary={
-                        <Typography
-                          variant="body1"
-                          style={{
-                            color: "#46505A",
-                            fontWeight: 600,
-                          }}
-                        >
-                          Time
-                        </Typography>
-                      }
-                      // primary="Neighborhood"
-                    />
-                    {ride.time}
-                  </ListItem>
-                  <ListItem key={ride.user_id} sx={{ py: 0, px: 0 }}>
-                    <ListItemText
-                      disableTypography
-                      primary={
-                        <Typography
-                          variant="body1"
-                          style={{
-                            color: "#46505A",
-                            fontWeight: 600,
-                          }}
-                        >
-                          Confirmation code
-                        </Typography>
-                      }
-                      // primary="Neighborhood"
-                    />
-                    #2001539
-                  </ListItem>
-                  <ListItem key={ride.user_id} sx={{ py: 0, px: 0 }}>
-                    <ListItemText
-                      disableTypography
-                      primary={
-                        <Typography
-                          variant="body1"
-                          style={{
-                            color: "#46505A",
-                            fontWeight: 600,
-                          }}
-                        >
-                          Unlock code
-                        </Typography>
-                      }
-                      // primary="Neighborhood"
-                    />
-                    3850
-                  </ListItem>
-                </>
-              ))}
+              <>
+                <ListItem sx={{ py: 0, px: 0 }}>
+                  <ListItemText
+                    disableTypography
+                    primary={
+                      <Typography
+                        variant="body1"
+                        style={{
+                          color: "#46505A",
+                          fontWeight: 600,
+                        }}
+                      >
+                        Neighborhood
+                      </Typography>
+                    }
+                    // primary="Neighborhood"
+                  />
+                  {rideInfo.neighborhood}
+                </ListItem>
+                <ListItem sx={{ py: 0, px: 0 }}>
+                  <ListItemText
+                    disableTypography
+                    primary={
+                      <Typography
+                        variant="body1"
+                        style={{
+                          color: "#46505A",
+                          fontWeight: 600,
+                        }}
+                      >
+                        Station
+                      </Typography>
+                    }
+                    // primary="Neighborhood"
+                  />
+                  {rideInfo.station}
+                </ListItem>
+                <ListItem sx={{ py: 0, px: 0 }}>
+                  <ListItemText
+                    disableTypography
+                    primary={
+                      <Typography
+                        variant="body1"
+                        style={{
+                          color: "#46505A",
+                          fontWeight: 600,
+                        }}
+                      >
+                        Date
+                      </Typography>
+                    }
+                    // primary="Neighborhood"
+                  />
+                  {rideInfo.start_date}
+                </ListItem>
+                <ListItem sx={{ py: 0, px: 0 }}>
+                  <ListItemText
+                    disableTypography
+                    primary={
+                      <Typography
+                        variant="body1"
+                        style={{
+                          color: "#46505A",
+                          fontWeight: 600,
+                        }}
+                      >
+                        Time
+                      </Typography>
+                    }
+                    // primary="Neighborhood"
+                  />
+                  {rideInfo.start_time}
+                </ListItem>
+                <ListItem sx={{ py: 0, px: 0 }}>
+                  <ListItemText
+                    disableTypography
+                    primary={
+                      <Typography
+                        variant="body1"
+                        style={{
+                          color: "#46505A",
+                          fontWeight: 600,
+                        }}
+                      >
+                        Confirmation code
+                      </Typography>
+                    }
+                    // primary="Neighborhood"
+                  />
+                  {rideInfo.ticket}
+                </ListItem>
+                <ListItem sx={{ py: 0, px: 0 }}>
+                  <ListItemText
+                    disableTypography
+                    primary={
+                      <Typography
+                        variant="body1"
+                        style={{
+                          color: "#46505A",
+                          fontWeight: 600,
+                        }}
+                      >
+                        Unlock code
+                      </Typography>
+                    }
+                    // primary="Neighborhood"
+                  />
+                  3850
+                </ListItem>
+              </>
             </List>
           </Box>
         </React.Fragment>

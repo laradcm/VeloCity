@@ -13,7 +13,6 @@ import { useContext } from "react";
 import { SessionContext } from "../context/userGlobalContext";
 
 export default function AddressForm() {
-
   const { userGlobal, addToGlobalState } = useContext(SessionContext); // global state context
   const [isDepartureReady, setIsDepartureReady] = useState(false); // final data
 
