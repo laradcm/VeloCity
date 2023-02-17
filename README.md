@@ -6,9 +6,10 @@
 
 Vélocity aims to:
 
-- **Dynamically monitor** and **readily manage** bike-sharing locations and availability with up-to-date analytics.
-- **Streamline inventory tracking processes** for bicycle provider administrators.
-- **Report losses and damages** for both administrator and customers quickly and easily without hassle.
+- Develop a web app that provides access to the city bike network for direct users.
+- Dynamically monitor and manage Velocity locations/availability and report losses/damages for both project managers and direct users quickly and easily without hassle.
+- Streamline inventory tracking process for project managers.
+
 
 ## Installation
 
