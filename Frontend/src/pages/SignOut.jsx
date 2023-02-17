@@ -23,9 +23,13 @@ function AlertMessageSuccess() {
         </Row>
         <Row style={{ paddingTop: "0.5rem" }}>
           <Col>
-            <Link href="/signin">
-              <Button>Sign in</Button>
-            </Link>
+            <Button
+              className="white-font-hovering"
+              variant="contained"
+              href="/signin"
+            >
+              Sign in
+            </Button>
           </Col>
         </Row>
       </Box>
