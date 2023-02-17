@@ -8,6 +8,8 @@ import { fontSize } from "@mui/system";
 import { useContext } from "react";
 import { SessionContext } from "../context/userGlobalContext";
 import { Box } from "@mui/material";
+import { fetchReadSingleUser } from "../scripts/fetch";
+import { useCookies } from "react-cookie"; // cookies
 
 // const products = [
 //   {
@@ -26,16 +28,22 @@ import { Box } from "@mui/material";
 
 export default function Review() {
   const { userGlobal, addToGlobalState } = useContext(SessionContext); // global state context
+  const [cookies, setCookie] = useCookies(["user"]); // cookies
+  const [rideInfo, setRideInfo] = React.useState("");
   const date = new Date();
-  const rideInfo = [
-    {
-      userID: "150",
-      neighborhood: userGlobal.neighborhood,
-      station: userGlobal.station,
-      date: date.toLocaleDateString("fr-CA"),
-      time: date.toLocaleTimeString("default", { timeStyle: "short" }),
-    },
-  ];
+
+  React.useEffect(() => {
+    (async () => {
+      const user = await fetchReadSingleUser(cookies.email);
+      setRideInfo({
+        userID: user.id,
+        neighborhood: userGlobal.neighborhood,
+        station: userGlobal.station,
+        date: date.toLocaleDateString("fr-CA"),
+        time: date.toLocaleTimeString("default", { timeStyle: "short" }),
+      });
+    })();
+  }, []);
 
   return (
     <Box sx={{ minWidth: 300 }}>
@@ -53,9 +61,8 @@ export default function Review() {
           }}
         >
           <List>
-            {rideInfo.map((ride) => (
-              <>
-                <ListItem key={ride.userID} sx={{ py: 0, px: 0 }}>
+            <>
+                <ListItem sx={{ py: 0, px: 0 }}>
                   <ListItemText
                     disableTypography
                     primary={
@@ -68,10 +75,9 @@ export default function Review() {
                     }
                     // primary="Neighborhood"
                   />
-                  Hochelaga-Maisonneuve
-                  {/* {ride.neighborhood} */}
+                  {rideInfo.neighborhood}
                 </ListItem>
-                <ListItem key={ride.userID} sx={{ py: 0, px: 0 }}>
+                <ListItem sx={{ py: 0, px: 0 }}>
                   <ListItemText
                     disableTypography
                     primary={
@@ -84,10 +90,9 @@ export default function Review() {
                     }
                     // primary="Neighborhood"
                   />
-                  Weeping Birch
-                  {/* {ride.station} */}
+                  {rideInfo.station}
                 </ListItem>
-                <ListItem key={ride.userID} sx={{ py: 0, px: 0 }}>
+                <ListItem sx={{ py: 0, px: 0 }}>
                   <ListItemText
                     disableTypography
                     primary={
@@ -100,9 +105,9 @@ export default function Review() {
                     }
                     // primary="Neighborhood"
                   />
-                  {ride.date}
+                  {rideInfo.date}
                 </ListItem>
-                <ListItem key={ride.userID} sx={{ py: 0, px: 0 }}>
+                <ListItem sx={{ py: 0, px: 0 }}>
                   <ListItemText
                     disableTypography
                     primary={
@@ -115,10 +120,9 @@ export default function Review() {
                     }
                     // primary="Neighborhood"
                   />
-                  {ride.time}
+                  {rideInfo.time}
                 </ListItem>
               </>
-            ))}
           </List>
         </Box>
       </React.Fragment>
