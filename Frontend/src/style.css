@@ -246,6 +246,10 @@ button.btn.btn-primary {
     color: red !important;
 }
 
+.white-font-hovering:hover{
+    color: white;
+}
+
 
 /* COLOR REFERENCE
 BLUE - #0078bf
