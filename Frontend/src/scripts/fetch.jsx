@@ -22,6 +22,19 @@ export async function fetchReadSingleUser(email) {
     .catch((err) => console.error(err));
 }
 
+export async function fetchCurrentRide(user_id) {
+  const options = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ user_id: user_id }),
+  };
+
+  return await fetch(address + "/currentRide", options)
+    .then((res) => res.json())
+    .then((res) => res)
+    .catch((err) => console.error(err));
+}
+
 export async function fetchCreate(extension, data) {
   const options = {
     method: "POST",
