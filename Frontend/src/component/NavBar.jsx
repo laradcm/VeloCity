@@ -1,9 +1,26 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { useCookies } from "react-cookie"; // cookies
+import { useEffect, useState } from "react";
 
 export function NavBar() {
+  // when loading the page, this will check if there's a cookie under the name of EMAIL, if
+  // there is and its value is no "", then it changes the state that renders the sign in/out tab
   const [cookies, setCookie] = useCookies(["user"]); // cookies
+  const [thereIsCookie, setThereIsCookie] = useState(false);
+
+  useEffect(() => {
+    function checkIfThereIsCookie() {
+      if (cookies.email !== undefined) {
+        setThereIsCookie(true);
+      } else {
+        setThereIsCookie(false);
+      }
+    }
+    checkIfThereIsCookie();
+  }, []);
+  // end of checking if there's a cookie under the name EMAIL
+
   return (
     <Navbar
       collapseOnSelect
@@ -21,12 +38,6 @@ export function NavBar() {
         {/* <Navbar.Collapse id="basic-navbar-nav"> */}
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto" id="NavCenter">
-            {/* <Nav.Link to="/" as={NavLink}>Home</Nav.Link>
-            <Nav.Link to="/main" as={NavLink}>Dashboard</Nav.Link>
-            <Nav.Link to="/profile" as={NavLink}>Profile</Nav.Link>
-            <Nav.Link to="/rides" as={NavLink}>Book a Ride</Nav.Link>
-            <Nav.Link to="/endride" as={NavLink}>Ride Status</Nav.Link>
-            <Nav.Link to="/reportbike" as={NavLink}>Support</Nav.Link> */}
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/main">Dashboard</Nav.Link>
             <Nav.Link href="/profile">Profile</Nav.Link>
@@ -35,12 +46,8 @@ export function NavBar() {
             <Nav.Link href="/reportbike">Support</Nav.Link>
           </Nav>
           <Nav id="NavCenter">
-            {/* <Nav.Link to="/signup" as={NavLink}>Sign Up</Nav.Link>
-            <Nav.Link to="/signin" as={NavLink}>Sign In</Nav.Link> */}
             <Nav.Link href="/signup">Sign Up</Nav.Link>
-            {!cookies.email ? (<Nav.Link href="/signin">Sign In</Nav.Link>) : (<Nav.Link href="/signout">Sign Out</Nav.Link>)}
-            {/* <Nav.Link href="/signin">Sign In</Nav.Link>
-            <Nav.Link href="/signout">Sign Out</Nav.Link> */}
+            {thereIsCookie ? (<Nav.Link href="/signout">Sign Out</Nav.Link>) : (<Nav.Link href="/signin">Sign In</Nav.Link>)}
           </Nav>
         </Navbar.Collapse>
       </Container>
