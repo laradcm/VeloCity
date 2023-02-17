@@ -118,43 +118,45 @@ export function Rides() {
                 </Box>
               </React.Fragment>
               <React.Fragment>
-                <Typography
-                  variant="h3"
-                  gutterBottom
-                  marginTop={"1.5rem"}
-                  display="block"
-                  align="center"
-                >
-                  Have you arrived to your destination?
-                </Typography>
-                <Box align="center">
-                  <Button
-                    variant="contained"
-                    onClick={handleEnd}
-                    sx={{ mt: 0.1, ml: 1 }}
+                <Box marginBottom={"1rem"} marginTop={"2rem"}>
+                  <Typography
+                    variant="h3"
+                    gutterBottom
+                    marginTop={"1.5rem"}
+                    display="block"
+                    align="center"
                   >
-                    End ride
-                  </Button>
-                </Box>
-                <Typography
-                  variant="h3"
-                  color={"grey"}
-                  gutterBottom
-                  marginTop={"1rem"}
-                  display="block"
-                  align="center"
-                >
-                  Something went wrong?
-                </Typography>
-                <Box align="center">
-                  <Button
-                    className="white-font-hovering"
-                    variant="contained"
-                    href="/reportbike"
-                    sx={{ mt: 0.1, ml: 1 }}
+                    Have you arrived to your destination?
+                  </Typography>
+                  <Box align="center" marginBottom={"1.5rem"}>
+                    <Button
+                      variant="contained"
+                      onClick={handleEnd}
+                      sx={{ mt: 0.1, ml: 1 }}
+                    >
+                      End ride
+                    </Button>
+                  </Box>
+                  <Typography
+                    variant="h3"
+                    color={"grey"}
+                    gutterBottom
+                    marginTop={"1rem"}
+                    display="block"
+                    align="center"
                   >
-                    Contact support
-                  </Button>
+                    Something went wrong?
+                  </Typography>
+                  <Box align="center">
+                    <Button
+                      className="white-font-hovering"
+                      variant="contained"
+                      href="/reportbike"
+                      sx={{ mt: 0.1, ml: 1 }}
+                    >
+                      Contact support
+                    </Button>
+                  </Box>
                 </Box>
               </React.Fragment>
             </>
@@ -165,6 +167,7 @@ export function Rides() {
                 sx={{
                   display: "flex",
                   justifyContent: "flex-end",
+                  marginTop: "2rem",
                 }}
               >
                 {activeStep !== 0 && (
