@@ -16,7 +16,15 @@ Vélocity aims to:
 
 ## Installation
 
-Make sure you are in the _/velocity_ folder and then enter **npm i**, it will install everything automatically.
+Instructions:
+
+- Install latest version of postgres (15.1).
+- Create a database named velocity.
+- Run mockdb.sql script.
+- After cloning the project, open a terminal for Frontend and another for Backend.
+- On each terminal run npm i , this will install all packages.
+- After all packages are installed, on each terminal run npm run dev.
+- Both applications should be running, navigate to 127.0.0.1:5173 on your browser and the homepage will be displayed and ready to be used.
 
 ### Front End - React + VITE Application (set to port 5173)
 
@@ -26,31 +34,31 @@ Make sure you are in the _/velocity_ folder and then enter **npm i**, it will in
 npm i create vite@latest
 ```
 
-### React-dom
+#### React-dom
 
 ```sh
 npm install react react-dom
 ```
 
-### React Router
+#### React Router
 
 ```sh
 npm i react-router-dom
 ```
 
-### Bootstrap, React-Bootstrap
+#### Bootstrap, React-Bootstrap
 
 ```sh
 npm i bootstrap react-bootstrap
 ```
 
-### MUI: Material UI
+#### MUI: Material UI
 
 ```sh
 npm i @mui/material @mui/icons-material @emotion/styled @emotion/react
 ```
 
-### LottieFiles
+#### LottieFiles
 
 ```sh
 npm i --save @lottiefiles/react-lottie-player
@@ -62,29 +70,29 @@ npm i --save @lottiefiles/react-lottie-player
 npm i react-cookie
 ```
 
-## Back End - Express JS Application (set to port 3000 or env setup)
+### Back End - Express JS Application (set to port 3000 or env setup)
 
-### Express JS
+#### Express JS
 
 ```sh
 npm i express
 ```
 
-### Cors JS
+#### Cors JS
 
 ```sh
 npm i cors
 ```
 
-### node-postgres
+#### node-postgres
 
 ```sh
 npm i pg
 ```
 
-## Database
+### Database
 
-### mockdb.sql
+#### mockdb.sql
 
 <br/><br/>
 
@@ -108,4 +116,4 @@ Charles Bourassa - https://github.com/ccbbccbb<br>
 Julien Lafontaine - https://github.com/lafontaju<br>
 Ruben Perez - https://github.com/rubenarturopj<br>
 Lara Mauricio - https://github.com/laradcm<br>
-for McGill YCIT 099 Full Stack Javascript Capstone Project.
+for McGill YCIT 099 Full Stack Javascript Capstone Project (2023).
