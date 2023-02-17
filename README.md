@@ -105,7 +105,10 @@ Vélocity aims to:
 
 White font logo
 <br>
+
+<p>
 <img src="Frontend/public/velocity-logo-white.png" alt="Velocity logo white" height="175" />  
+</p>
 <br>
 Black font logo
 <br>
