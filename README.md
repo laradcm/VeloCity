@@ -2,7 +2,7 @@
 
 ## Vélocity
 
-**Vélocity helps customers & bicycle providers streamline their experience & access to city wide bike-sharing networks.**
+**Vélocity helps customers and bicycle providers streamline their experience and access to city wide bike-sharing networks.**
 
 Vélocity aims to:
 
@@ -22,7 +22,7 @@ Vélocity aims to:
 npm i react-router-dom
 ```
 
-### Bootstrap
+### React, React-Bootstrap
 
 ```sh
 npm i bootstrap react-bootstrap
@@ -61,4 +61,9 @@ npm i react-cookie
 
 ## Acknowledgements
 
-Developed by Lara de Castro Mauricio, Ruben Arturo Perez Juarez, Charles Bourassa, & Julien Lafontaine for McGill YCIT 099 Full Stack Javascript Capstone Project.
+Developed by:
+Charles Bourassa - (github.com)
+Julien Lafontaine - (github.com)
+Ruben Perez - https://github.com/rubenarturopj
+Lara Mauricio - (github.com)
+for McGill YCIT 099 Full Stack Javascript Capstone Project.
