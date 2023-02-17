@@ -1,30 +1,15 @@
-<img src="Frontend/public/wheel-logo-animation-v2.gif" alt="Velocity wheel logo rose" align="right" width="119" />
-
-## Vélocity
-
-**Vélocity helps customers and bicycle providers streamline their experience and access to city wide bike-sharing networks.**
-
-Vélocity aims to:
-
-- **Dynamically monitor** and **readily manage** bike-sharing locations and availability with up-to-date analytics.
-- **Streamline inventory tracking processes** for bicycle provider administrators.
-- **Report losses and damages** for both administrator and customers quickly and easily without hassle.
-
-## Brand Guidelines
-
-![BrandGuidelines](Frontend/public/brandguidelines.png)
-
 ## Installation
 
 Instructions:
 
-- Install latest version of postgres (15.1).
+- Install latest version of _postgres_ (15.1).
 - Create a database named velocity.
-- Run mockdb.sql script.
+- Run _mockdb.sql_ script.
 - After cloning the project, open a terminal for Frontend and another for Backend.
 - On each terminal run npm i , this will install all packages.
 - After all packages are installed, on each terminal run npm run dev.
 - Both applications should be running, navigate to 127.0.0.1:5173 on your browser and the homepage will be displayed and ready to be used.
+  <br/><br/>
 
 ### Front End - React + VITE Application (set to port 5173)
 
@@ -93,6 +78,24 @@ npm i pg
 ### Database
 
 #### mockdb.sql
+
+<br/><br/>
+
+<img src="Frontend/public/wheel-logo-animation-v2.gif" alt="Velocity wheel logo rose" align="right" width="119" />
+
+## Vélocity
+
+**Vélocity helps customers and bicycle providers streamline their experience and access to city wide bike-sharing networks.**
+
+Vélocity aims to:
+
+- **Dynamically monitor** and **readily manage** bike-sharing locations and availability with up-to-date analytics.
+- **Streamline inventory tracking processes** for bicycle provider administrators.
+- **Report losses and damages** for both administrator and customers quickly and easily without hassle.
+
+## Brand Guidelines
+
+![BrandGuidelines](Frontend/public/brandguidelines.png)
 
 <br/><br/>
 
