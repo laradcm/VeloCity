@@ -7,6 +7,7 @@ import Grid from "@mui/material/Grid";
 import { fontSize } from "@mui/system";
 import { useContext } from "react";
 import { SessionContext } from "../context/userGlobalContext";
+import { Box } from "@mui/material";
 import { fetchReadSingleUser } from "../scripts/fetch";
 import { useCookies } from "react-cookie"; // cookies
 
@@ -45,81 +46,86 @@ export default function Review() {
   }, []);
 
   return (
-    <React.Fragment>
-      <Typography variant="h6" gutterBottom align="center">
-        Depart summary
-      </Typography>
-      {/* <List disablePadding>
-        {products.map((product) => (
-          <ListItem key={product.name} sx={{}}>
-            <ListItemText primary={product.name} secondary={product.desc} />
-          </ListItem>
-        ))}
-      </List> */}
-      <List disablePadding>
-        <>
-          <ListItem sx={{ py: 0, px: 19 }}>
-            <ListItemText
-              disableTypography
-              primary={
-                <Typography
-                  variant="body1"
-                  style={{ color: "#46505A", fontWeight: 600 }}
-                >
-                  Neighborhood
-                </Typography>
-              }
-              // primary="Neighborhood"
-            />
-            {rideInfo.neighborhood}
-          </ListItem>
-          <ListItem sx={{ py: 0, px: 19 }}>
-            <ListItemText
-              disableTypography
-              primary={
-                <Typography
-                  variant="body1"
-                  style={{ color: "#46505A", fontWeight: 600 }}
-                >
-                  Station
-                </Typography>
-              }
-              // primary="Neighborhood"
-            />
-            {rideInfo.station}
-          </ListItem>
-          <ListItem sx={{ py: 0, px: 19 }}>
-            <ListItemText
-              disableTypography
-              primary={
-                <Typography
-                  variant="body1"
-                  style={{ color: "#46505A", fontWeight: 600 }}
-                >
-                  Date
-                </Typography>
-              }
-              // primary="Neighborhood"
-            />
-            {rideInfo.date}
-          </ListItem>
-          <ListItem sx={{ py: 0, px: 19 }}>
-            <ListItemText
-              disableTypography
-              primary={
-                <Typography
-                  variant="body1"
-                  style={{ color: "#46505A", fontWeight: 600 }}
-                >
-                  Time
-                </Typography>
-              }
-              // primary="Neighborhood"
-            />
-            {rideInfo.time}
-          </ListItem>
-        </>
-      </List>
-    </React.Fragment>
+    <Box sx={{ minWidth: 300 }}>
+      <React.Fragment>
+        <Typography variant="h3" gutterBottom align="center">
+          Depart summary
+        </Typography>
+        <Box
+          sx={{
+            maxWidth: 310,
+            marginRight: "auto",
+            marginLeft: "auto",
+            marginTop: "1rem",
+            marginBottom: "1rem",
+          }}
+        >
+          <List>
+            <>
+                <ListItem sx={{ py: 0, px: 0 }}>
+                  <ListItemText
+                    disableTypography
+                    primary={
+                      <Typography
+                        variant="body1"
+                        style={{ color: "#46505A", fontWeight: 600 }}
+                      >
+                        Neighborhood
+                      </Typography>
+                    }
+                    // primary="Neighborhood"
+                  />
+                  {rideInfo.neighborhood}
+                </ListItem>
+                <ListItem sx={{ py: 0, px: 0 }}>
+                  <ListItemText
+                    disableTypography
+                    primary={
+                      <Typography
+                        variant="body1"
+                        style={{ color: "#46505A", fontWeight: 600 }}
+                      >
+                        Station
+                      </Typography>
+                    }
+                    // primary="Neighborhood"
+                  />
+                  {rideInfo.station}
+                </ListItem>
+                <ListItem sx={{ py: 0, px: 0 }}>
+                  <ListItemText
+                    disableTypography
+                    primary={
+                      <Typography
+                        variant="body1"
+                        style={{ color: "#46505A", fontWeight: 600 }}
+                      >
+                        Date
+                      </Typography>
+                    }
+                    // primary="Neighborhood"
+                  />
+                  {rideInfo.date}
+                </ListItem>
+                <ListItem sx={{ py: 0, px: 0 }}>
+                  <ListItemText
+                    disableTypography
+                    primary={
+                      <Typography
+                        variant="body1"
+                        style={{ color: "#46505A", fontWeight: 600 }}
+                      >
+                        Time
+                      </Typography>
+                    }
+                    // primary="Neighborhood"
+                  />
+                  {rideInfo.time}
+                </ListItem>
+              </>
+          </List>
+        </Box>
+      </React.Fragment>
+    </Box>
   );
 }
