@@ -11,6 +11,7 @@ import { useContext } from "react";
 import { SessionContext } from "../context/userGlobalContext";
 import { fetchReadSingleUser } from "../scripts/fetch";
 import { fetchCurrentRide } from "../scripts/fetch";
+import { fetchEndRide } from "../scripts/fetch";
 import { useCookies } from "react-cookie"; // cookies
 import Stack from "@mui/material/Stack";
 
@@ -21,7 +22,8 @@ export function EndRide() {
   // start of End ride button ********
   const [shouldShowButton, setShouldShowButton] = useState(true);
   const [rideInfo, setRideInfo] = useState("");
-  const endRideButton = () => {
+  const endRideButton = async () => {
+    setRideInfo( await fetchEndRide(rideInfo.ride_id) );
     setRideEnded(true);
     setShouldShowButton(false);
   };
@@ -33,6 +35,7 @@ export function EndRide() {
       console.log(currentRideData);
       setRideInfo({
         user_id: user.id,
+        ride_id: currentRideData.ride_session.id,
         neighborhood: currentRideData.station.neighborhood,
         station: currentRideData.station.name,
         start_time: new Date(
