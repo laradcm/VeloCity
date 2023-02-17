@@ -11,12 +11,20 @@ import Box from "@mui/material/Box";
 import { useState, useEffect } from "react";
 import { fetchReadSingleUser } from "../scripts/fetch";
 import { useCookies } from "react-cookie"; // cookies
+import ProfileForm from "../Utilities/ProfileForm";
+import TextField from "@mui/material/TextField";
+import Grid from "@mui/material/Grid";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { CssBaseline } from "@mui/material";
+
+
+const theme = createTheme();
 
 // to try to fetch *******************
-// const url = "http://127.0.0.1:3000/users";
 function FetchProfileFromDB() {
   const [loadData, setLoadData] = useState(false); // in case there's a problem when fetching
   const [fullProfile, setFullProfile] = useState(null); // new state will be used to render the table
+  const [modify, setModify] = useState(false);
 
   const [cookies, setCookie] = useCookies(["user"]); // cookies
 
@@ -33,7 +41,10 @@ function FetchProfileFromDB() {
     fetchProfile();
   }, []);
 
+
+
   // console.log(document.cookie);  // to log the cookie it that was implemented in sign-in page
+
 
   // if there's an error while fetching the data
   if (!loadData) {
@@ -47,8 +58,15 @@ function FetchProfileFromDB() {
   // data was fetched correctly
   return (
     <>
-      {/* <h1>data -bikes- fetched correctly</h1> */}
-      <TableContainer
+      <ThemeProvider theme={theme}>
+      <Grid container component="main" sx={{ height: "70%" }}>
+        {/* MAIN CONTAINER is divided into 2 columns(grids) we're only using the right side thus the first GRID is empty and set to false. 
+        Breakpoints:  xs, extra-small: 0px,   sm, small: 600px;  md, medium: 900px;   lg, large: 1200px;   xl, extra-large: 1536px
+        Both pairs should add 12 to maintain the same width*/}
+        <CssBaseline />
+        
+        <Grid item xs={12} sm={12} md={6} lg={6} sx={{}} >
+        <TableContainer
         sx={{ maxWidth: 600 }}
         component={Paper}
         className="ccontainer"
@@ -56,8 +74,15 @@ function FetchProfileFromDB() {
         <Table sx={{ minWidth: 300 }} aria-label="caption table">
           <caption>
             <Box textAlign="right">
-              <Button variant="contained" href="#" sx={{ mt: 0.1, ml: 1 }}>
-                Modify
+              <Button
+               variant="contained"
+               sx={{ mt: 0.1, ml: 1 }} 
+               onClick={() => {
+
+                modify?setModify(false) :setModify(true) ;
+              }}>
+                {!modify && "Modify"}
+                {modify && "Cancel"}
               </Button>
             </Box>
           </caption>
@@ -78,7 +103,7 @@ function FetchProfileFromDB() {
               </TableCell>
               <TableCell align="right">{fullProfile.id}</TableCell>
             </TableRow>
-            <TableRow key={fullProfile.first_name}>
+            <TableRow key={fullProfile.first_name} >
               <TableCell component="th" scope="row">
                 First name
               </TableCell>
@@ -116,16 +141,41 @@ function FetchProfileFromDB() {
             </TableRow>
           </TableBody>
         </Table>
+
       </TableContainer>
+        </Grid>
+
+        <Grid
+        sx={{ maxWidth: 600 }}
+          item
+          xs={12}
+          sm={12}
+          md={6}
+          lg={6}
+          component={Paper}
+          elevation={6}
+          square
+        ><Box  >
+            {modify && <ProfileForm/>}
+          </Box>
+      </Grid>
+      </Grid>
+
+      </ThemeProvider>
+
+
     </>
   );
 }
 // end of Trying to fetch *********************************
 
 export function Profile() {
-  return (
-    <>
-      <FetchProfileFromDB />
-    </>
-  );
+
+    return (
+      <>
+        <FetchProfileFromDB />
+      </>
+    );
+  
+
 }

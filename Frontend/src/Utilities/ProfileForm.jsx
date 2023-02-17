@@ -15,11 +15,44 @@ import { useState } from "react";
 import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
 import { fetchCreate } from "../scripts/fetch";
-import { useNavigate } from "react-router-dom"; // this is used to redirect
+import { useNavigate } from "react-router-dom"; // this is used to redirect to dashboard
+import { useCookies } from "react-cookie"; // cookies
+import { fetchReadSingleUser } from "../scripts/fetch";
+
 
 const theme = createTheme();
 
-export function SignUp() {
+export default function ProfileForm() {
+
+  //scroll when mounted
+  React.useEffect(() => {
+    console.log('got here')
+    scrollTo(550,0);
+  },[])
+  //end of scroll
+
+  // Fetch the user data first ******************
+  const [loadData, setLoadData] = useState(false); // in case there's a problem when fetching
+  const [fullProfile, setFullProfile] = useState(null); // new state will be used to render the table
+
+
+  const [cookies, setCookie] = useCookies(["user"]); // cookies
+
+  const fetchProfile = async () => {
+    try {
+      const response = await fetchReadSingleUser(cookies.email);
+      setFullProfile(response);
+      setLoadData(true);
+    } catch (error) {
+      console.log(error.message)
+      setLoadData(false);
+    }
+  };
+  React.useEffect(() => {
+    fetchProfile();
+  }, []);
+  // End of Fetch user data *******************************
+
   // Start of Submitting the form *******************
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [formHasErrors, setFormHasErrors] = useState(false);
@@ -78,7 +111,7 @@ export function SignUp() {
   // End of Redirect to Sign In ************************
 
   // start of handle errors in form ********************
-  const [firstNameValue, setFirstNameValue] = useState("");
+  const [firstNameValue, setFirstNameValue] = useState("abc");
   const [firstNameError, setFirstNameError] = useState(false);
   const handleErrorsFirstName = (event) => {
     setFirstNameValue(event.target.value);
@@ -185,6 +218,15 @@ export function SignUp() {
   };
   // end of handle errors in form **************
 
+    // if there's an error while fetching the data
+    if (!loadData) {
+      return (
+        <>
+          <h1>Error occurred while fetching data</h1>
+        </>
+      );
+    }
+
   return (
     <ThemeProvider theme={theme}>
       {/* <Container component="main" maxWidth="xs"> */}
@@ -215,12 +257,12 @@ export function SignUp() {
               marginTop: "-1rem",
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: "#000000" }}>
+            {/* <Avatar sx={{ m: 1, bgcolor: "#000000" }}>
               <LockOutlinedIcon />
-            </Avatar>
+            </Avatar> */}
 
-            <Typography component="h1" variant="h5">
-              Sign Up
+            <Typography component="h3" variant="h5">
+              Info to Update
             </Typography>
 
             {/* FORM */}
@@ -236,10 +278,9 @@ export function SignUp() {
                 <Grid item xs={12} sm={6}>
                   {/* FIRST NAME */}
                   <TextField
+                    fullWidth
                     autoComplete="given-name"
                     name="firstName"
-                    required
-                    fullWidth
                     id="firstName"
                     label="First Name"
                     autoFocus
@@ -256,7 +297,6 @@ export function SignUp() {
                 <Grid item xs={12} sm={6}>
                   {/* LAST NAME */}
                   <TextField
-                    required
                     fullWidth
                     id="lastName"
                     label="Last Name"
@@ -275,7 +315,6 @@ export function SignUp() {
                 <Grid item xs={12}>
                   {/* EMAIL */}
                   <TextField
-                    required
                     fullWidth
                     id="email"
                     label="Email Address"
@@ -294,7 +333,6 @@ export function SignUp() {
                 <Grid item xs={12}>
                   {/* PHONE */}
                   <TextField
-                    required
                     fullWidth
                     id="phone"
                     label="Phone number"
@@ -313,7 +351,6 @@ export function SignUp() {
                 <Grid item xs={12}>
                   {/* ADDRESS */}
                   <TextField
-                    required
                     fullWidth
                     id="address"
                     label="Billing Address"
@@ -333,7 +370,6 @@ export function SignUp() {
                   {" "}
                   {/* PASSWORD */}
                   <TextField
-                    required
                     fullWidth
                     name="password"
                     label="Password"
@@ -354,7 +390,6 @@ export function SignUp() {
                   {" "}
                   {/* PASSWORD CONFIRM */}
                   <TextField
-                    required
                     fullWidth
                     name="confirmPassword"
                     label="Confirm password"
@@ -380,7 +415,7 @@ export function SignUp() {
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Sign Up
+                Save Changes
               </Button>
 
               {formHasErrors ? (
@@ -390,9 +425,6 @@ export function SignUp() {
               )}
               <Grid container justifyContent="flex-end">
                 <Grid item>
-                  <Link href="/signin" variant="body2">
-                    Already have an account? Sign in
-                  </Link>
                 </Grid>
               </Grid>
             </Box>
@@ -410,7 +442,7 @@ function AlertMessageSuccess() {
     <>
       <Stack sx={{ width: "100%" }} marginTop="1rem">
         <Alert severity="success">
-          Account created successfully, welcome to Vélocity!
+          Account updated successfully.
         </Alert>
       </Stack>
     </>
@@ -422,7 +454,7 @@ function AlertMessageError() {
     <>
       <Stack sx={{ width: "100%" }} marginTop="1rem">
         <Alert severity="error">
-          There were errors while creating your account, please verify your data
+          There were errors while updating your account, please verify your data
           and try again.
         </Alert>
       </Stack>
