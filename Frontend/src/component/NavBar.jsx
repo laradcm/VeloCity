@@ -46,7 +46,8 @@ export function NavBar() {
             <Nav.Link href="/reportbike">Support</Nav.Link>
           </Nav>
           <Nav id="NavCenter">
-            <Nav.Link href="/signup">Sign Up</Nav.Link>
+            {thereIsCookie ? null : (<Nav.Link href="/signup">Sign Up</Nav.Link>)}
+            {/* <Nav.Link href="/signup">Sign Up</Nav.Link> */}
             {thereIsCookie ? (<Nav.Link href="/signout">Sign Out</Nav.Link>) : (<Nav.Link href="/signin">Sign In</Nav.Link>)}
           </Nav>
         </Navbar.Collapse>
