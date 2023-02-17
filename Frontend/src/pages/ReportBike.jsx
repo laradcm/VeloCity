@@ -14,7 +14,8 @@ export function ReportBike() {
             Support
           </Typography>
           <Typography component="h4" align="center" paddingTop={"1rem"}>
-            Something not working well? <br></br>
+            Something not working well? <br></br>A bike needs repair? 🛠️{" "}
+            <br></br>
             Do you want to share feedback to improve our service?<br></br>
             Send us a message and we'll get in touch with you very soon!
           </Typography>
