@@ -5,7 +5,6 @@ async function getCurrentRide(user_id) {
   const values = [user_id];
   const result = await db.query(text, values);
   const data = result.rows[0];
-  console.log(user_id)
 
   return data;
 }
