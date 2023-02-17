@@ -39,10 +39,14 @@ export function NavBar() {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto" id="NavCenter">
             <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/main">Dashboard</Nav.Link>
-            <Nav.Link href="/profile">Profile</Nav.Link>
-            <Nav.Link href="/rides">Book a Ride</Nav.Link>
-            <Nav.Link href="/endride">Ride Status</Nav.Link>
+            {thereIsCookie ? (<Nav.Link href="/main">Dashboard</Nav.Link>) : null}
+            {/* <Nav.Link href="/main">Dashboard</Nav.Link> */}
+            {thereIsCookie ? (<Nav.Link href="/profile">Profile</Nav.Link>) : null}
+            {/* <Nav.Link href="/profile">Profile</Nav.Link> */}
+            {thereIsCookie ? (<Nav.Link href="/rides">Book a Ride</Nav.Link>) : null}
+            {/* <Nav.Link href="/rides">Book a Ride</Nav.Link> */}
+            {thereIsCookie ? (<Nav.Link href="/endride">Ride Status</Nav.Link>) : null}
+            {/* <Nav.Link href="/endride">Ride Status</Nav.Link> */}
             <Nav.Link href="/reportbike">Support</Nav.Link>
           </Nav>
           <Nav id="NavCenter">
