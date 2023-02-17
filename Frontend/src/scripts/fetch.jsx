@@ -35,6 +35,19 @@ export async function fetchCurrentRide(user_id) {
     .catch((err) => console.error(err));
 }
 
+export async function fetchEndRide(ride_id) {
+  const options = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ ride_id: ride_id }),
+  };
+
+  return await fetch(address + "/endRide", options)
+    .then((res) => res.json())
+    .then((res) => res)
+    .catch((err) => console.error(err));
+}
+
 export async function fetchCreate(extension, data) {
   const options = {
     method: "POST",

@@ -10,7 +10,9 @@ router.post("/singleUser", users.readSingle);
 
 router.post("/initiateRide", newRideSession.initiateRideSession);
 
-router.post('/currentRide', currentRideController.currentRide);
+router.post("/currentRide", currentRideController.currentRide);
+
+router.post("/endRide", currentRideController.endRide);
 
 router.get("/:table", controller.read);
 

@@ -1,4 +1,5 @@
 const currentRideService = require("../services/currentRide");
+const endRideService = require("../services/endRideSession");
 
 async function currentRide(req, res, next) {
   try {
@@ -9,6 +10,16 @@ async function currentRide(req, res, next) {
   }
 }
 
+async function endRide(req, res, next) {
+  try {
+    res.json(await endRideService.endRide(req.body.ride_id));
+  } catch (err) {
+    err.message = `Error while updating ride info ` + err.message;
+    next(err);
+  }
+}
+
 module.exports = {
   currentRide,
+  endRide,
 };

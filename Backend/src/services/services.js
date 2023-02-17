@@ -38,24 +38,23 @@ async function create(table, valuesInput) {
 
 async function update(table, id, valuesInput) {
   let message = "";
-
   const input = genSetPairs(valuesInput);
 
   const text = `UPDATE ${table}
                   SET ${input.setPairs.join(",")}
-                  WHERE id=$1;`;
+                  WHERE id=$1
+                  RETURNING *;`;
 
   const values = [id, ...input.values];
-
   const result = await db.query(text, values);
 
   if (result.rowCount) {
     message = `${table} updated successfully`;
+    return { message, "updated_row": result.rows[0] }
   } else {
     message = `Error in updating ${table}`;
+    return { message }
   }
-
-  return { message };
 }
 
 async function deleteRow(table, id) {
