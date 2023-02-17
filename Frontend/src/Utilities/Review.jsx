@@ -53,7 +53,7 @@ export default function Review() {
       <List disablePadding>
         {rideInfo.map((ride) => (
           <>
-            <ListItem key={ride.userID} sx={{ py: 0, px: 19 }}>
+            <ListItem key={ride.neighborhood} sx={{ py: 0, px: 19 }}>
               <ListItemText
                 disableTypography
                 primary={
@@ -68,7 +68,7 @@ export default function Review() {
               />
               {ride.neighborhood}
             </ListItem>
-            <ListItem key={ride.userID} sx={{ py: 0, px: 19 }}>
+            <ListItem key={ride.station} sx={{ py: 0, px: 19 }}>
               <ListItemText
                 disableTypography
                 primary={
@@ -83,7 +83,7 @@ export default function Review() {
               />
               {ride.station}
             </ListItem>
-            <ListItem key={ride.userID} sx={{ py: 0, px: 19 }}>
+            <ListItem key={ride.date} sx={{ py: 0, px: 19 }}>
               <ListItemText
                 disableTypography
                 primary={
@@ -98,7 +98,7 @@ export default function Review() {
               />
               {ride.date}
             </ListItem>
-            <ListItem key={ride.userID} sx={{ py: 0, px: 19 }}>
+            <ListItem key={ride.time} sx={{ py: 0, px: 19 }}>
               <ListItemText
                 disableTypography
                 primary={

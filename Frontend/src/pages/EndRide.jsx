@@ -45,7 +45,7 @@ export function EndRide() {
           <List disablePadding>
             {rideInfo.map((ride) => (
               <>
-                <ListItem key={ride.user_id} sx={{ py: 0, px: 19 }}>
+                <ListItem key={ride.neighborhood} sx={{ py: 0, px: 19 }}>
                   <ListItemText
                     disableTypography
                     primary={
@@ -63,7 +63,7 @@ export function EndRide() {
                   />
                   {ride.neighborhood}
                 </ListItem>
-                <ListItem key={ride.user_id} sx={{ py: 0, px: 19 }}>
+                <ListItem key={ride.station} sx={{ py: 0, px: 19 }}>
                   <ListItemText
                     disableTypography
                     primary={
@@ -81,7 +81,7 @@ export function EndRide() {
                   />
                   {ride.station}
                 </ListItem>
-                <ListItem key={ride.user_id} sx={{ py: 0, px: 19 }}>
+                <ListItem key={ride.date} sx={{ py: 0, px: 19 }}>
                   <ListItemText
                     disableTypography
                     primary={
@@ -99,7 +99,7 @@ export function EndRide() {
                   />
                   {ride.date}
                 </ListItem>
-                <ListItem key={ride.user_id} sx={{ py: 0, px: 19 }}>
+                <ListItem key={ride.time} sx={{ py: 0, px: 19 }}>
                   <ListItemText
                     disableTypography
                     primary={
@@ -117,7 +117,7 @@ export function EndRide() {
                   />
                   {ride.time}
                 </ListItem>
-                <ListItem key={ride.user_id} sx={{ py: 0, px: 19 }}>
+                <ListItem key={"confirmation"} sx={{ py: 0, px: 19 }}>
                   <ListItemText
                     disableTypography
                     primary={
