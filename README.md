@@ -103,6 +103,8 @@ Vélocity aims to:
 
 ### Wide Text
 
+First picture displays a text in white font over a transparent background. Second picture displays a text in black font over a transparent background.
+
 <img src="Frontend/public/velocity-logo-white.png" alt="Velocity logo white" height="175" />  
 <img src="Frontend/public/velocity-logo-black.png" alt="Velocity logo black" height="175" />
 
