@@ -1,3 +1,15 @@
+<img src="Frontend/public/wheel-logo-animation-v2.gif" alt="Velocity wheel logo rose" align="right" width="119" />
+
+## Vélocity
+
+**Vélocity helps customers and bicycle providers streamline their experience and access to city wide bike-sharing networks.**
+
+Vélocity aims to:
+
+- **Dynamically monitor** and **readily manage** bike-sharing locations and availability with up-to-date analytics.
+- **Streamline inventory tracking processes** for bicycle provider administrators.
+- **Report losses and damages** for both administrator and customers quickly and easily without hassle.
+
 ## Installation
 
 Instructions:
@@ -80,18 +92,6 @@ npm i pg
 #### mockdb.sql
 
 <br/><br/>
-
-<img src="Frontend/public/wheel-logo-animation-v2.gif" alt="Velocity wheel logo rose" align="right" width="119" />
-
-## Vélocity
-
-**Vélocity helps customers and bicycle providers streamline their experience and access to city wide bike-sharing networks.**
-
-Vélocity aims to:
-
-- **Dynamically monitor** and **readily manage** bike-sharing locations and availability with up-to-date analytics.
-- **Streamline inventory tracking processes** for bicycle provider administrators.
-- **Report losses and damages** for both administrator and customers quickly and easily without hassle.
 
 ## Brand Guidelines
 
