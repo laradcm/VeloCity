@@ -8,16 +8,24 @@ import Paper from "@mui/material/Paper";
 export function ReportBike() {
   return (
     <>
-      <Paper className="MainContentContainer">
+      <Paper className="MainContentContainer centereddd" sx={{ maxWidth: 600 }}>
         <Container>
           <Typography component="h1" variant="h4" align="center">
             Support
           </Typography>
-          <Typography component="h4" align="center" paddingTop={"1rem"}>
+          <Typography
+            component="body1"
+            // variant="body1"
+            align="center"
+            display={"block"}
+            textAlign={"center"}
+            paddingTop={"1rem"}
+          >
             Something not working well? <br></br>A bike needs repair? 🛠️{" "}
             <br></br>
             Do you want to share feedback to improve our service?<br></br>
-            Send us a message and we'll get in touch with you very soon!
+            Send us a message and we'll get in touch with you{" "}
+            <em>very soon!</em>
           </Typography>
           <Box textAlign="center">
             <div class="form-textarea">
@@ -34,7 +42,7 @@ export function ReportBike() {
               variant="contained"
               href="/reportbike"
               // onClick={}
-              sx={{ mt: 0.1, ml: 1, mb: 3 }}
+              sx={{ mt: 0.1, ml: 1, mb: 3, marginTop: "1rem" }}
             >
               Send
             </Button>
