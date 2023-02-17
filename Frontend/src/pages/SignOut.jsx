@@ -13,9 +13,12 @@ function AlertMessageSuccess() {
   return (
     <>
       <Stack sx={{ width: "100%" }} marginTop="1rem" alignItems={"center"}>
-        <Alert severity="success">You are succesfully logged out.</Alert>
+        <Alert severity="success">
+          You are succesfully logged out.<br></br> You'll be redirected to our
+          home page in a 3 seconds
+        </Alert>
       </Stack>
-      <Box marginTop="2rem">
+      {/* <Box marginTop="2rem">
         <Row>
           <Col>
             <h6>Do you want to sign in again?</h6>
@@ -32,7 +35,7 @@ function AlertMessageSuccess() {
             </Button>
           </Col>
         </Row>
-      </Box>
+      </Box> */}
     </>
   );
 }
@@ -40,22 +43,24 @@ function AlertMessageSuccess() {
 export function SignOut() {
   const [displaySuccessAlert, setDisplaySuccessAlert] = useState(false); // display alert
   const [cookies, setCookie, removeCookie] = useCookies(["user"]); // cookies
-  // const [readyToRedirect, setReadyToRedirect] = useState(false); // trigger redirect
+  const [readyToRedirect, setReadyToRedirect] = useState(false); // trigger redirect
 
   function deleteCookie() {
     removeCookie("email");
+    localStorage.removeItem("alreadyLoaded");
     setDisplaySuccessAlert(true);
-    // setReadyToRedirect(true);
+    localStorage.setItem("alreadyLoaded2", true);
+    setReadyToRedirect(true);
   }
 
-  // const navigateTo = useNavigate();
-  // useEffect(() => {
-  //   if (readyToRedirect) {
-  //     setTimeout(() => {
-  //       navigateTo("/");
-  //     }, 2000);
-  //   }
-  // }, [readyToRedirect]);
+  const navigateTo = useNavigate();
+  useEffect(() => {
+    if (readyToRedirect) {
+      setTimeout(() => {
+        navigateTo("/");
+      }, 3000);
+    }
+  }, [readyToRedirect]);
 
   return (
     <>

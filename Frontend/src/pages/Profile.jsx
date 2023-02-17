@@ -18,7 +18,6 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
 import Typography from "@mui/material/Typography";
 
-
 const theme = createTheme();
 
 // to try to fetch *******************
@@ -39,17 +38,16 @@ function FetchProfileFromDB() {
     }
   };
   useEffect(() => {
-    if(!modify){
-    fetchProfile();}
+    if (!modify) {
+      fetchProfile();
+    }
   }, [modify]);
 
-  const updateModify = ()=>{
+  const updateModify = () => {
     modify ? setModify(false) : setModify(true);
-  }
-
+  };
 
   // console.log(document.cookie);  // to log the cookie it that was implemented in sign-in page
-
 
   // if there's an error while fetching the data
   if (!loadData) {
@@ -187,12 +185,9 @@ function FetchProfileFromDB() {
 // end of Trying to fetch *********************************
 
 export function Profile() {
-
-    return (
-      <>
-        <FetchProfileFromDB />
-      </>
-    );
-  
-
+  return (
+    <>
+      <FetchProfileFromDB />
+    </>
+  );
 }

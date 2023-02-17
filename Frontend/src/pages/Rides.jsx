@@ -55,7 +55,6 @@ export function Rides() {
     setActiveStep(activeStep - 1);
   };
 
-
   const handleEnd = () => {
     window.location.href = "/endride";
     window.location.href = "/endride";
