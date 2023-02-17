@@ -42,120 +42,130 @@ export function EndRide() {
           <Typography variant="h2" gutterBottom align="center">
             Departure
           </Typography>
-          <List disablePadding>
-            {rideInfo.map((ride) => (
-              <>
-                <ListItem key={ride.user_id} sx={{ py: 0, px: 19 }}>
-                  <ListItemText
-                    disableTypography
-                    primary={
-                      <Typography
-                        variant="body1"
-                        style={{
-                          color: "#46505A",
-                          fontWeight: 600,
-                        }}
-                      >
-                        Neighborhood
-                      </Typography>
-                    }
-                    // primary="Neighborhood"
-                  />
-                  {ride.neighborhood}
-                </ListItem>
-                <ListItem key={ride.user_id} sx={{ py: 0, px: 19 }}>
-                  <ListItemText
-                    disableTypography
-                    primary={
-                      <Typography
-                        variant="body1"
-                        style={{
-                          color: "#46505A",
-                          fontWeight: 600,
-                        }}
-                      >
-                        Station
-                      </Typography>
-                    }
-                    // primary="Neighborhood"
-                  />
-                  {ride.station}
-                </ListItem>
-                <ListItem key={ride.user_id} sx={{ py: 0, px: 19 }}>
-                  <ListItemText
-                    disableTypography
-                    primary={
-                      <Typography
-                        variant="body1"
-                        style={{
-                          color: "#46505A",
-                          fontWeight: 600,
-                        }}
-                      >
-                        Date
-                      </Typography>
-                    }
-                    // primary="Neighborhood"
-                  />
-                  {ride.date}
-                </ListItem>
-                <ListItem key={ride.user_id} sx={{ py: 0, px: 19 }}>
-                  <ListItemText
-                    disableTypography
-                    primary={
-                      <Typography
-                        variant="body1"
-                        style={{
-                          color: "#46505A",
-                          fontWeight: 600,
-                        }}
-                      >
-                        Time
-                      </Typography>
-                    }
-                    // primary="Neighborhood"
-                  />
-                  {ride.time}
-                </ListItem>
-                <ListItem key={ride.user_id} sx={{ py: 0, px: 19 }}>
-                  <ListItemText
-                    disableTypography
-                    primary={
-                      <Typography
-                        variant="body1"
-                        style={{
-                          color: "#46505A",
-                          fontWeight: 600,
-                        }}
-                      >
-                        Confirmation code
-                      </Typography>
-                    }
-                    // primary="Neighborhood"
-                  />
-                  #2001539
-                </ListItem>
-                <ListItem key={ride.user_id} sx={{ py: 0, px: 19 }}>
-                  <ListItemText
-                    disableTypography
-                    primary={
-                      <Typography
-                        variant="body1"
-                        style={{
-                          color: "#46505A",
-                          fontWeight: 600,
-                        }}
-                      >
-                        Unlock code
-                      </Typography>
-                    }
-                    // primary="Neighborhood"
-                  />
-                  3850
-                </ListItem>
-              </>
-            ))}
-          </List>
+          <Box
+            sx={{
+              maxWidth: 310,
+              marginRight: "auto",
+              marginLeft: "auto",
+            }}
+          >
+            <List disablePadding>
+              {rideInfo.map((ride) => (
+                <>
+                  <ListItem key={ride.user_id} sx={{ py: 0, px: 0 }}>
+                    <ListItemText
+                      disableTypography
+                      primary={
+                        <Typography
+                          variant="body1"
+                          style={{
+                            color: "#46505A",
+                            fontWeight: 600,
+                          }}
+                        >
+                          Neighborhood
+                        </Typography>
+                      }
+                    />
+                    Hochelaga-Maisonneuve
+                    {/* {ride.neighborhood} */}
+                  </ListItem>
+                  <ListItem key={ride.user_id} sx={{ py: 0, px: 0 }}>
+                    <ListItemText
+                      disableTypography
+                      primary={
+                        <Typography
+                          variant="body1"
+                          style={{
+                            color: "#46505A",
+                            fontWeight: 600,
+                          }}
+                        >
+                          Station
+                        </Typography>
+                      }
+                      // primary="Neighborhood"
+                    />
+                    Weeping Birch
+                    {/* {ride.station} */}
+                  </ListItem>
+                  <ListItem key={ride.user_id} sx={{ py: 0, px: 0 }}>
+                    <ListItemText
+                      disableTypography
+                      primary={
+                        <Typography
+                          variant="body1"
+                          style={{
+                            color: "#46505A",
+                            fontWeight: 600,
+                          }}
+                        >
+                          Date
+                        </Typography>
+                      }
+                      // primary="Neighborhood"
+                    />
+
+                    {ride.date}
+                  </ListItem>
+                  <ListItem key={ride.user_id} sx={{ py: 0, px: 0 }}>
+                    <ListItemText
+                      disableTypography
+                      primary={
+                        <Typography
+                          variant="body1"
+                          style={{
+                            color: "#46505A",
+                            fontWeight: 600,
+                          }}
+                        >
+                          Time
+                        </Typography>
+                      }
+                      // primary="Neighborhood"
+                    />
+                    {ride.time}
+                  </ListItem>
+                  <ListItem key={ride.user_id} sx={{ py: 0, px: 0 }}>
+                    <ListItemText
+                      disableTypography
+                      primary={
+                        <Typography
+                          variant="body1"
+                          style={{
+                            color: "#46505A",
+                            fontWeight: 600,
+                          }}
+                        >
+                          Confirmation code
+                        </Typography>
+                      }
+                      // primary="Neighborhood"
+                    />
+                    #2001539
+                  </ListItem>
+                  <ListItem key={ride.user_id} sx={{ py: 0, px: 0 }}>
+                    <ListItemText
+                      disableTypography
+                      primary={
+                        <Typography
+                          variant="body1"
+                          style={{
+                            color: "#46505A",
+                            fontWeight: 600,
+                          }}
+                        >
+                          Unlock code
+                        </Typography>
+                      }
+                      // primary="Neighborhood"
+                    />
+                    3850
+                  </ListItem>
+                </>
+              ))}
+            </List>
+          </Box>
         </React.Fragment>
         <React.Fragment>
           <Box
@@ -176,76 +186,84 @@ export function EndRide() {
             </Button>
           </Box>
           {/* SHOW RETURN/ARRIVAL INFORMATION****************************** */}
-          <Box textAlign="center" paddingTop={"0.1rem"}>
-            {rideEnded ? (
-              <>
-                <Typography
-                  variant="body1"
-                  gutterBottom
-                  align="center"
-                  paddingTop={"0.8rem"}
-                >
-                  Arrival
-                </Typography>
-                <List disablePadding>
-                  <ListItem key={1} sx={{ py: 0, px: 19 }}>
-                    <ListItemText
-                      disableTypography
-                      primary={
-                        <Typography
-                          variant="body1"
-                          style={{
-                            color: "#46505A",
-                            fontWeight: 600,
-                          }}
-                        >
-                          Arrival time
-                        </Typography>
-                      }
-                      // primary="Neighborhood"
-                    />
-                    15:30
-                  </ListItem>
-                </List>
-                <List>
-                  <ListItem key={1} sx={{ py: 0, px: 19 }}>
-                    <ListItemText
-                      disableTypography
-                      primary={
-                        <Typography
-                          variant="body1"
-                          style={{
-                            color: "#46505A",
-                            fontWeight: 600,
-                          }}
-                        >
-                          Total time of ride
-                        </Typography>
-                      }
-                      // primary="Neighborhood"
-                    />
-                    0 h 30 min
-                  </ListItem>
-                </List>
-                <Typography
-                  variant="body1"
-                  color={"grey"}
-                  gutterBottom
-                  marginTop={"1rem"}
-                >
-                  Your confirmation number was succesfully updated.
-                  <br></br>Keep it for future references.
-                </Typography>
-                <Typography variant="h3" gutterBottom>
-                  That's all!<br></br>
-                  Thank you for choosing Vélocity!<br></br>
-                  🥳
-                </Typography>
-              </>
-            ) : (
-              <></>
-            )}
-            {/* END OF SHOW RETURN/ARRIVAL INFORMATION ***************** */}
+          <Box
+            sx={{
+              maxWidth: 310,
+              marginRight: "auto",
+              marginLeft: "auto",
+            }}
+          >
+            <Box textAlign="center" paddingTop={"0.1rem"}>
+              {rideEnded ? (
+                <>
+                  <Typography
+                    variant="body1"
+                    gutterBottom
+                    align="center"
+                    paddingTop={"0.8rem"}
+                  >
+                    Arrival
+                  </Typography>
+                  <List disablePadding>
+                    <ListItem key={1} sx={{ py: 0, px: 0 }}>
+                      <ListItemText
+                        disableTypography
+                        primary={
+                          <Typography
+                            variant="body1"
+                            style={{
+                              color: "#46505A",
+                              fontWeight: 600,
+                            }}
+                          >
+                            Arrival time
+                          </Typography>
+                        }
+                        // primary="Neighborhood"
+                      />
+                      15:30
+                    </ListItem>
+                  </List>
+                  <List>
+                    <ListItem key={1} sx={{ py: 0, px: 0 }}>
+                      <ListItemText
+                        disableTypography
+                        primary={
+                          <Typography
+                            variant="body1"
+                            style={{
+                              color: "#46505A",
+                              fontWeight: 600,
+                            }}
+                          >
+                            Total time of ride
+                          </Typography>
+                        }
+                        // primary="Neighborhood"
+                      />
+                      0 h 30 min
+                    </ListItem>
+                  </List>
+                  <Typography
+                    variant="body1"
+                    color={"grey"}
+                    gutterBottom
+                    marginTop={"1rem"}
+                  >
+                    Your confirmation number was succesfully updated.
+                    <br></br>Keep it for future references.
+                  </Typography>
+                  <Typography variant="h3" gutterBottom>
+                    That's all!<br></br>
+                    Thank you for choosing Vélocity!<br></br>
+                    🥳
+                  </Typography>
+                </>
+              ) : (
+                <></>
+              )}
+              {/* END OF SHOW RETURN/ARRIVAL INFORMATION ***************** */}
+            </Box>
           </Box>
           <Box textAlign="center" paddingTop={"1rem"} paddingBottom={"2rem"}>
             <Typography
