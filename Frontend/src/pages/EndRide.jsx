@@ -9,29 +9,39 @@ import Paper from "@mui/material/Paper";
 import { useState, useEffect } from "react";
 import { useContext } from "react";
 import { SessionContext } from "../context/userGlobalContext";
+import { fetchReadSingleUser } from "../scripts/fetch";
+import { useCookies } from "react-cookie"; // cookies
 
 
 export function EndRide() {
   const { userGlobal, addToGlobalState } = useContext(SessionContext); // global state context
-  // start of End ride button ********
+  const [cookies, setCookie] = useCookies(["user"]); // cookies
   const [rideEnded, setRideEnded] = useState(false);
+  // start of End ride button ********
   const [shouldShowButton, setShouldShowButton] = useState(true);
+  const [rideInfo, setRideInfo] = useState("");
   const endRideButton = () => {
     setRideEnded(true);
     setShouldShowButton(false);
   };
   // End of End ride button **************
   const date = new Date;
-  const rideInfo = [
-    {
-      user_id: "150",
-      neighborhood: userGlobal.neighborhood,
-      station: userGlobal.station,
-      date: date.toLocaleDateString("fr-CA"),
-      time: date.toLocaleTimeString("default", {"timeStyle":"short"}),
-    },
-  ];
-  
+  React.useEffect(() => {
+    (async () => {
+      const userEmail = await fetchReadSingleUser(cookies.email);
+      setRideInfo(
+        {
+          user_id: userEmail.id,
+          neighborhood: userGlobal.neighborhood,
+          station: userGlobal.station,
+          date: date.toLocaleDateString("fr-CA"),
+          time: date.toLocaleTimeString("default", {"timeStyle":"short"}),
+        },
+      );
+      console.log(rideInfo)
+    })();
+  }, []);
+
   return (
     <>
       <Paper className="MainContentContainer">
@@ -43,9 +53,8 @@ export function EndRide() {
             Departure
           </Typography>
           <List disablePadding>
-            {rideInfo.map((ride) => (
               <>
-                <ListItem key={ride.neighborhood} sx={{ py: 0, px: 19 }}>
+                <ListItem sx={{ py: 0, px: 19 }}>
                   <ListItemText
                     disableTypography
                     primary={
@@ -61,9 +70,9 @@ export function EndRide() {
                     }
                     // primary="Neighborhood"
                   />
-                  {ride.neighborhood}
+                  {rideInfo.neighborhood}
                 </ListItem>
-                <ListItem key={ride.station} sx={{ py: 0, px: 19 }}>
+                <ListItem sx={{ py: 0, px: 19 }}>
                   <ListItemText
                     disableTypography
                     primary={
@@ -79,9 +88,9 @@ export function EndRide() {
                     }
                     // primary="Neighborhood"
                   />
-                  {ride.station}
+                  {rideInfo.station}
                 </ListItem>
-                <ListItem key={ride.date} sx={{ py: 0, px: 19 }}>
+                <ListItem sx={{ py: 0, px: 19 }}>
                   <ListItemText
                     disableTypography
                     primary={
@@ -97,9 +106,9 @@ export function EndRide() {
                     }
                     // primary="Neighborhood"
                   />
-                  {ride.date}
+                  {rideInfo.date}
                 </ListItem>
-                <ListItem key={ride.time} sx={{ py: 0, px: 19 }}>
+                <ListItem sx={{ py: 0, px: 19 }}>
                   <ListItemText
                     disableTypography
                     primary={
@@ -115,9 +124,9 @@ export function EndRide() {
                     }
                     // primary="Neighborhood"
                   />
-                  {ride.time}
+                  {rideInfo.time}
                 </ListItem>
-                <ListItem key={"confirmation"} sx={{ py: 0, px: 19 }}>
+                <ListItem sx={{ py: 0, px: 19 }}>
                   <ListItemText
                     disableTypography
                     primary={
@@ -135,7 +144,7 @@ export function EndRide() {
                   />
                   #2001539
                 </ListItem>
-                <ListItem key={ride.user_id} sx={{ py: 0, px: 19 }}>
+                <ListItem sx={{ py: 0, px: 19 }}>
                   <ListItemText
                     disableTypography
                     primary={
@@ -154,7 +163,6 @@ export function EndRide() {
                   3850
                 </ListItem>
               </>
-            ))}
           </List>
         </React.Fragment>
         <React.Fragment>
