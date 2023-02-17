@@ -110,9 +110,9 @@ First picture displays a text in white font over a transparent background. Secon
 
 ## Acknowledgements
 
-Developed by: <br>
-Charles Bourassa - https://github.com/ccbbccbb<br>
-Julien Lafontaine - https://github.com/lafontaju<br>
-Ruben Perez - https://github.com/rubenarturopj<br>
-Lara Mauricio - https://github.com/laradcm<br>
-for McGill YCIT 099 Full Stack Javascript Capstone Project (2023).
+- Lara Mauricio: https://github.com/laradcm
+- Ruben Perez: https://github.com/rubenarturopj
+- Charles Bourassa: https://github.com/ccbbccbb
+- Julien Lafontaine: https://github.com/lafontaju
+
+Developed for McGill YCIT 099 Full Stack Javascript Capstone Project (2023).
