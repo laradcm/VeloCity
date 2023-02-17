@@ -62,8 +62,8 @@ npm i react-cookie
 ## Acknowledgements
 
 Developed by: <br>
-Charles Bourassa - (github.com)<br>
-Julien Lafontaine - (github.com)<br>
+Charles Bourassa - https://github.com/ccbbccbb<br>
+Julien Lafontaine - https://github.com/lafontaju<br>
 Ruben Perez - https://github.com/rubenarturopj<br>
-Lara Mauricio - (github.com)<br>
+Lara Mauricio - https://github.com/laradcm<br>
 for McGill YCIT 099 Full Stack Javascript Capstone Project.
