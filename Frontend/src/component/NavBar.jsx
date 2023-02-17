@@ -38,7 +38,8 @@ export function NavBar() {
         {/* <Navbar.Collapse id="basic-navbar-nav"> */}
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto" id="NavCenter">
-            <Nav.Link href="/">Home</Nav.Link>
+            {thereIsCookie ? null: (<Nav.Link href="/">Home</Nav.Link>)}
+            {/* <Nav.Link href="/">Home</Nav.Link> */}
             {thereIsCookie ? (<Nav.Link href="/main">Dashboard</Nav.Link>) : null}
             {/* <Nav.Link href="/main">Dashboard</Nav.Link> */}
             {thereIsCookie ? (<Nav.Link href="/profile">Profile</Nav.Link>) : null}
