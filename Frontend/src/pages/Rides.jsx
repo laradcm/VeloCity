@@ -99,12 +99,6 @@ export function Rides() {
                     minute: "2-digit",
                   })}{" "}
                   from {userGlobal.neighborhood}, {userGlobal.station} station.
-                  Departing at{" "}
-                  {new Date(rideSession.start_time).toLocaleTimeString([], {
-                    hour: "2-digit",
-                    minute: "2-digit",
-                  })}{" "}
-                  from {userGlobal.neighborhood}, {userGlobal.station} station.
                 </Typography>
                 <Box className="warning" sx={{ color: "warning.main" }}>
                   <Typography
