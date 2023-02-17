@@ -103,23 +103,14 @@ Vélocity aims to:
 
 ### Wide Text
 
-<!-- White font logo
-<br> -->
-
-<!-- <p> -->
 <img src="Frontend/public/velocity-logo-white.png" alt="Velocity logo white" height="175" />  
-<!-- </p> -->
-<br>
-Black font logo
-<br>
 <img src="Frontend/public/velocity-logo-black.png" alt="Velocity logo black" height="175" />
 
 ### Standard Round
 
-<br>
-<img src="Frontend/public/wheel-logo-blue.png" alt="Velocity wheel logo blue" height="200" />&nbsp;<img src="Frontend/public/wheel-logo-orange.png" alt="Velocity wheel logo orange" height="200" />&nbsp;&nbsp;<img src="Frontend/public/wheel-logo-white.png" alt="Velocity wheel logo white" height="200" />
+<img src="Frontend/public/wheel-logo-blue.png" alt="Velocity wheel logo blue" height="200" />&nbsp;&nbsp;<img src="Frontend/public/wheel-logo-orange.png" alt="Velocity wheel logo orange" height="200" />&nbsp;&nbsp;<img src="Frontend/public/wheel-logo-white.png" alt="Velocity wheel logo white" height="200" />
 
-<img src="Frontend/public/wheel-logo-bw.png" alt="Velocity wheel logo black" height="200" />&nbsp;&nbsp;&nbsp;<img src="Frontend/public/wheel-logo-rose.png" alt="Velocity wheel logo rose" height="200" />&nbsp;&nbsp;<img src="Frontend/public/wheel-logo-green.png" alt="Velocity wheel logo green" height="200" />
+<img src="Frontend/public/wheel-logo-bw.png" alt="Velocity wheel logo black" height="200" />&nbsp;&nbsp;<img src="Frontend/public/wheel-logo-rose.png" alt="Velocity wheel logo rose" height="200" />&nbsp;&nbsp;<img src="Frontend/public/wheel-logo-green.png" alt="Velocity wheel logo green" height="200" />
 
 ## Acknowledgements
 
