@@ -11,6 +11,7 @@ import Box from "@mui/material/Box";
 import { useState, useEffect } from "react";
 import { fetchReadSingleUser } from "../scripts/fetch";
 import { useCookies } from "react-cookie"; // cookies
+import { Typography } from "@mui/material";
 
 // to try to fetch *******************
 function FetchProfileFromDB() {
@@ -52,6 +53,11 @@ function FetchProfileFromDB() {
         component={Paper}
         className="ccontainer"
       >
+        <Box>
+          <Typography variant="h1" gutterBottom align="center">
+            Personal information
+          </Typography>
+        </Box>
         <Table sx={{ minWidth: 300 }} aria-label="caption table">
           <caption>
             <Box textAlign="right">
@@ -67,11 +73,7 @@ function FetchProfileFromDB() {
           </caption>
           <TableHead>
             <TableRow>
-              <TableCell>
-                <strong style={{ textTransform: "uppercase" }}>
-                  Personal information
-                </strong>
-              </TableCell>
+              <TableCell></TableCell>
               <TableCell align="right"></TableCell>
             </TableRow>
           </TableHead>
