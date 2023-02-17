@@ -21,9 +21,9 @@ const steps = ["Departure", "Review your ride"];
 function getStepContent(step) {
   switch (step) {
     case 0:
-      return <AddressForm />;
+      return <AddressForm key={step}/>;
     case 1:
-      return <Review />;
+      return <Review key={step}/>;
     default:
       throw new Error("Unknown step");
   }
