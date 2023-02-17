@@ -20,7 +20,7 @@ Vélocity aims to:
 - After all packages are installed, on each terminal run _npm run dev_.
 - Both applications should be running, navigate to 127.0.0.1:5173 on your browser and the homepage will be displayed and ready to be used.
 
-## Front End:
+## Front End
 
 #### React + Vite (set to port 5173)
 
@@ -28,7 +28,7 @@ Vélocity aims to:
 npm i create vite@latest
 ```
 
-#### React-dom
+#### React DOM
 
 ```sh
 npm install react react-dom
@@ -40,7 +40,7 @@ npm install react react-dom
 npm i react-router-dom
 ```
 
-#### Bootstrap, React-Bootstrap
+#### React Bootstrap
 
 ```sh
 npm i bootstrap react-bootstrap
@@ -58,13 +58,13 @@ npm i @mui/material @mui/icons-material @emotion/styled @emotion/react
 npm i --save @lottiefiles/react-lottie-player
 ```
 
-### react-cookie
+### React Cookie
 
 ```sh
 npm i react-cookie
 ```
 
-## Back End: 
+## Back End
 
 #### Express JS (set to port 3000 or env setup)
 
