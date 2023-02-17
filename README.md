@@ -103,12 +103,12 @@ Vélocity aims to:
 
 ### Wide Text
 
-White font logo
-<br>
+<!-- White font logo
+<br> -->
 
-<p>
+<!-- <p> -->
 <img src="Frontend/public/velocity-logo-white.png" alt="Velocity logo white" height="175" />  
-</p>
+<!-- </p> -->
 <br>
 Black font logo
 <br>
