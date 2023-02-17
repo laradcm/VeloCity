@@ -51,12 +51,18 @@ export function EndRide() {
 
   return (
     <>
-      <Paper className="MainContentContainer">
+      <Paper className="MainContentContainer centereddd" sx={{ maxWidth: 600 }}>
         <React.Fragment>
           <Typography variant="h1" gutterBottom align="center">
             Current Ride
           </Typography>
-          <Typography variant="h2" gutterBottom align="center">
+          <Typography
+            variant="body1"
+            color={"blue"}
+            gutterBottom
+            align="center"
+            marginTop={"1rem"}
+          >
             Departure
           </Typography>
           <Box
@@ -266,11 +272,13 @@ export function EndRide() {
                     Your confirmation number was succesfully updated.
                     <br></br>Keep it for future references.
                   </Typography>
-                  <Typography variant="h3" gutterBottom>
-                    That's all!<br></br>
-                    Thank you for choosing Vélocity!<br></br>
-                    🥳
-                  </Typography>
+                  <Box marginTop={"1rem"}>
+                    <Typography variant="h3" gutterBottom>
+                      That's all!<br></br>
+                      Thank you for choosing Vélocity!<br></br>
+                      🥳
+                    </Typography>
+                  </Box>
                 </>
               ) : (
                 <></>
