@@ -16,13 +16,29 @@ Vélocity aims to:
 
 ## Installation
 
-### React router
+Make sure you are in the _/velocity_ folder and then enter **npm i**, it will install everything automatically.
+
+### Front End - React + VITE Application (set to port 5173)
+
+#### React + Vite
+
+```sh
+npm i create vite@latest
+```
+
+### React-dom
+
+```sh
+npm install react react-dom
+```
+
+### React Router
 
 ```sh
 npm i react-router-dom
 ```
 
-### React, React-Bootstrap
+### Bootstrap, React-Bootstrap
 
 ```sh
 npm i bootstrap react-bootstrap
@@ -45,6 +61,32 @@ npm i --save @lottiefiles/react-lottie-player
 ```sh
 npm i react-cookie
 ```
+
+## Back End - Express JS Application (set to port 3000 or env setup)
+
+### Express JS
+
+```sh
+npm i express
+```
+
+### Cors JS
+
+```sh
+npm i cors
+```
+
+### node-postgres
+
+```sh
+npm i pg
+```
+
+## Database
+
+### mockdb.sql
+
+<br/><br/>
 
 ## Logo
 
