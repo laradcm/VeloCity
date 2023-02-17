@@ -14,6 +14,8 @@ import Review from "/src/Utilities/Review";
 import { fetchInitiateRideSession } from "../scripts/fetch";
 import { useContext } from "react";
 import { SessionContext } from "../context/userGlobalContext";
+import { useCookies } from "react-cookie"; // cookies
+import { fetchReadSingleUser } from "../scripts/fetch"
 
 const steps = ["Departure", "Review your ride"];
 // const steps = ["Departure", "Payment details", "Review your order"];
@@ -33,13 +35,15 @@ const theme = createTheme();
 
 export function Rides() {
   const { userGlobal, addToGlobalState } = useContext(SessionContext); // global state context
+  const [cookies, setCookie] = useCookies(["user"]); // cookies
   const [ rideSession, setRideSession ] = React.useState("");
   const [activeStep, setActiveStep] = React.useState(0);
 
   async function handleNext(){
     if (activeStep === steps.length -1) {
+      const user = await fetchReadSingleUser(cookies.email);
       const conf = await fetchInitiateRideSession({
-        user_id: "150",
+        user_id: user.id,
         origin_station: userGlobal.station,
       });
       setRideSession(conf);

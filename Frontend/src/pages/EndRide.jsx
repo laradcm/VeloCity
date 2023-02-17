@@ -10,8 +10,8 @@ import { useState, useEffect } from "react";
 import { useContext } from "react";
 import { SessionContext } from "../context/userGlobalContext";
 import { fetchReadSingleUser } from "../scripts/fetch";
+import { fetchCurrentRide } from "../scripts/fetch";
 import { useCookies } from "react-cookie"; // cookies
-
 
 export function EndRide() {
   const { userGlobal, addToGlobalState } = useContext(SessionContext); // global state context
@@ -25,19 +25,19 @@ export function EndRide() {
     setShouldShowButton(false);
   };
   // End of End ride button **************
-  const date = new Date;
+  const date = new Date();
   React.useEffect(() => {
     (async () => {
-      const userEmail = await fetchReadSingleUser(cookies.email);
-      setRideInfo(
-        {
-          user_id: userEmail.id,
-          neighborhood: userGlobal.neighborhood,
-          station: userGlobal.station,
-          date: date.toLocaleDateString("fr-CA"),
-          time: date.toLocaleTimeString("default", {"timeStyle":"short"}),
-        },
-      );
+      const user = await fetchReadSingleUser(cookies.email);
+      const currentRideData = await fetchCurrentRide(user.id);
+      console.log(currentRideData);
+      setRideInfo({
+        user_id: user.id,
+        neighborhood: userGlobal.neighborhood,
+        station: userGlobal.station,
+        date: date.toLocaleDateString("fr-CA"),
+        time: date.toLocaleTimeString("default", { timeStyle: "short" }),
+      });
     })();
   }, []);
 
@@ -52,116 +52,116 @@ export function EndRide() {
             Departure
           </Typography>
           <List disablePadding>
-              <>
-                <ListItem sx={{ py: 0, px: 19 }}>
-                  <ListItemText
-                    disableTypography
-                    primary={
-                      <Typography
-                        variant="body1"
-                        style={{
-                          color: "#46505A",
-                          fontWeight: 600,
-                        }}
-                      >
-                        Neighborhood
-                      </Typography>
-                    }
-                    // primary="Neighborhood"
-                  />
-                  {rideInfo.neighborhood}
-                </ListItem>
-                <ListItem sx={{ py: 0, px: 19 }}>
-                  <ListItemText
-                    disableTypography
-                    primary={
-                      <Typography
-                        variant="body1"
-                        style={{
-                          color: "#46505A",
-                          fontWeight: 600,
-                        }}
-                      >
-                        Station
-                      </Typography>
-                    }
-                    // primary="Neighborhood"
-                  />
-                  {rideInfo.station}
-                </ListItem>
-                <ListItem sx={{ py: 0, px: 19 }}>
-                  <ListItemText
-                    disableTypography
-                    primary={
-                      <Typography
-                        variant="body1"
-                        style={{
-                          color: "#46505A",
-                          fontWeight: 600,
-                        }}
-                      >
-                        Date
-                      </Typography>
-                    }
-                    // primary="Neighborhood"
-                  />
-                  {rideInfo.date}
-                </ListItem>
-                <ListItem sx={{ py: 0, px: 19 }}>
-                  <ListItemText
-                    disableTypography
-                    primary={
-                      <Typography
-                        variant="body1"
-                        style={{
-                          color: "#46505A",
-                          fontWeight: 600,
-                        }}
-                      >
-                        Time
-                      </Typography>
-                    }
-                    // primary="Neighborhood"
-                  />
-                  {rideInfo.time}
-                </ListItem>
-                <ListItem sx={{ py: 0, px: 19 }}>
-                  <ListItemText
-                    disableTypography
-                    primary={
-                      <Typography
-                        variant="body1"
-                        style={{
-                          color: "#46505A",
-                          fontWeight: 600,
-                        }}
-                      >
-                        Confirmation code
-                      </Typography>
-                    }
-                    // primary="Neighborhood"
-                  />
-                  #2001539
-                </ListItem>
-                <ListItem sx={{ py: 0, px: 19 }}>
-                  <ListItemText
-                    disableTypography
-                    primary={
-                      <Typography
-                        variant="body1"
-                        style={{
-                          color: "#46505A",
-                          fontWeight: 600,
-                        }}
-                      >
-                        Unlock code
-                      </Typography>
-                    }
-                    // primary="Neighborhood"
-                  />
-                  3850
-                </ListItem>
-              </>
+            <>
+              <ListItem sx={{ py: 0, px: 19 }}>
+                <ListItemText
+                  disableTypography
+                  primary={
+                    <Typography
+                      variant="body1"
+                      style={{
+                        color: "#46505A",
+                        fontWeight: 600,
+                      }}
+                    >
+                      Neighborhood
+                    </Typography>
+                  }
+                  // primary="Neighborhood"
+                />
+                {rideInfo.neighborhood}
+              </ListItem>
+              <ListItem sx={{ py: 0, px: 19 }}>
+                <ListItemText
+                  disableTypography
+                  primary={
+                    <Typography
+                      variant="body1"
+                      style={{
+                        color: "#46505A",
+                        fontWeight: 600,
+                      }}
+                    >
+                      Station
+                    </Typography>
+                  }
+                  // primary="Neighborhood"
+                />
+                {rideInfo.station}
+              </ListItem>
+              <ListItem sx={{ py: 0, px: 19 }}>
+                <ListItemText
+                  disableTypography
+                  primary={
+                    <Typography
+                      variant="body1"
+                      style={{
+                        color: "#46505A",
+                        fontWeight: 600,
+                      }}
+                    >
+                      Date
+                    </Typography>
+                  }
+                  // primary="Neighborhood"
+                />
+                {rideInfo.date}
+              </ListItem>
+              <ListItem sx={{ py: 0, px: 19 }}>
+                <ListItemText
+                  disableTypography
+                  primary={
+                    <Typography
+                      variant="body1"
+                      style={{
+                        color: "#46505A",
+                        fontWeight: 600,
+                      }}
+                    >
+                      Time
+                    </Typography>
+                  }
+                  // primary="Neighborhood"
+                />
+                {rideInfo.time}
+              </ListItem>
+              <ListItem sx={{ py: 0, px: 19 }}>
+                <ListItemText
+                  disableTypography
+                  primary={
+                    <Typography
+                      variant="body1"
+                      style={{
+                        color: "#46505A",
+                        fontWeight: 600,
+                      }}
+                    >
+                      Confirmation code
+                    </Typography>
+                  }
+                  // primary="Neighborhood"
+                />
+                #2001539
+              </ListItem>
+              <ListItem sx={{ py: 0, px: 19 }}>
+                <ListItemText
+                  disableTypography
+                  primary={
+                    <Typography
+                      variant="body1"
+                      style={{
+                        color: "#46505A",
+                        fontWeight: 600,
+                      }}
+                    >
+                      Unlock code
+                    </Typography>
+                  }
+                  // primary="Neighborhood"
+                />
+                3850
+              </ListItem>
+            </>
           </List>
         </React.Fragment>
         <React.Fragment>
