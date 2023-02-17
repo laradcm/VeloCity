@@ -6,8 +6,8 @@ Instructions:
 - Create a database named velocity.
 - Run _mockdb.sql_ script.
 - After cloning the project, open a terminal for Frontend and another for Backend.
-- On each terminal run npm i , this will install all packages.
-- After all packages are installed, on each terminal run npm run dev.
+- On each terminal run _npm i_ , this will install all packages.
+- After all packages are installed, on each terminal run _npm run dev_.
 - Both applications should be running, navigate to 127.0.0.1:5173 on your browser and the homepage will be displayed and ready to be used.
   <br/><br/>
 
