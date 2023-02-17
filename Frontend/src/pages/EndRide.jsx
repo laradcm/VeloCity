@@ -9,7 +9,7 @@ import Paper from "@mui/material/Paper";
 import { useState, useEffect } from "react";
 import { useContext } from "react";
 import { SessionContext } from "../context/userGlobalContext";
-
+import Stack from "@mui/material/Stack";
 
 export function EndRide() {
   const { userGlobal, addToGlobalState } = useContext(SessionContext); // global state context
@@ -21,17 +21,17 @@ export function EndRide() {
     setShouldShowButton(false);
   };
   // End of End ride button **************
-  const date = new Date;
+  const date = new Date();
   const rideInfo = [
     {
       user_id: "150",
       neighborhood: userGlobal.neighborhood,
       station: userGlobal.station,
       date: date.toLocaleDateString("fr-CA"),
-      time: date.toLocaleTimeString("default", {"timeStyle":"short"}),
+      time: date.toLocaleTimeString("default", { timeStyle: "short" }),
     },
   ];
-  
+
   return (
     <>
       <Paper className="MainContentContainer">
@@ -256,6 +256,7 @@ export function EndRide() {
               Something went wrong?
             </Typography>
             <Button
+              className="white-font-hovering"
               variant="contained"
               href="/reportbike"
               sx={{ mt: 0.1, ml: 1 }}

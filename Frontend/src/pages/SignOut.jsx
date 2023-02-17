@@ -1,4 +1,4 @@
-import { Button, Container, Row, Col, Card } from "react-bootstrap";
+import { Container, Row, Col, Card } from "react-bootstrap";
 import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
 import { useCookies } from "react-cookie"; // cookies
@@ -7,6 +7,7 @@ import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
 import { useNavigate } from "react-router-dom"; // to redirect
 import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 
 function AlertMessageSuccess() {
   return (
@@ -63,9 +64,14 @@ export function SignOut() {
           </Row>
           <Row style={{ paddingTop: "0.5rem" }}>
             <Col>
-              <Link href="#" onClick={deleteCookie}>
-                <Button>Sign out</Button>
-              </Link>
+              <Button
+                className="white-font-hovering"
+                variant="contained"
+                href="#"
+                onClick={deleteCookie}
+              >
+                Sign out
+              </Button>
             </Col>
           </Row>
           {displaySuccessAlert ? <AlertMessageSuccess /> : null}

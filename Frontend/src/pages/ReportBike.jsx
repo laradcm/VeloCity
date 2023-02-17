@@ -10,15 +10,10 @@ export function ReportBike() {
     <>
       <Paper className="MainContentContainer">
         <Container>
-          <Typography component="h1" variant="h4" align="center" 
-          >
+          <Typography component="h1" variant="h4" align="center">
             Support
           </Typography>
-          <Typography
-            component="h4"
-            align="center"
-            paddingTop={"1rem"}
-          >
+          <Typography component="h4" align="center" paddingTop={"1rem"}>
             Something not working well? <br></br>
             Do you want to share feedback to improve our service?<br></br>
             Send us a message and we'll get in touch with you very soon!
@@ -34,6 +29,7 @@ export function ReportBike() {
               ></textarea>
             </div>
             <Button
+              className="white-font-hovering"
               variant="contained"
               href="/reportbike"
               // onClick={}
