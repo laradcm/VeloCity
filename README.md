@@ -15,7 +15,7 @@ Vélocity aims to:
 
 - Install latest version of _postgres_ (15.1).
 - Create a database named velocity.
-- Run _mockdb.sql_ script.
+- Run _initialize_db.sql_ script.
 - After cloning the project, open a terminal for Frontend and another for Backend.
 - On each terminal run _npm i_ , this will install all packages.
 - After all packages are installed, on each terminal run _npm run dev_.
