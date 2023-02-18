@@ -87,7 +87,7 @@ npm i pg
 
 ## Database
 
-#### mockdb.sql
+#### In the backend folder you can find the mockdb.sql to intialize the database for this application.
 
 ## Brand Guidelines
 
