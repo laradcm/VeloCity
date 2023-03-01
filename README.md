@@ -26,7 +26,7 @@ Vélocity aims to:
 #### React + Vite (set to port 5173)
 
 ```sh
-npm i create vite@latest
+npm create vite@latest
 ```
 
 #### React DOM
