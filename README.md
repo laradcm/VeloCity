@@ -10,6 +10,8 @@ Vélocity aims to:
 - Dynamically monitor and manage Velocity locations/availability and report losses/damages for both project managers and direct users quickly and easily without hassle.
 - Streamline inventory tracking process for project managers.
 
+The website video demonstration can be seen [here.](https://www.youtube.com/watch?v=K6xK4mcE1ag)
+
 
 ## Installation
 
