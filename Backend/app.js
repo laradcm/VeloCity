@@ -3,9 +3,11 @@ const cors = require("cors");
 const reqTracking = require("./src/middlewares/reqTracking");
 const errorHandler = require("./src/middlewares/errorHandler");
 const router = require("./src/routes/router");
-
+const dotenv = require('dotenv')
 const PORT = process.env.PORT || 3000;
+
 const app = express();
+dotenv.config();
 
 const corsOptions = {
   origin: "*", // to be changed to the port num or external address for security
