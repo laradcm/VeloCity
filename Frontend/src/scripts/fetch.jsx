@@ -1,4 +1,4 @@
-const address = "http://127.0.0.1:3000";
+const address = process.env.SERVER_ADDRESS;
 
 export async function fetchRead(extension) {
     const options = { method: "GET" };
