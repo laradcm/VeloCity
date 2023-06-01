@@ -1,4 +1,4 @@
-const address = process.env.SERVER_ADDRESS;
+const address = import.meta.env.VITE_SERVER_ADDRESS;
 
 export async function fetchRead(extension) {
     const options = { method: "GET" };
