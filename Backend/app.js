@@ -5,6 +5,7 @@ const errorHandler = require("./src/middlewares/errorHandler");
 const router = require("./src/routes/router");
 const dotenv = require('dotenv')
 const PORT = process.env.PORT || 3000;
+const HOST = process.env.HOST || "127.0.0.1";
 
 const app = express();
 dotenv.config();
@@ -25,6 +26,6 @@ app.use("/", router);
 app.use(errorHandler);
 
 //listen
-app.listen(PORT, "0.0.0.0", () => {
+app.listen(PORT, HOST, () => {
   console.log("listening on port:" + PORT);
 });
